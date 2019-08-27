@@ -1,1 +1,3 @@
-# chariate_frontend
+# chariate frontend
+
+React + Redux
