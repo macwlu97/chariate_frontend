@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from '../_actions';
-import Login from '../_components/Login';
+import Register from '../_components/Register';
 
 
 
 
-class LoginPage extends React.Component {
+class RegisterPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -56,7 +56,7 @@ class LoginPage extends React.Component {
         return (
                
             
-            <Login onSubmit={this.handleSubmit} onChange={this.handleChange} username={username} password={password}/>
+            <Register onSubmit={this.handleSubmit} onChange={this.handleChange} username={username} password={password}/>
             // <div className="col-md-6 col-md-offset-3">
             //     <div className="alert alert-info">
             //         Username: test<br />
@@ -97,5 +97,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedLoginPage = connect(mapStateToProps)(LoginPage);
-export { connectedLoginPage as LoginPage }; 
+const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
+export { connectedRegisterPage as RegisterPage }; 
