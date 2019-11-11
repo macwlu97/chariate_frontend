@@ -13,10 +13,6 @@ import { testpage } from '../testpage';
 
 import './styl.scss';
 
-  
-
-// const classes = useStyles();
-
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -32,13 +28,6 @@ class App extends React.Component {
         const { alert } = this.props;
         
         return (
-            // <React.Fragment>
-               
-            //  </React.Fragment>
-            
-            // <div className="jumbotron">
-                // <div className="container">
-                //     <div className="col-sm-8 col-sm-offset-2">
                 <div>
                         {alert.message &&
                             <div className={`alert ${alert.type}`}>{alert.message}</div>
@@ -54,9 +43,6 @@ class App extends React.Component {
                         </Router>
                 </div>
               
-               
-           
-
         );
     }
 }
