@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RegisterInSide({onSubmit,onChange,username,password}) {
+export default function RegisterInSide({onSubmit,onChange,email,password,first_name,last_name,submitted, registering}) {
   const classes = useStyles();
     
   return (
@@ -80,11 +80,16 @@ export default function RegisterInSide({onSubmit,onChange,username,password}) {
               fullWidth
               id="email"
               label="Adres email"
-              name="username"
+              name="email"
               autoComplete="email"
               autoFocus
-              value={username} onChange={onChange} 
+              value={email} onChange={onChange} 
             />
+            <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
+            {submitted && !email &&
+              <div className="help-block">Email is required</div>
+            }
+            </div>
             <TextField
               variant="outlined"
               margin="normal"
@@ -95,8 +100,13 @@ export default function RegisterInSide({onSubmit,onChange,username,password}) {
               name="first_name"
               autoComplete="first_name"
               autoFocus
-               
+              value={first_name} onChange={onChange}
             />
+            <div className={'form-group' + (submitted && !first_name ? ' has-error' : '')}>
+            {submitted && !first_name &&
+              <div className="help-block">First name is required</div>
+            }
+            </div>
             <TextField
               variant="outlined"
               margin="normal"
@@ -107,8 +117,13 @@ export default function RegisterInSide({onSubmit,onChange,username,password}) {
               name="last_name"
               autoComplete="last_name"
               autoFocus
-              
+              value={last_name} onChange={onChange}
             />
+            <div className={'form-group' + (submitted && !last_name ? ' has-error' : '')}>
+            {submitted && !last_name &&
+              <div className="help-block">Last name is required</div>
+            }
+            </div>
             <TextField
               variant="outlined"
               margin="normal"
@@ -121,7 +136,11 @@ export default function RegisterInSide({onSubmit,onChange,username,password}) {
               autoComplete="current-password"
               value={password} onChange={onChange}
             />
-      
+            <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
+            {submitted && !password &&
+              <div className="help-block">Password is required</div>
+            }
+            </div>
             <Button
               type="submit"
               fullWidth
@@ -131,6 +150,9 @@ export default function RegisterInSide({onSubmit,onChange,username,password}) {
             >
               zarejestruj się
             </Button>
+            {registering && 
+              <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            }
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
@@ -143,6 +165,7 @@ export default function RegisterInSide({onSubmit,onChange,username,password}) {
                 </Link>
               </Grid>
             </Grid>
+            
             <Box mt={5}>
               <Copyright />
             </Box>

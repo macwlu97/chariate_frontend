@@ -18,9 +18,9 @@ class testpage extends React.Component {
     
     render() {
         return(
-    //<div>
-    <SimpleBreadcrumbs/>
-    //</div>
+    <div>sukces
+   
+    </div>
         )
     }
 }

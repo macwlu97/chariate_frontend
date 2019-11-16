@@ -3,6 +3,7 @@ import { authHeader } from '../_helpers';
 
 export const userService = {
     login,
+    register,
     logout,
     getAll
 };
@@ -22,6 +23,16 @@ function login(email, password) {
 
             return user;
         });
+}
+
+function register(email, password, first_name, last_name) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, first_name, last_name })
+    };
+
+    return fetch(`${config.apiUrl}/api/v1/create/`, requestOptions).then(handleResponse)
 }
 
 function logout() {

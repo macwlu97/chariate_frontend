@@ -9,6 +9,9 @@ import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { OrganizationPage } from '../OrganizationPage';
+
+import CustomizedDialogs from '../_components/CustomizedDialogs';
+
 import { testpage } from '../testpage';
 
 import './styl.scss';
@@ -32,6 +35,10 @@ class App extends React.Component {
                         {alert.message &&
                             <div className={`alert ${alert.type}`}>{alert.message}</div>
                         }
+
+                        {alert.message == "Registration successful" &&
+                            <CustomizedDialogs _title="Zarejestrowano" _content="Pomyślnie zarejestrowałeś się na Chariate.com gratulujemy!" _button_text="Zaloguj się"/>
+                        }
                         <Router history={history}>
                             <div>
                                 <PrivateRoute exact path="/" component={HomePage} />
@@ -46,7 +53,6 @@ class App extends React.Component {
         );
     }
 }
-
 
 
 function mapStateToProps(state) {

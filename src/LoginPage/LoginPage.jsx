@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { userActions } from '../_actions';
 import Login from '../_components/Login';
+// import CustomizedDialogs from '../_components/CustomizedDialogs';
 
 
 
@@ -16,7 +17,7 @@ class LoginPage extends React.Component {
         this.props.dispatch(userActions.logout());
 
         this.state = {
-            username: '',
+            email: '',
             password: '',
             submitted: false
         };
@@ -36,27 +37,23 @@ class LoginPage extends React.Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { username, password } = this.state;
+        const { email, password } = this.state;
         const { dispatch } = this.props;
-        if (username && password) {
-            dispatch(userActions.login(username, password));
+        if (email && password) {
+            dispatch(userActions.login(email, password));
         }
     }
-
-
-    // upd = (event) => {
-    //     this.setState({username: event.target.value})
-    // }
 
 
     render() {
         
         const { loggingIn } = this.props;
-        const { username, password, submitted } = this.state;
+        const { email, password, submitted } = this.state;
         return (
-               
-            
-            <Login onSubmit={this.handleSubmit} onChange={this.handleChange} username={username} password={password}/>
+            // <CustomizedDialogs/>
+            <div>
+            <Login onSubmit={this.handleSubmit} onChange={this.handleChange} email={email} password={password} submitted={submitted} loggingIn={loggingIn}/>
+            </div>
             // <div className="col-md-6 col-md-offset-3">
             //     <div className="alert alert-info">
             //         Username: test<br />
