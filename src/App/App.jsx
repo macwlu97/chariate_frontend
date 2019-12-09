@@ -11,10 +11,12 @@ import { RegisterPage } from '../RegisterPage';
 import { OrganizationPage } from '../OrganizationPage';
 
 import CustomizedDialogs from '../_components/CustomizedDialogs';
+import HomePageLayout from '../_components/Layouts/HomePageLayout/HomePageLayout';
 
 import { testpage } from '../testpage';
 
 import './styl.scss';
+import PrimaryLayout from '../_components/Layouts/PrimaryLayout/PrimaryLayout';
 
 class App extends React.Component {
     constructor(props) {
@@ -41,11 +43,16 @@ class App extends React.Component {
                         }
                         <Router history={history}>
                             <div>
-                                <PrivateRoute exact path="/" component={HomePage} />
-                                <PrivateRoute exact path="/test" component={testpage} />
-                                <PrivateRoute exact path="/organization" component={OrganizationPage} />
+                                
+                                <PrivateRoute exact path="/" layout={HomePageLayout} component={HomePage} />
+                                {/* <Blog> */}
+                                <PrivateRoute exact path="/test" layout={PrimaryLayout} component={testpage} />
+                                <PrivateRoute exact path="/organization" layout={PrimaryLayout} component={OrganizationPage} />
+                                {/* </Blog> */}
+                                {/* <Main> */}
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
+                                {/* </Main> */}
                             </div>
                         </Router>
                 </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import Typography from '@material-ui/core/Typography';
 import { userActions, organizationActions } from '../_actions';
 
 
@@ -15,9 +15,11 @@ class OrganizationPage extends React.Component {
     render() {
         const { user, users, organization } = this.props;
         return (
-            <div className="col-md-6 col-md-offset-3">
-                <h1>Witaj {user.name}!</h1>
-                <p>Zostałeś zalogowany w systemie</p>
+            <React.Fragment>
+                <Typography variant="h3" component="h3" align="center">
+                    Organizacje
+                </Typography>
+                
                 {organization.loading && <em>Ładuje uzytkownikow...</em>}
                 {organization.error && <span className="text-danger">ERROR: {organization.error}</span>}
                 {organization.items &&
@@ -35,7 +37,7 @@ class OrganizationPage extends React.Component {
                 </p>
 
             
-            </div>
+            </React.Fragment>
 
 
         );

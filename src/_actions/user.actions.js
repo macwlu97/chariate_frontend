@@ -7,7 +7,8 @@ export const userActions = {
     login,
     register,
     logout,
-    getAll
+    getAll,
+    refresh_token
 };
 
 function login(email, password) {
@@ -21,8 +22,8 @@ function login(email, password) {
                     history.push('/');
                 },
                 error => {
-                    dispatch(failure(error));
-                    dispatch(alertActions.error(error));
+                    dispatch(failure(error.message));
+                    dispatch(alertActions.error(error.message));
                 }
             );
     };
@@ -44,8 +45,8 @@ function register(email, password, first_name, last_name) {
                     dispatch(alertActions.success('Registration successful'));
                 },
                 error => {
-                    dispatch(failure(error));
-                    dispatch(alertActions.error(error));
+                    dispatch(failure(error.response.status));
+                    dispatch(alertActions.error(error.message));
                 }
             );
     };
@@ -53,6 +54,28 @@ function register(email, password, first_name, last_name) {
     function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
     function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+}
+
+function refresh_token(token) {
+    return dispatch => {
+        dispatch(request({ token }));
+
+        userService.refresh_token(token)
+            .then(
+                user => { 
+                    dispatch(success(user));
+                    history.push('/');
+                },
+                error => {
+                    dispatch(failure(error));
+                    dispatch(alertActions.error(error));
+                }
+            );
+    };
+
+    function request(user) { return { type: userConstants.REFRESH_REQUEST, user } }
+    function success(user) { return { type: userConstants.REFRESH_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.REFRESH_FAILURE, error } }
 }
 
 function logout() {
