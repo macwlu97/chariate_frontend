@@ -15,6 +15,7 @@ class OrganizationPage extends React.Component {
     render() {
         const { user, users, organization } = this.props;
         return (
+            
             <React.Fragment>
                 <Typography variant="h3" component="h3" align="center">
                     Organizacje

@@ -1,7 +1,13 @@
+var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index_bundle.js',
+        publicPath: '/'
+      },
     resolve: {
         extensions: ['.js', '.jsx'],  
     },
@@ -33,7 +39,9 @@ module.exports = {
         template: './src/index.html'
     })],
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        // contentBase: './',
+        // hot: true
     },
     externals: {
         // global app config object
