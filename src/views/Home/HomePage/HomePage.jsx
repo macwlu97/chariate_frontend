@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { userActions, organizationActions } from '../_actions';
+import { userActions, organizationActions } from '../../../_actions';
 
 
 

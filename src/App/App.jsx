@@ -5,18 +5,18 @@ import { connect } from 'react-redux';
 import { history } from '../_helpers';
 import { alertActions } from '../_actions';
 import { PrivateRoute } from '../_components';
-import { HomePage } from '../HomePage';
-import { LoginPage } from '../LoginPage';
-import { RegisterPage } from '../RegisterPage';
-import { OrganizationPage } from '../OrganizationPage';
+import { HomePage } from '../views/Home/HomePage';
+import { LoginPage } from '../views/AuthorizationSystem/LoginPage';
+import { RegisterPage } from '../views/AuthorizationSystem/RegisterPage';
+import { OrganizationPage } from '../views/OrganizationPage';
 
 import CustomizedDialogs from '../_components/CustomizedDialogs';
-import HomePageLayout from '../_components/Layouts/HomePageLayout/HomePageLayout';
+import HomePageLayout from '../Layouts/HomePageLayout/HomePageLayout';
 
-import { testpage } from '../testpage';
+import { testpage } from '../views/testpage';
 
 import './styl.scss';
-import PrimaryLayout from '../_components/Layouts/PrimaryLayout/PrimaryLayout';
+import PrimaryLayout from '../Layouts/PrimaryLayout/PrimaryLayout';
 
 class App extends React.Component {
     constructor(props) {
@@ -47,6 +47,7 @@ class App extends React.Component {
                                 <PrivateRoute exact path="/" layout={HomePageLayout} component={HomePage} />
                                 {/* <Blog> */}
                                 <PrivateRoute exact path="/test" layout={PrimaryLayout} component={testpage} />
+                                <PrivateRoute exact path="/search" layout={PrimaryLayout} component={testpage} />
                                 <PrivateRoute exact path="/organization" layout={PrimaryLayout} component={OrganizationPage} />
                                 {/* </Blog> */}
                                 {/* <Main> */}

@@ -17,8 +17,9 @@ const styles = theme => ({
         // marginLeft: theme.spacing(1),
         // marginRight: theme.spacing(1),
         // background: white,
-        border: '1px solid white',
+        // border: '1px solid white',
         width: 140,
+        fontSize: 15,
       },
   option: {
     fontSize: 15,
@@ -103,7 +104,7 @@ render(){
         <TextField
           {...params}
           label=""
-          variant="outlined"
+          variant="filled"
           className={classes.textField}
           fullWidth
         //   onChange={this.onTagsChange}

@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-    width: 560,
+    width: 400, //560
     height: 50
   },
   input: {
@@ -29,8 +29,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function CustomizedInputBase() {
+export default function CustomizedInputBase({search_text, setSearch_text, onClick}) {
   const classes = useStyles();
+  
 
   return (
     <Paper component="form" className={classes.root}>
@@ -41,9 +42,10 @@ export default function CustomizedInputBase() {
         className={classes.input}
         placeholder="Wpisz frazę"
         inputProps={{ 'aria-label': 'search google maps' }}
+        onChange={(event) => setSearch_text(event.target.value)}
       />
-      <IconButton type="submit" className={classes.iconButton} aria-label="search">
-        <SearchIcon />
+      <IconButton  className={classes.iconButton} aria-label="search" onClick={onClick}>
+        <SearchIcon/>
       </IconButton>
       {/* <Divider className={classes.divider} orientation="vertical" /> */}
       {/* <IconButton color="primary" className={classes.iconButton} aria-label="directions">

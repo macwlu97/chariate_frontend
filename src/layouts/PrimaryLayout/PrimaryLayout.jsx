@@ -46,27 +46,18 @@ export default function PrimaryLayout(props) {
       <PrimaryMenu />
       {/* <Container maxWidth="lg"> */}
       <div style={{ padding: 40 }}>
-      <PrimaryBreadcrumb/>
-      <Grid container className={classes.root} spacing="10">
-          
-            <Grid item md={8} >
+        <PrimaryBreadcrumb/>
+        <Grid container className={classes.root} spacing="10">
+          <Grid item md={8} >
             <Paper className={classes.root} style={{minHeight: 500}}>
-
-            {props.children}
-
-    </Paper>
-            </Grid>
-
-
-            <Grid item md={3}>
-              <PromotedOrg/> 
-            
-              
-
-            </Grid>
-         
+              {props.children}
+            </Paper>
+          </Grid>
+          <Grid item md={3}>
+            <PromotedOrg/> 
+          </Grid>
         </Grid>
-        </div>
+      </div>
     </React.Fragment>
   );
 }

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 
-// import AutocompleteInput from './Autocomplete_SelectBox';
+import AutocompleteInput from './Autocomplete_SelectBox';
 import Search from './Search';
+
+import { history } from '../../_helpers';
 
 const useStyles = makeStyles(theme => ({
   mainFeaturedPost: {
@@ -39,7 +41,24 @@ const useStyles = makeStyles(theme => ({
 
   export default function HeaderPage() {
     const classes = useStyles();
-  
+    const [search_city, setSearch_city] = React.useState(0);
+    const [search_text, setSearch_text] = React.useState('Organizacja');
+
+    const onClick = () => {
+      const redirect = '/search/'+search_city+'/'+search_text;
+      history.push(redirect);
+      console.log('Redirected to /organization');
+    };
+  //   const memoizedHandleClick = useCallback(
+  //   () => {
+  //     console.log({search_city})
+  //     // const redirect = '/search/'+search_city+'/'+search_text;
+  //     // history.push(redirect);
+  //     console.log('Redirected to /organization');
+
+  //   },
+  //   [], // Tells React to memoize regardless of arguments.
+  // );
     return (
 
 
@@ -63,15 +82,26 @@ const useStyles = makeStyles(theme => ({
       <Typography variant="h3" align="center" color="inherit" paragraph>
       <Box fontFamily="Arial" m={1}>Dowiedz się jak dobrze służyć społeczności!</Box> 
       </Typography>
-      <Paper p={0}><Search/>
-      {/* <Grid container p={0}> 
-      <Grid item md={3}><AutocompleteInput/></Grid>
-      <Grid item md={3} p={0}><Search/></Grid></Grid> */}
-</Paper>
+
+      <Grid container spacing={1}>  
+      <Grid item md={3}>
       
-      
-    </div>
+     <AutocompleteInput search_city={search_city} setSearch_city={setSearch_city} />
     
+    </Grid>
+    {/* <Grid item md={1}></Grid> */}
+<Grid item md={3}>
+       
+<Search search_text={search_text} setSearch_text={setSearch_text} onClick={(onClick)}/>
+
+</Grid>
+      </Grid>
+   
+    
+    
+    
+    
+    </div>
   </Grid>
   <Grid item md={3}>
     

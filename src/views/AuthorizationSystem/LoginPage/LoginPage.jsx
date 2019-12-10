@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { userActions } from '../_actions';
-import Login from '../_components/Login';
+import { userActions } from '../../../_actions';
+import Login from '../../../_components/Login';
 // import CustomizedDialogs from '../_components/CustomizedDialogs';
 
 
