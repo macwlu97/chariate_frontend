@@ -56,9 +56,9 @@ export default function ControlledOpenSelect({search_city, setSearch_city}) {
           value={search_city}
           onChange={handleChange}
         >
-          <MenuItem value={10}>Warszawa</MenuItem>
-          <MenuItem value={20}>Poznań</MenuItem>
-          <MenuItem value={30}>Gdańsk</MenuItem>
+          <MenuItem value={2}>Warszawa</MenuItem>
+          <MenuItem value={3}>Poznań</MenuItem>
+          <MenuItem value={4}>Gdańsk</MenuItem>
         </Select>
       </FormControl>
       </Paper>
