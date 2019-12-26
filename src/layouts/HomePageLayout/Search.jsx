@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function CustomizedInputBase({search_text, setSearch_text, onClick}) {
+export default function CustomizedInputBase({search_text, setSearch_text, onClick, onKeyPress}) {
   const classes = useStyles();
   
 
@@ -43,6 +43,7 @@ export default function CustomizedInputBase({search_text, setSearch_text, onClic
         placeholder="Wpisz frazę"
         inputProps={{ 'aria-label': 'search google maps' }}
         onChange={(event) => setSearch_text(event.target.value)}
+        onKeyPress={onKeyPress}
       />
       <IconButton  className={classes.iconButton} aria-label="search" onClick={onClick}>
         <SearchIcon/>

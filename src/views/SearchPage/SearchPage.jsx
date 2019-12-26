@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import { searchActions } from '../../_actions';
-
+import Paper from '@material-ui/core/Paper';
 
 
 class SearchPage extends React.Component {
@@ -25,25 +25,25 @@ class SearchPage extends React.Component {
         return (
             <React.Fragment>
             
-                <Typography variant="h3" component="h3" align="center">
+                {/* <Typography variant="h3" component="h3" align="center">
                     Wyszukiwarka
-                </Typography>
+                </Typography> */}
                 
                 {search.loading && <em>Ładuje rezultaty wyszukiwania...</em>}
                 {search.error && <span className="text-danger">ERROR: {search.error}</span>}
                 {search.items &&
-                    <ul>
+                    <React.Fragment>
                         {search.items.results.map((org, index) =>
-                            <li key={org.id}>
+                            <Paper style={{padding: 20, marginLeft:20, marginBottom: 20}}>
                                 {org.name + ' ' + org.description}
-                            </li>
+                            </Paper>
                         )}
-                    </ul>
+                    </React.Fragment>
                 }
-                ------------
+                {/* ------------
                 <p>
                     <Link to="/">powróć</Link>
-                </p>
+                </p> */}
 
             
             </React.Fragment>

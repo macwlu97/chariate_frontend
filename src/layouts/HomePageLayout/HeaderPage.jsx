@@ -49,6 +49,14 @@ const useStyles = makeStyles(theme => ({
       history.push(redirect);
       console.log('Redirected to /organization');
     };
+
+    const onKeyPress = (e) => {
+      if(e.key === 'Enter'){
+        const redirect = '/search/'+search_city+'/'+search_text;
+        history.push(redirect);
+        console.log('Redirected to /organization');
+      }
+    };
   //   const memoizedHandleClick = useCallback(
   //   () => {
   //     console.log({search_city})
@@ -92,7 +100,7 @@ const useStyles = makeStyles(theme => ({
     {/* <Grid item md={1}></Grid> */}
 <Grid item md={3}>
        
-<Search search_text={search_text} setSearch_text={setSearch_text} onClick={(onClick)}/>
+<Search search_text={search_text} setSearch_text={setSearch_text} onClick={(onClick)} onKeyPress={(onKeyPress)}/>
 
 </Grid>
       </Grid>

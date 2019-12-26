@@ -9,6 +9,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import IconButton from '@material-ui/core/IconButton';
+import { Link } from 'react-router-dom'
 
 const StyledMenu = withStyles({
   paper: {
@@ -71,12 +72,14 @@ export default function CustomizedMenus() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+      <Link to="/profile">
         <StyledMenuItem>
           <ListItemIcon>
             <SendIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Konto" />
         </StyledMenuItem>
+        </Link>
         <StyledMenuItem>
           <ListItemIcon>
             <DraftsIcon fontSize="small" />
