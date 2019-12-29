@@ -12,8 +12,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const onClick = (props) => {
-  const redirect = '/search/'+props.cityId+','+props.type+','+props.search_text+','+props._sort;
+const onClick = (cityId,type,search_text,_sort) => { 
+  
+  const redirect = '/search/'+cityId+','+type+','+search_text+','+_sort;
+  // const redirect = '/search/'+props.cityId+','+props.type+','+props.search_text+','+props._sort;
+  console.log(redirect)
   history.push(redirect);
   console.log('Redirected to /search');
 }; 
@@ -34,29 +37,29 @@ export default function RecipeReviewCard(props) {
           Sortuj po
         </Typography>
         <Typography component="p">
-        <Link to="/search/3/Fundacja" onClick={onClick}>Popularność</Link>
+        <Link to={"/search/"+props.cityId+","+props.type+","+props.search_text+",popularity"} onClick={() => onClick(props.cityId,props.type,props.search_text,"popularity")}>Popularność</Link>
         </Typography>
         <Typography component="p">
-        <Link to="/search/3/Fundacja" onClick={onClick}>Nazwa</Link>
+        <Link to={"/search/"+props.cityId+","+props.type+","+props.search_text+",name"} onClick={() => onClick(props.cityId,props.type,props.search_text,"name")}>Nazwa</Link>
         </Typography>
         <Typography component="p">
-        <Link to="/search/3/Fundacja" onClick={onClick}>Ostatnio dodane</Link>
+        <Link to={"/search/"+props.cityId+","+props.type+","+props.search_text+",date"} onClick={() => onClick(props.cityId,props.type,props.search_text,"date")}>Ostatnio dodane</Link>
         </Typography>
 
         <Typography component="p" style={{ paddingTop: 10}}>
           Kategoria
         </Typography>
         <Typography component="p">
-        <Link to="/search/0,all,Fundacja,none" onClick={onClick}>Fundacje</Link>
+        <Link to={"/search/"+props.cityId+",0,"+props.search_text+","+props._sort} onClick={() => onClick(props.cityId,0,props.search_text,props._sort)}>Fundacje</Link>
         </Typography>
         <Typography component="p">
-        <Link to="/search/3/Fundacja" onClick={onClick}>Społeczności</Link>
+        <Link to={"/search/"+props.cityId+",1,"+props.search_text+","+props._sort} onClick={() => onClick(props.cityId,1,props.search_text,props._sort)}>Społeczności</Link>
         </Typography>
         <Typography component="p">
-        <Link to="/search/3/Fundacja" onClick={onClick}>Wydarzenia</Link>
+        <Link to={"/search/"+props.cityId+",2,"+props.search_text+","+props._sort} onClick={() => onClick(props.cityId,2,props.search_text,props._sort)}>Wydarzenia</Link>
         </Typography>
         <Typography component="p">
-        <Link to="/search/3/Fundacja" onClick={onClick}>Zbiórki</Link>
+        <Link to={"/search/"+props.cityId+",3,"+props.search_text+","+props._sort} onClick={() => onClick(props.cityId,3,props.search_text,props._sort)}>Zbiórki</Link>
         </Typography>
 
         <Typography component="p" style={{ paddingTop: 10}}>

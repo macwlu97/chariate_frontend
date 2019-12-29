@@ -5,13 +5,13 @@ export const searchService = {
     getResult
 };
 
-function getResult(cityId, search_text) {
+function getResult(cityId, search_text, type, _sort) {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/api/v1/search/${cityId}?q=${search_text}`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/api/v1/search/${cityId}?q=${search_text}&type=${type}&sort=${_sort}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

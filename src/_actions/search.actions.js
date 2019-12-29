@@ -5,10 +5,10 @@ export const searchActions = {
     getResult
 };
 
-function getResult(cityId, search_text) {
+function getResult(cityId, search_text, type, _sort) {
     return dispatch => {
         dispatch(request());
-        searchService.getResult(cityId, search_text)
+        searchService.getResult(cityId, search_text, type, _sort)
             .then(
                 search => dispatch(success(search)),
                 error => dispatch(failure(error))

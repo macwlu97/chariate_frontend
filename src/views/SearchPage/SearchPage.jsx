@@ -20,7 +20,7 @@ class SearchPage extends React.Component {
       }
 
     componentDidMount() {
-        this.props.dispatch(searchActions.getResult(this.state.cityId, this.state.search_text));
+        this.props.dispatch(searchActions.getResult(this.state.cityId, this.state.search_text, this.state.type, this.state._sort));
     }
 
     render() {
@@ -32,8 +32,8 @@ class SearchPage extends React.Component {
                 {/* <Typography variant="h3" component="h3" align="center">
                     Wyszukiwarka
                 </Typography> */}
-                {this.state._sort}
-                {this.state.type}
+                {/* {this.state._sort}
+                {this.state.type} */}
                 {search.loading && <em>Ładuje rezultaty wyszukiwania...</em>}
                 {search.error && <span className="text-danger">ERROR: {search.error}</span>}
                 {search.items &&
