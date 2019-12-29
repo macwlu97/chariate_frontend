@@ -33,7 +33,7 @@ export default function SearchLayout(props) {
   const [search_text, setSearch_text] = React.useState();
   const [type, setType] = React.useState(0);
   const [_sort, set_Sort] = React.useState();
-  const setter = (cityid, text, type, mode) => {
+  const setter = (cityId, text, type, mode) => {
     setCityId(cityId);
     setSearch_text(text);
     setType(type);

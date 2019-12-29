@@ -61,6 +61,9 @@ export default function RecipeReviewCard(props) {
         <Typography component="p">
         <Link to={"/search/"+props.cityId+",3,"+props.search_text+","+props._sort} onClick={() => onClick(props.cityId,3,props.search_text,props._sort)}>Zbiórki</Link>
         </Typography>
+        <Typography component="p">
+        <Link to={"/search/0,5,"+props.search_text+",none"} onClick={() => onClick(0,5,props.search_text,"none")}>Wyczyść filtry</Link>
+        </Typography>
 
         <Typography component="p" style={{ paddingTop: 10}}>
           Lokalizacja
