@@ -45,14 +45,14 @@ const useStyles = makeStyles(theme => ({
     const [search_text, setSearch_text] = React.useState('Organizacja');
 
     const onClick = () => {
-      const redirect = '/search/'+search_city+'/'+search_text;
+      const redirect = '/search/'+search_city+',all,'+search_text+',none';
       history.push(redirect);
       console.log('Redirected to /organization');
     };
 
     const onKeyPress = (e) => {
       if(e.key === 'Enter'){
-        const redirect = '/search/'+search_city+'/'+search_text;
+        const redirect = '/search/'+search_city+',all,'+search_text+',none';
         history.push(redirect);
         console.log('Redirected to /organization');
       }

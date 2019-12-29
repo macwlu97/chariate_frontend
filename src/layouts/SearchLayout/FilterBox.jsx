@@ -12,18 +12,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const onClick = () => {
-  const redirect = '/search/3/Fundacja';
+const onClick = (props) => {
+  const redirect = '/search/'+props.cityId+','+props.type+','+props.search_text+','+props._sort;
   history.push(redirect);
   console.log('Redirected to /search');
 }; 
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard(props) {
   const classes = useStyles();
-  
+  // const [spacing, setSpacing] = React.useState(2);
 
   return (
     <React.Fragment>
+    
       <Paper className={classes.root}>
         <Typography variant="h4" component="h3" style={{ paddingBottom: 10}}>
           Filtry
@@ -46,7 +47,7 @@ export default function RecipeReviewCard() {
           Kategoria
         </Typography>
         <Typography component="p">
-        <Link to="/search/3/Fundacja" onClick={onClick}>Fundacje</Link>
+        <Link to="/search/0,all,Fundacja,none" onClick={onClick}>Fundacje</Link>
         </Typography>
         <Typography component="p">
         <Link to="/search/3/Fundacja" onClick={onClick}>Społeczności</Link>

@@ -29,7 +29,17 @@ export default function SearchLayout(props) {
   const handleChange = event => {
     setSpacing(Number(event.target.value));
   };
-
+  const [cityId, setCityId] = React.useState(0);
+  const [search_text, setSearch_text] = React.useState();
+  const [type, setType] = React.useState(0);
+  const [_sort, set_Sort] = React.useState();
+  const setter = (cityid, text, type, mode) => {
+    setCityId(cityId);
+    setSearch_text(text);
+    setType(type);
+    set_Sort(mode);
+  }
+  // const [obj, setObj] = React.useState(0);
   return (
     <React.Fragment>
       
@@ -40,11 +50,12 @@ export default function SearchLayout(props) {
         <PrimaryBreadcrumb/>
         <Grid container className={classes.root} spacing="10">
         <Grid item md={3}>
-            <FilterBox/> 
+            <FilterBox cityId={cityId} search_text={search_text} type={type} _sort={_sort} />
           </Grid>
           <Grid item md={8} >
             {/* <Paper className={classes.root} style={{minHeight: 500}}> */}
-              {props.children}
+              {/* {props.children} */}
+              {React.cloneElement(props.children, { setter: setter })}
             {/* </Paper> */}
           </Grid>
           

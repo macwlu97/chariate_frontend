@@ -11,8 +11,12 @@ class SearchPage extends React.Component {
         super(props);
         this.state = {
           cityId: this.props.match.params.cityId,
-          search_text: this.props.match.params.text
+          search_text: this.props.match.params.text,
+          type: this.props.match.params.type,
+          _sort: this.props.match.params._sort
         }
+
+        this.props.setter(this.state.cityId, this.state.search_text, this.state.type, this.state._sort);
       }
 
     componentDidMount() {
@@ -28,7 +32,8 @@ class SearchPage extends React.Component {
                 {/* <Typography variant="h3" component="h3" align="center">
                     Wyszukiwarka
                 </Typography> */}
-                
+                {this.state._sort}
+                {this.state.type}
                 {search.loading && <em>Ładuje rezultaty wyszukiwania...</em>}
                 {search.error && <span className="text-danger">ERROR: {search.error}</span>}
                 {search.items &&
