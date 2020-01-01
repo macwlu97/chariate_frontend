@@ -39,6 +39,7 @@ export default function SearchLayout(props) {
     setType(type);
     set_Sort(mode);
   }
+  
   return (
     <React.Fragment>
       
@@ -49,7 +50,7 @@ export default function SearchLayout(props) {
         <PrimaryBreadcrumb/>
         <Grid container className={classes.root} spacing="10">
         <Grid item md={3}>
-            <FilterBox cityId={cityId} search_text={search_text} type={type} _sort={_sort} setter={setter} />
+            <FilterBox cityId={cityId} search_text={search_text} type={type} _sort={_sort} setter={setCityId} />
           </Grid>
           <Grid item md={8} >
             {/* <Paper className={classes.root} style={{minHeight: 500}}> */}

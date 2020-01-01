@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -6,6 +6,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import { cityActions } from '../../_actions';
+import { useDispatch } from 'react-redux';
+import { cityService } from '../../_services';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,9 +32,39 @@ const useStyles = makeStyles(theme => ({
 
 export default function ControlledOpenSelect({search_city, setSearch_city}) {
   const classes = useStyles();
-  
-  const [open, setOpen] = React.useState(false);
+  const [city, setCity] = useState({});
+  const dispatch = useDispatch()
+  // const mapDispatchToProps = dispatch => {
+  //   return {
+  //     // dispatching plain actions
+  //     cityw: () =>  dispatch(cityActions.getAll()),
+  //   }
+  // }
 
+    useEffect(() => {
+      dispatch(cityActions.getAll(setCity))
+  }, []);
+    
+
+  // useEffect(() => {
+  //   cityActions.getAll();
+  // }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(cityActions.getAll());
+  // }, [])
+  
+  // setCity(mapDispatchToProps())
+  // dispatch(cityActions.getAll());
+  // useEffect(() => {
+  //   // Zaktualizuj tytuł dokumentu korzystając z interfejsu API przeglądarki
+  //   // var city = cityActions.getAll();
+  //   dispatch(cityActions.getAll());
+  // });
+  
+
+  const [open, setOpen] = React.useState(false);
+  
   const handleChange = event => {
     setSearch_city(event.target.value);
   };
@@ -40,12 +74,15 @@ export default function ControlledOpenSelect({search_city, setSearch_city}) {
   };
 
   const handleOpen = () => {
+    // dispatch(cityActions.getAll(setCity))
     setOpen(true);
   };
 
   return (
     <div>
+    
       <Paper  component="form" className={classes.root}>
+      
       <FormControl className={classes.formControl}>
         <Select
           labelId="demo-controlled-open-select-label"
@@ -56,9 +93,14 @@ export default function ControlledOpenSelect({search_city, setSearch_city}) {
           value={search_city}
           onChange={handleChange}
         >
-          <MenuItem value={2}>Warszawa</MenuItem>
-          <MenuItem value={3}>Poznań</MenuItem>
-          <MenuItem value={4}>Gdańsk</MenuItem>
+                
+        <MenuItem value={0}>Polska</MenuItem>
+     {city.results && city.results.map((org, index) =>
+                          <MenuItem value={org.id}>
+                                {org.name}
+                            </MenuItem>
+                        )}
+               
         </Select>
       </FormControl>
       </Paper>
