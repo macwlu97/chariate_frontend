@@ -10,6 +10,8 @@ import { organizationActions } from '../../../_actions';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
+import PreviewDescription from '../../../_components/PreviewDescription';
+import Divider from '@material-ui/core/Divider';
 
 class PreviewPage extends React.Component {
     constructor(props){
@@ -27,18 +29,19 @@ class PreviewPage extends React.Component {
         return (
             
             <React.Fragment>
-                <Typography variant="h3" component="h3" align="center">
+                <Typography variant="h3" component="h3" align="center" style={{ paddingTop: 10, paddingBottom: 20 }}>
                     Przeglądasz: {organization.items && organization.items.name}
                 </Typography>
-                
-        <FormControl disabled >
+                <Divider light />
+            <PreviewDescription/>
+        {/* <FormControl disabled >
             <InputLabel htmlFor="component-disabled" spacing={3}>{organization.items && organization.items.name}</InputLabel>
             <Input id="component-disabled" 
         // value={name} onChange={handleChange} 
         />
             <FormHelperText>Nazwa</FormHelperText>
         </FormControl>
-        
+         */}
       {/* <Fab color="secondary" aria-label="edit"  style={{fontSize: '30px'}}>
         <EditIcon style={{fontSize: '10px'}}/>
       </Fab> */}
@@ -63,7 +66,7 @@ class PreviewPage extends React.Component {
                     </ul>
                 } */}
                 <br/><br/><br/><br/><br/><br/><br/>
-                ------------
+                {/* ------------ */}
                 <p>
                 {/* <React.Button onClick={history.goBack}>Go Back</React.Button> */}
                 </p>
