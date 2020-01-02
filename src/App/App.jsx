@@ -20,6 +20,7 @@ import { testpage } from '../views/testpage';
 import PrimaryLayout from '../Layouts/PrimaryLayout/PrimaryLayout';
 import SearchLayout from '../Layouts/SearchLayout/SearchLayout';
 import { ProfilePage } from '../views/Home/ProfilePage/ProfilePage';
+import { PreviewPage } from '../views/Home/PreviewPage/PreviewPage';
 
 class App extends React.Component {
     constructor(props) {
@@ -54,6 +55,7 @@ class App extends React.Component {
                                 
                                 <PrivateRoute exact path="/organization" layout={PrimaryLayout} component={OrganizationPage} />
                                 <PrivateRoute exact path="/profile" layout={PrimaryLayout} component={ProfilePage} />
+                                <PrivateRoute exact path="/preview/:_type,:_id" layout={PrimaryLayout} component={PreviewPage} />
 
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />

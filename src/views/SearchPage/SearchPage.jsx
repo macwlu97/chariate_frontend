@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import { searchActions, cityActions } from '../../_actions';
 import Paper from '@material-ui/core/Paper';
-
+import Divider from '@material-ui/core/Divider';
 
 class SearchPage extends React.Component {
     constructor(props){
@@ -42,6 +42,10 @@ class SearchPage extends React.Component {
                         {search.items.results.map((org, index) =>
                             <Paper style={{padding: 20, marginLeft:20, marginBottom: 20}}>
                                 {org.name + ' ' + org.description}
+                                <Divider light/>
+                                <Typography component="p">
+                                    <Link to={`/preview/0,${org.id}`}>Obejrzyj profil</Link>
+                                 </Typography>
                             </Paper>
                         )}
                     </React.Fragment>

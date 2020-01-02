@@ -9,7 +9,7 @@ import { userActions, organizationActions } from '../../_actions';
 class OrganizationPage extends React.Component {
     componentDidMount() {
         this.props.dispatch(userActions.getAll());
-        this.props.dispatch(organizationActions.getAll())
+        this.props.dispatch(organizationActions.getAllOrganization())
     }
 
     render() {
