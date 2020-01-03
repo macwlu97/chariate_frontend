@@ -17,6 +17,8 @@ class SearchPage extends React.Component {
         }
 
         this.props.setter(this.state.cityId, this.state.search_text, this.state.type, this.state._sort);
+        
+        // this.props.set_Counter()
       }
 
     componentDidMount() {
@@ -26,10 +28,11 @@ class SearchPage extends React.Component {
 
     render() {
         const { search } = this.props;
+        this.props.set_Counter(search.items && search.items.count)
         
         return (
             <React.Fragment>
-            
+                {/* {search.items && search.items.count} */}
                 {/* <Typography variant="h3" component="h3" align="center">
                     Wyszukiwarka
                 </Typography> */}

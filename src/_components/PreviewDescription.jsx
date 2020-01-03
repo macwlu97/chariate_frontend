@@ -6,6 +6,12 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Grid from '@material-ui/core/Grid';
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -41,7 +47,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     display: 'flex',
-    height: 224,
+    height: 424,
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
@@ -67,15 +73,57 @@ export default function PreviewDescription() {
         className={classes.tabs}
       >
         <Tab label="Informacje" {...a11yProps(0)} />
-        <Tab label="Recenzje" {...a11yProps(1)} />
-        <Tab label="Zdjęcia" {...a11yProps(2)} />
-        <Tab label="Item Four" {...a11yProps(3)} />
-        <Tab label="Item Five" {...a11yProps(4)} />
-        <Tab label="Item Six" {...a11yProps(5)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Co robimy" {...a11yProps(1)} />
+        <Tab label="Cele" {...a11yProps(2)} />
+        <Tab label="Posty" {...a11yProps(3)} />
+        <Tab label="Zdjęcia" {...a11yProps(4)} />
+        <Tab label="Recenzje" {...a11yProps(5)} />
+        <Tab label="Notatki" {...a11yProps(6)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Fundacja A
+      <Grid container spacing="6" direction="row" alignItems="center">
+      <Grid item md={4}>
+        <FormControl disabled>
+            <InputLabel htmlFor="component-disabled" spacing={3}>
+             
+                Fundajca </InputLabel>
+            <Input id="component-disabled" 
+        // value={name} onChange={handleChange} 
+        />
+            <FormHelperText>Nazwa</FormHelperText>
+        </FormControl>
+        </Grid>
+        <Grid item md={4}>
+        <FormControl disabled >
+            <InputLabel htmlFor="component-disabled" spacing={3}>753222111 </InputLabel>
+            <Input id="component-disabled" 
+        // value={name} onChange={handleChange} 
+        />
+            <FormHelperText>Phone number</FormHelperText>
+        </FormControl>    
+        </Grid>
+        <Grid item md={5}>
+        <Typography variant="h4" component="h5">
+                    Godziny otwarcia
+                </Typography>
+        <Typography variant="h5" component="h5">
+        Dzisiaj  10:00 do 22:00
+        [Więcej]
+                </Typography>
+                </Grid>
+        
+        <Grid item md={5}>
+        <Typography variant="h4" component="h5">
+                    More info
+                </Typography>
+        <Typography variant="h5" component="h5">
+        - Zarejestrowana<br/>
+        - Doświadczenie w działaniu
+        
+                </Typography>
+                </Grid>
+      
+      </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two

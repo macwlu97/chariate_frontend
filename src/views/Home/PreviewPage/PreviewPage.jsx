@@ -29,10 +29,10 @@ class PreviewPage extends React.Component {
         return (
             
             <React.Fragment>
-                <Typography variant="h3" component="h3" align="center" style={{ paddingTop: 10, paddingBottom: 20 }}>
-                    Przeglądasz: {organization.items && organization.items.name}
-                </Typography>
-                <Divider light />
+                <Typography variant="h4" component="h3" align="center" style={{ paddingTop: 10, paddingBottom: 20 }}>
+                    Preview – {organization.items && organization.items.name}
+                </Typography> 
+                 <Divider light />
             <PreviewDescription/>
         {/* <FormControl disabled >
             <InputLabel htmlFor="component-disabled" spacing={3}>{organization.items && organization.items.name}</InputLabel>

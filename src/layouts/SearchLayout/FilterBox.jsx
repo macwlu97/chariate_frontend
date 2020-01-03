@@ -67,14 +67,16 @@ function RecipeReviewCard(props) {
         <Typography component="p">
         <Link to={"/search/"+props.cityId+",3,"+props.search_text+","+props._sort} onClick={() => onClick(props.cityId,3,props.search_text,props._sort)}>Zbiórki { props.type==3 && <b>(x)</b> }</Link>
         </Typography>
-        <Typography component="p">
-        <Link to={"/search/0,5,"+props.search_text+",none"} onClick={() => onClick(0,5,props.search_text,"none")}>Wyczyść filtry { props.type==5 && <b>(x)</b> }</Link>
-        </Typography>
+
 
         <Typography component="p" style={{ paddingTop: 10}}>
           Lokalizacja
         </Typography>
         <AutocompleteInput search_city={search_city} setSearch_city={setSearch_city} />
+
+        <Typography component="p" style={{ paddingTop: 10}}>
+        <Link to={"/search/0,5,"+props.search_text+",none"} onClick={() => onClick(0,5,props.search_text,"none")}>Wyczyść filtry { props.type==5 && <b>(x)</b> }</Link>
+        </Typography>
       </Paper>
     </React.Fragment>
   );
