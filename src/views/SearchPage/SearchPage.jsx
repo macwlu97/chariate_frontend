@@ -5,26 +5,75 @@ import Typography from '@material-ui/core/Typography';
 import { searchActions, cityActions } from '../../_actions';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
+import queryString from 'query-string'
+import ResultCard from '../../_components/ResultCard';
+import Grid from '@material-ui/core/Grid';
 
 class SearchPage extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-          cityId: this.props.match.params.cityId,
-          search_text: this.props.match.params.text,
-          type: this.props.match.params.type,
-          _sort: this.props.match.params._sort
-        }
+        
+        // console.log(values.filter) // "top"
+        // console.log(values.origin) // "im"
 
-        this.props.setter(this.state.cityId, this.state.search_text, this.state.type, this.state._sort);
+        // this.state = {
+        //   cityId: this.props.match.params.cityId,
+        //   search_text: this.props.match.params.text,
+        //   type: this.props.match.params.type,
+        //   _sort: this.props.match.params._sort
+        // }
+
+
+        // this.props.setter(this.state.cityId, this.state.search_text, this.state.type, this.state._sort);
+        // console.log(searchValues)
+
+        // this.props.setter(values.city, values.text, values.type, values._sort);
         
         // this.props.set_Counter()
       }
 
     componentDidMount() {
-        this.props.dispatch(searchActions.getResult(this.state.cityId, this.state.search_text, this.state.type, this.state._sort));
+        const values = queryString.parse(this.props.location.search)
+
+        const searchValues = {
+            city: values.city,
+            text: values.text,
+            type: values.type,
+            sort: values.sort,
+          };
+
+        this.temporaryValues = searchValues
+
+        // console.log(searchValues.city)
+        this.props.setter(searchValues.city, searchValues.text, searchValues.type, searchValues.sort);
+
+        // this.props.dispatch(searchActions.getResult(this.state.cityId, this.state.search_text, this.state.type, this.state._sort));
+        this.props.dispatch(searchActions.getResult(searchValues.city, searchValues.text, searchValues.type, searchValues.sort));
         // this.props.dispatch(cityActions.getAll());
     }
+
+    componentDidUpdate(prevProps) {
+
+        if (this.props.location.search !== prevProps.location.search){
+            const values = queryString.parse(this.props.location.search)
+        
+            const searchValues = {
+                city: values.city,
+                text: values.text,
+                type: values.type,
+                sort: values.sort,
+              };
+
+            this.props.setter(searchValues.city, searchValues.text, searchValues.type, searchValues.sort);
+            this.props.dispatch(searchActions.getResult(searchValues.city, searchValues.text, searchValues.type, searchValues.sort));
+        }
+        // // console.log(searchValues.city)
+        // this.props.setter(searchValues.city, searchValues.text, searchValues.type, searchValues.sort);
+
+        // // this.props.dispatch(searchActions.getResult(this.state.cityId, this.state.search_text, this.state.type, this.state._sort));
+        // this.props.dispatch(searchActions.getResult(searchValues.city, searchValues.text, searchValues.type, searchValues.sort));
+        // // this.props.dispatch(cityActions.getAll());
+      }
 
     render() {
         const { search } = this.props;
@@ -43,13 +92,8 @@ class SearchPage extends React.Component {
                 {search.items &&
                     <React.Fragment>
                         {search.items.results.map((org, index) =>
-                            <Paper style={{padding: 20, marginLeft:20, marginBottom: 20}}>
-                                {org.name + ' ' + org.description}
-                                <Divider light/>
-                                <Typography component="p">
-                                    <Link to={`/preview/0,${org.id}`}>Obejrzyj profil</Link>
-                                 </Typography>
-                            </Paper>
+                            <ResultCard organization={org}/>
+
                         )}
                     </React.Fragment>
                 }
@@ -69,6 +113,7 @@ class SearchPage extends React.Component {
                         )}
                     </React.Fragment>
                 } */}
+                
             </React.Fragment>
 
 

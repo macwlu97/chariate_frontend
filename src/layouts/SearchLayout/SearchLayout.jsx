@@ -34,6 +34,7 @@ export default function SearchLayout(props) {
   const [type, setType] = React.useState(0);
   const [_sort, set_Sort] = React.useState();
   const [counter, set_Counter] = React.useState();
+
   const setter = (cityId, text, type, mode) => {
     setCityId(cityId);
     setSearch_text(text);
@@ -62,7 +63,8 @@ export default function SearchLayout(props) {
           
             {/* <Paper className={classes.root} style={{minHeight: 500}}> */}
               {/* {props.children} */}
-              {React.cloneElement(props.children, { setter: setter, set_Counter: set_Counter })}
+              {/* {React.cloneElement(props.children, { setter: setter })} */}
+              {React.cloneElement(props.children, { setter: setter , set_Counter: set_Counter})}
             {/* </Paper> */}
           </Grid>
           

@@ -86,7 +86,7 @@ export default function PreviewDescription() {
         <FormControl disabled>
             <InputLabel htmlFor="component-disabled" spacing={3}>
              
-                Fundajca </InputLabel>
+                Fundacja </InputLabel>
             <Input id="component-disabled" 
         // value={name} onChange={handleChange} 
         />

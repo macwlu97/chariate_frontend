@@ -51,8 +51,9 @@ class App extends React.Component {
                                 <PrivateRoute exact path="/" layout={HomePageLayout} component={HomePage} />
                                 
                                 <PrivateRoute exact path="/test" layout={PrimaryLayout} component={testpage} />
-                                <PrivateRoute path="/search/:cityId,:type,:text,:_sort" layout={SearchLayout} component={SearchPage} />
-                                
+                                {/* <PrivateRoute path="/search/:cityId,:type,:text,:_sort" layout={SearchLayout} component={SearchPage} /> */}
+                                <PrivateRoute path="/search/" layout={SearchLayout} component={SearchPage} />
+
                                 <PrivateRoute exact path="/organization" layout={PrimaryLayout} component={OrganizationPage} />
                                 <PrivateRoute exact path="/profile" layout={PrimaryLayout} component={ProfilePage} />
                                 <PrivateRoute exact path="/preview/:_type,:_id" layout={PrimaryLayout} component={PreviewPage} />
