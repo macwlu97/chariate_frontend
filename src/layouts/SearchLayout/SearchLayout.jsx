@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container';
 import PrimaryMenu from './SearchMenu'
 import FilterBox from './FilterBox'
 import PrimaryBreadcrumb from './SearchBreadcrumb'
+import FooterPage from '../../layouts/SearchLayout/FooterPage';
 
 
 const useStyles = makeStyles(theme => ({
@@ -46,7 +47,7 @@ export default function SearchLayout(props) {
     <React.Fragment>
       
       <CssBaseline />
-      <PrimaryMenu />
+      <PrimaryMenu cityId={cityId} search_text={search_text} type={type} _sort={_sort} setter={setCityId}/>
       {/* <Container maxWidth="lg"> */}
       <div style={{ padding: 40 }}>
         <PrimaryBreadcrumb/>
@@ -70,6 +71,7 @@ export default function SearchLayout(props) {
           
         </Grid>
       </div>
+      <FooterPage/>
     </React.Fragment>
   );
 }

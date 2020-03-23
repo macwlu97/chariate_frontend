@@ -3,7 +3,8 @@ import { authHeader } from '../_helpers';
 import axios from 'axios';
 
 export const cityService = {
-    getAll
+    getAll,
+    getAllExtended
 };
 
 function getAll() {
@@ -17,4 +18,18 @@ function getAll() {
         return data;
   });
 }
+
+function getAllExtended() {
+    const requestOptions = {
+        headers: authHeader()
+    };
+
+    // return fetch(`${config.apiUrl}/api/v1/user/`, requestOptions).then(handleResponse);
+    return axios.get(`${config.apiUrl}/api/v1/city/num_organization/`, requestOptions).then((response) => {
+        var data = response.data
+        return data;
+  });
+}
+
+
 

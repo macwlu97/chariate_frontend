@@ -9,6 +9,7 @@ import { HomePage } from '../views/Home/HomePage';
 import { LoginPage } from '../views/AuthorizationSystem/LoginPage';
 import { RegisterPage } from '../views/AuthorizationSystem/RegisterPage';
 import { OrganizationPage } from '../views/OrganizationPage';
+import { CreateOrganizationPage } from '../views/CreateOrganizationPage';
 import { SearchPage } from '../views/SearchPage';
 
 import CustomizedDialogs from '../_components/CustomizedDialogs';
@@ -54,6 +55,7 @@ class App extends React.Component {
                                 {/* <PrivateRoute path="/search/:cityId,:type,:text,:_sort" layout={SearchLayout} component={SearchPage} /> */}
                                 <PrivateRoute path="/search/" layout={SearchLayout} component={SearchPage} />
 
+                                <PrivateRoute exact path="/create_organization" layout={PrimaryLayout} component={CreateOrganizationPage} />
                                 <PrivateRoute exact path="/organization" layout={PrimaryLayout} component={OrganizationPage} />
                                 <PrivateRoute exact path="/profile" layout={PrimaryLayout} component={ProfilePage} />
                                 <PrivateRoute exact path="/preview/:_type,:_id" layout={PrimaryLayout} component={PreviewPage} />

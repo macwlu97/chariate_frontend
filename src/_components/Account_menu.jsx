@@ -80,18 +80,30 @@ export default function CustomizedMenus() {
           <ListItemText primary="Konto" />
         </StyledMenuItem>
         </Link>
+        <Link to="/message">
         <StyledMenuItem>
           <ListItemIcon>
             <DraftsIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Prywatne wiadomości" />
         </StyledMenuItem>
+        </Link>
+        <Link to="/organization">
         <StyledMenuItem>
           <ListItemIcon>
             <InboxIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Twoje organizacje" />
         </StyledMenuItem>
+        </Link>
+        <Link to="/create_organization">
+        <StyledMenuItem>
+          <ListItemIcon>
+            <InboxIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="Utwórz organizację" />
+        </StyledMenuItem>
+        </Link>
       </StyledMenu>
     </div>
   );

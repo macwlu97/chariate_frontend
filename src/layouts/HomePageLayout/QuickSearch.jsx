@@ -38,7 +38,7 @@ const iconStyles = {
         </Typography>  
      
         <Paper className={classes.quick_search} align="center">
-          <Link to="/organization">
+          <Link to="/search/?city=0&text=&type=0&sort=popularity">
             <IconButton>
               <GroupWorkIcon style={{fontSize: '100px'}}/>
               <Typography variant="h4" align="left" color="inherit" paragraph >
@@ -47,7 +47,7 @@ const iconStyles = {
             </IconButton>
           </Link> 
 
-          <Link to="/society">
+          <Link to="/search/?city=0&text=&type=1&sort=popularity">
             <IconButton>
               <PeopleIcon style={{fontSize: '100px'}}/>
               <Typography variant="h4" align="left" color="inherit" paragraph >
@@ -56,7 +56,7 @@ const iconStyles = {
             </IconButton>
           </Link>
 
-          <Link to="/event">
+          <Link to="/search/?city=0&text=&type=2&sort=popularity">
             <IconButton>
               <EventIcon style={{fontSize: '100px'}}/>
               <Typography variant="h4" align="left" color="inherit" paragraph >
@@ -65,7 +65,7 @@ const iconStyles = {
             </IconButton>
           </Link>
 
-          <Link to="/fundraisers">
+          <Link to="/search/?city=0&text=&type=3&sort=popularity">
             <IconButton > 
               <AttachMoneyIcon style={{fontSize: '100px'}} />
               <Typography variant="h4" align="left" color="inherit" paragraph >

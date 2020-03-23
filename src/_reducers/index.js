@@ -7,7 +7,7 @@ import { alert } from './alert.reducer';
 import { registration } from './registration.reducer';
 import { search } from './search.reducer';
 import { city } from './city.reducer';
-
+import { extendedCity } from './extendedCity.reducer';
 
 const rootReducer = combineReducers({
   authentication,
@@ -16,7 +16,8 @@ const rootReducer = combineReducers({
   alert,
   registration,
   search,
-  city
+  city,
+  extendedCity,
 });
 
 export default rootReducer;

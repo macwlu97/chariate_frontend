@@ -16,6 +16,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Search from '../HomePageLayout/Search';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import queryString from 'query-string'
+import { history } from '../../_helpers';
+
 const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
@@ -78,13 +81,22 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+
+  const onChange = (event) => {
+    const redirect = `/search/?city=${props.cityId}&text=${event.target.value}&type=${props.type}&sort=${props._sort}`
+    console.log(event.target.value);
+    history.push(redirect);
+    // history.push("/aa")
+  };
+  // const values = queryString.parse(props.location.search)
 
   const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget);
@@ -163,9 +175,9 @@ export default function PrimarySearchAppBar() {
   return (
       
     <div className={classes.grow}>
-        
+      
       <AppBar style={{ background: '#2E3B55' }} position="static">
-          
+      {/* {values.city} */}
         <Toolbar>
           {/* <IconButton
             edge="start"
@@ -183,12 +195,13 @@ export default function PrimarySearchAppBar() {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search…"
+              placeholder="Szukaj.."
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={onChange}
             />
           </div>
           <div className={classes.grow} />

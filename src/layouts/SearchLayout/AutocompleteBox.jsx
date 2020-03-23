@@ -80,15 +80,15 @@ function ControlledOpenSelect({search_city, setSearch_city, search_text, type, _
     setOpen(true);
   };
 
-  const onClick = (cityId,type,search_text,_sort) => { 
-    console.log("tws")
-    const redirect = `/search/?city=${cityId}&text=${search_text}&type=${type}&sort=${_sort}`
-    // '/search/'+cityId+','+type+','+search_text+','+_sort;
-    // const redirect = '/search/'+props.cityId+','+props.type+','+props.search_text+','+props._sort;
-    console.log(redirect)
-    history.push(redirect);
-    console.log('Redirected to /search');
-  }; 
+  // const onClick = (cityId,type,search_text,_sort) => { 
+  //   console.log("tws")
+  //   const redirect = `/search/?city=${cityId}&text=${search_text}&type=${type}&sort=${_sort}`
+  //   // '/search/'+cityId+','+type+','+search_text+','+_sort;
+  //   // const redirect = '/search/'+props.cityId+','+props.type+','+props.search_text+','+props._sort;
+  //   console.log(redirect)
+  //   history.push(redirect);
+  //   console.log('Redirected to /search');
+  // }; 
 
   return (
     <div>
