@@ -6,7 +6,8 @@ export const organizationService = {
     getAllOrganization,
     getOrganization,
     getAllEvent,
-    getAllFundraising
+    getAllFundraising,
+    addOrganization,
 };
 
 function getAllOrganization() {
@@ -15,11 +16,48 @@ function getAllOrganization() {
         headers: authHeader()
     };
 
+
     return axios.get(`${config.apiUrl}/api/v1/organization/`, requestOptions).then((response) => {
         var data = response.data
         return data;
   });
     // return fetch(`${config.apiUrl}/api/v1/organization/`, requestOptions).then(handleResponse);
+}
+
+function addOrganization(toJson) {
+    
+    // const requestOptions = JSON.stringify({
+    //     headers: {
+    //         Content-Type: 'application/json',
+    //         Authorization: authHeader()["Authorization"],
+    //     }
+    // })
+    // const payload = JSON.stringify({
+    //     "name": toJson.name,
+    //     "sh_name": toJson.sh_name,
+    //     "description": toJson.description,
+    //     "city_id": toJson.city_id,
+    //     "type": toJson.type
+    //   })
+
+    const requestOptions = {
+        headers: authHeader(),
+    };
+
+    let data = {
+        name: toJson.name,
+        sh_name: toJson.sh_name,
+        description: toJson.description,
+        city_id: toJson.city_id,
+        type: toJson.type
+      }
+
+    return axios.post(`${config.apiUrl}/api/v1/organization/`, data, requestOptions)
+
+//     return axios.post(`${config.apiUrl}/api/v1/organization/`, headers).then((response) => {
+//         var data = response.data
+//         return data;
+//   });
 }
 
 function getOrganization(_id) {

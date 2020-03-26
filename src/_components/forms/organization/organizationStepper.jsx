@@ -10,6 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import RadioButtonsGroup from './radioStep';
 import InputWithIcon from './settingStep';
 
+import { organizationActions } from '../../../_actions';
+import { useDispatch } from 'react-redux';
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
@@ -30,17 +33,15 @@ function getSteps() {
   return ['Wybierz rodzaj działalności', 'Ustawienia', 'Podsumowanie'];
 }
 
-function getStepContent(step) {
+function getStepContent(step, nameField, setNameField, shortNameField, setShortNameField, descriptionField, setDescriptionField, 
+  value, setValue, city, setCity) {
   switch (step) {
     case 0:
-      return <RadioButtonsGroup></RadioButtonsGroup>;
+      return <RadioButtonsGroup value={value} setValue={setValue}></RadioButtonsGroup>;
     case 1:
-      return <InputWithIcon></InputWithIcon>;
+      return <InputWithIcon nameField={nameField} setNameField={setNameField} shortNameField={shortNameField} setShortNameField={setShortNameField} descriptionField={descriptionField} setDescriptionField={setDescriptionField} city={city} setCity={setCity}></InputWithIcon>;
     case 2:
-      return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
+      return `Oświadczam, że jestem założycielem ${value === 0 ? `fundacji` : `społeczności` }: ${nameField.namefield}, której skrótem flagowym jest ${shortNameField.shortNameField}, poświadczam że prawdą jest działalność ${value === 0 ? `fundacji` : `społeczności` } określona w podanym opisie: ${descriptionField.descriptionField} `;
     default:
       return 'Unknown step';
   }
@@ -50,9 +51,36 @@ export default function VerticalLinearStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
+  
+  const [value, setValue] = React.useState("fundation");
+  const [city, setCity] = React.useState(1);
+
+  const [nameField, setNameField] = React.useState("");
+  const [shortNameField, setShortNameField] = React.useState("");
+  const [descriptionField, setDescriptionField] = React.useState("");
+
+  const dispatch = useDispatch()
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
+    // console.log(steps)
+    if (activeStep === 2) {
+      var typeOption = undefined
+      if (value === "fundation") {
+        typeOption = 0
+      } else if (value === "society"){
+        typeOption = 1
+      }
+      var toJson = {
+        name: nameField.namefield,
+        sh_name: shortNameField.shortNameField,
+        description: descriptionField.descriptionField,
+        city_id: city,
+        type: typeOption
+      }
+      dispatch(organizationActions.addOrganization(toJson))
+      console.log(toJson)
+    }
   };
 
   const handleBack = () => {
@@ -70,7 +98,8 @@ export default function VerticalLinearStepper() {
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
             <StepContent>
-              <Typography>{getStepContent(index)}</Typography>
+              <Typography>{getStepContent(index, nameField, setNameField, shortNameField, setShortNameField, descriptionField, setDescriptionField, 
+              value, setValue, city, setCity)}</Typography>
               <div className={classes.actionsContainer}>
                 <div>
                   <Button

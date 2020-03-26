@@ -5,9 +5,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
-export default function RadioButtonsGroup() {
-  const [value, setValue] = React.useState('fundation');
-
+export default function RadioButtonsGroup({value, setValue}) {
+  
   const handleChange = event => {
     setValue(event.target.value);
   };

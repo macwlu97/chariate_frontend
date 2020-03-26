@@ -5,7 +5,8 @@ export const organizationActions = {
     getAllOrganization,
     getOrganization,
     getAllEvent,
-    getAllFundraising
+    getAllFundraising,
+    addOrganization,
 };
 
 function getAllOrganization() {
@@ -22,6 +23,22 @@ function getAllOrganization() {
     function request() { return { type: orgConstants.GETALL_REQUEST } }
     function success(organization) { return { type: orgConstants.GETALL_SUCCESS, organization } }
     function failure(error) { return { type: orgConstants.GETALL_FAILURE, error } }
+}
+
+function addOrganization(toJson) {
+    return dispatch => {
+        dispatch(request());
+
+        organizationService.addOrganization(toJson)
+            .then(
+                organization => dispatch(success(organization)),
+                error => dispatch(failure(error))
+            );
+    };
+
+    function request() { return { type: orgConstants.ADD_REQUEST } }
+    function success(organization) { return { type: orgConstants.ADD_SUCCESS, organization } }
+    function failure(error) { return { type: orgConstants.ADD_FAILURE, error } }
 }
 
 function getOrganization(_id) {

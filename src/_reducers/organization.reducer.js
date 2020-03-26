@@ -14,6 +14,18 @@ export function organization(state = {}, action) {
       return { 
         error: action.error
       };
+    case orgConstants.ADD_REQUEST:
+      return {
+        loading: true
+      };
+    case orgConstants.ADD_SUCCESS:
+      return {
+        items: action.organization
+      };
+    case orgConstants.ADD_FAILURE:
+      return { 
+        error: action.error
+      };
     default:
       return state
   }
