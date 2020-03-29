@@ -84,6 +84,9 @@ export default function InputWithIcon({nameField, setNameField, shortNameField, 
           value={nameField.namefield}
           onChange={handleChange}
         />
+        {!nameField.namefield &&
+              <div className="help-block">Name is required</div>
+            }
       </FormControl>
 </div>
      <div> <FormControl className={classes.margin}>
@@ -99,6 +102,9 @@ export default function InputWithIcon({nameField, setNameField, shortNameField, 
           value={shortNameField.shortNameField}
           onChange={handleChange}
         />
+        {!shortNameField.shortNameField &&
+              <div className="help-block">Short name is required</div>
+            }
       </FormControl>
 </div>
       <div> <FormControl className={classes.margin}>
@@ -116,6 +122,9 @@ export default function InputWithIcon({nameField, setNameField, shortNameField, 
           value={descriptionField.descriptionField}
           onChange={handleChange}
         />
+        {!descriptionField.descriptionField &&
+              <div className="help-block">Description is required</div>
+            }
       </FormControl></div>
 
       <div>
@@ -135,7 +144,7 @@ export default function InputWithIcon({nameField, setNameField, shortNameField, 
         >
         {/* <MenuItem value={0}>Polska</MenuItem> */}
      {cityObj.results && cityObj.results.map((org, index) =>
-                          <MenuItem value={org.id} >
+                          <MenuItem key={org.id} value={org.id} >
                             {org.name}
                           </MenuItem>
                         )}

@@ -23,13 +23,14 @@ export default function ImgMediaCard({organization}) {
   return (
     <Card className={classes.root}>
       <CardActionArea>
+      <Link to={`/preview/0,${organization.id}`}>
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
           height="140"
           image="https://source.unsplash.com/user/erondu"
           title="Contemplative Reptile"
-        />
+        /></Link>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {organization.name}

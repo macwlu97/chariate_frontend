@@ -1,5 +1,7 @@
 import { orgConstants } from '../_constants';
 import { organizationService } from '../_services';
+import { alertActions } from './';
+import { history } from '../_helpers';
 
 export const organizationActions = {
     getAllOrganization,
@@ -31,8 +33,16 @@ function addOrganization(toJson) {
 
         organizationService.addOrganization(toJson)
             .then(
-                organization => dispatch(success(organization)),
-                error => dispatch(failure(error))
+                organization => {
+                    dispatch(success(organization))
+                    history.push('/');
+                    dispatch(alertActions.success('Organization successful'));
+                },
+                error => {
+                    dispatch(failure(error))
+                    dispatch(alertActions.error(error.message));
+                }
+                
             );
     };
 

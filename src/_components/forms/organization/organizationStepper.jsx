@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import RadioButtonsGroup from './radioStep';
 import InputWithIcon from './settingStep';
+import { alertActions } from '../../../_actions';
 
 import { organizationActions } from '../../../_actions';
 import { useDispatch } from 'react-redux';
@@ -71,6 +72,7 @@ export default function VerticalLinearStepper() {
       } else if (value === "society"){
         typeOption = 1
       }
+      
       var toJson = {
         name: nameField.namefield,
         sh_name: shortNameField.shortNameField,
@@ -78,7 +80,35 @@ export default function VerticalLinearStepper() {
         city_id: city,
         type: typeOption
       }
-      dispatch(organizationActions.addOrganization(toJson))
+
+      if (typeof(nameField.namefield) == "undefined" || nameField.namefield.length < 8 ) {
+        dispatch(alertActions.success('error form field'));
+        handleBack()
+      }
+      else if (typeof(shortNameField.shortNameField) == "undefined" || shortNameField.shortNameField.length < 4 ) {
+        dispatch(alertActions.success('error form field'));
+        handleBack()
+      }
+      else if (typeof(descriptionField.descriptionField) == "undefined" || descriptionField.descriptionField.length < 30 ) {
+        dispatch(alertActions.success('error form field'));
+        handleBack()
+      }
+      else if (typeof(city) == "undefined" && city) {
+        dispatch(alertActions.success('error form field'));
+        handleBack()
+      }
+      else if (typeof(typeOption) == "undefined" && typeOption) {
+        dispatch(alertActions.success('error form field'));
+        handleBack()
+      } else {
+        dispatch(organizationActions.addOrganization(toJson))
+      }
+
+      // if (toJson.name.length >= 8 && toJson.shortNameField.length >= 2 && toJson.descriptionField.length >= 30 && toJson.name.length > 5 && toJson.city_id && toJson.typeOption){
+      //   dispatch(organizationActions.addOrganization(toJson))
+      // } else {
+      //   dispatch(alertActions.success('error form field'));
+      // }
       console.log(toJson)
     }
   };
@@ -123,14 +153,14 @@ export default function VerticalLinearStepper() {
           </Step>
         ))}
       </Stepper>
-      {activeStep === steps.length && (
+      {/* {activeStep === steps.length && (
         <Paper square elevation={0} className={classes.resetContainer}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
+          <Typography>Gratulujemy założenia nowej organizacji w naszej aplikacji!</Typography>
           <Button onClick={handleReset} className={classes.button}>
             Reset
           </Button>
         </Paper>
-      )}
+      )} */}
     </div>
   );
 }
