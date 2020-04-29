@@ -8,6 +8,7 @@ export const organizationService = {
     getAllEvent,
     getAllFundraising,
     addOrganization,
+    getMyOrganization
 };
 
 function getAllOrganization() {
@@ -18,6 +19,20 @@ function getAllOrganization() {
 
 
     return axios.get(`${config.apiUrl}/api/v1/organization/`, requestOptions).then((response) => {
+        var data = response.data
+        return data;
+  });
+    // return fetch(`${config.apiUrl}/api/v1/organization/`, requestOptions).then(handleResponse);
+}
+
+function getMyOrganization() {
+    const requestOptions = {
+        // method: 'GET',
+        headers: authHeader()
+    };
+
+
+    return axios.get(`${config.apiUrl}/api/v1/organization/me/`, requestOptions).then((response) => {
         var data = response.data
         return data;
   });

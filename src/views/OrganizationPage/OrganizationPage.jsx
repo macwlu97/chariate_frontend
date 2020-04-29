@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import { userActions, organizationActions } from '../../_actions';
+import OutlinedCard from '../../_components/organization/my_org_card';
 
-
+import Button from '@material-ui/core/Button';
 
 class OrganizationPage extends React.Component {
     componentDidMount() {
         this.props.dispatch(userActions.getAll());
-        this.props.dispatch(organizationActions.getAllOrganization())
+        this.props.dispatch(organizationActions.getMyOrganization())
     }
 
     render() {
@@ -17,8 +18,8 @@ class OrganizationPage extends React.Component {
         return (
             
             <React.Fragment>
-                <Typography variant="h3" component="h3" align="center">
-                    Organizacje
+                <Typography variant="h3" component="h3" align="center" style={{ paddingBottom: 15}}>
+                    Zarządzaj swoimi organizacjami 
                 </Typography>
                 
                 {organization.loading && <em>Ładuje uzytkownikow...</em>}
@@ -26,15 +27,14 @@ class OrganizationPage extends React.Component {
                 {organization.items &&
                     <ul>
                         {organization.items.results.map((org, index) =>
-                            <li key={org.id}>
-                                {org.name + ' ' + org.description}
-                            </li>
+                            <OutlinedCard name={org.name} description={org.description} type={org.type} type_name={org.type_name} sh_name={org.sh_name} city={org.city}></OutlinedCard>
                         )}
                     </ul>
                 }
-                ------------
+                
+                
                 <p>
-                    <Link to="/">powróć</Link>
+                    <Link to="/"><Button size="small">powróć</Button></Link>
                 </p>
 
             
