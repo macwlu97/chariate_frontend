@@ -13,6 +13,7 @@ class OrganizationPage extends React.Component {
         this.props.dispatch(organizationActions.getMyOrganization())
     }
 
+      
     render() {
         const { user, users, organization } = this.props;
         return (
@@ -27,7 +28,7 @@ class OrganizationPage extends React.Component {
                 {organization.items &&
                     <ul>
                         {organization.items.results.map((org, index) =>
-                            <OutlinedCard name={org.name} description={org.description} type={org.type} type_name={org.type_name} sh_name={org.sh_name} city={org.city}></OutlinedCard>
+                            <OutlinedCard org_id={org.id} name={org.name} description={org.description} type={org.type} type_name={org.type_name} sh_name={org.sh_name} city={org.city}></OutlinedCard>
                         )}
                     </ul>
                 }

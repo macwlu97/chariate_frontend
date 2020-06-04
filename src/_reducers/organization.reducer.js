@@ -38,6 +38,18 @@ export function organization(state = {}, action) {
       return { 
         error: action.error
       };
+    // case orgConstants.ADD_EVENT_REQUEST:
+    //   return {
+    //     loading: true
+    //   };
+    // case orgConstants.ADD_EVENT_SUCCESS:
+    //   return {
+    //     items: action.event
+    //   };
+    // case orgConstants.ADD_EVENT_FAILURE:
+    //   return { 
+    //     error: action.error
+    //   };
     default:
       return state
   }

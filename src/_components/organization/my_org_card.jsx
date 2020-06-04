@@ -6,6 +6,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import FormDialogEvent from './my_org_add_event';
+import FormDialogFundraiser from './my_org_add_fundraiser';
+import FormDialogManage from './my_org_manage';
 
 const useStyles = makeStyles({
   root: {
@@ -24,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutlinedCard({name, description, type, type_name, sh_name, city}) {
+export default function OutlinedCard({org_id, name, description, type, type_name, sh_name, city}) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -49,7 +51,10 @@ export default function OutlinedCard({name, description, type, type_name, sh_nam
         </Typography>
       </CardContent>
       <CardActions>
-      <FormDialogEvent></FormDialogEvent> <Button size="small">Dodaj zbiórkę</Button> <Button size="small">Zarządzaj informacjami</Button>
+      <FormDialogEvent org_id={org_id}></FormDialogEvent>
+      <FormDialogFundraiser></FormDialogFundraiser> 
+      <FormDialogManage></FormDialogManage> 
+      {/* <Button size="small">Dodaj zbiórkę</Button> <Button size="small">Zarządzaj informacjami</Button> */}
       </CardActions>
     </Card> 
   );

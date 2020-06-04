@@ -8,7 +8,8 @@ export const organizationService = {
     getAllEvent,
     getAllFundraising,
     addOrganization,
-    getMyOrganization
+    getMyOrganization,
+    addEvent,
 };
 
 function getAllOrganization() {
@@ -73,6 +74,25 @@ function addOrganization(toJson) {
 //         var data = response.data
 //         return data;
 //   });
+}
+
+
+function addEvent(toJson) {
+
+    const requestOptions = {
+        headers: authHeader(),
+    };
+
+    let data = {
+        title: toJson.title,
+        organization_id: toJson.organization_id,
+        start_date: toJson.start_date,
+        end_date: toJson.end_date,
+        city_id: toJson.city_id,
+        // type: toJson.type
+      }
+
+    return axios.post(`${config.apiUrl}/api/v1/event/`, data, requestOptions)
 }
 
 function getOrganization(_id) {
