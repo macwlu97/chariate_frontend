@@ -52,7 +52,7 @@ export default function OutlinedCard({org_id, name, description, type, type_name
       </CardContent>
       <CardActions>
       <FormDialogEvent org_id={org_id}></FormDialogEvent>
-      <FormDialogFundraiser></FormDialogFundraiser> 
+      <FormDialogFundraiser org_id={org_id}></FormDialogFundraiser> 
       <FormDialogManage></FormDialogManage> 
       {/* <Button size="small">Dodaj zbiórkę</Button> <Button size="small">Zarządzaj informacjami</Button> */}
       </CardActions>

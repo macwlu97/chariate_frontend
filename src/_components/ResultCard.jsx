@@ -38,6 +38,15 @@ export default function ImgMediaCard({organization}) {
           <Typography variant="body2" color="textSecondary" component="p">
             {organization.description}
           </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {organization.type === 3 && organization.end_date}
+          </Typography>
+
+          <Typography variant="body2" color="textSecondary" component="p">
+          {organization.type === 3 && organization.end_time}
+          </Typography>
+          
+          
         </CardContent>
       </CardActionArea>
       <CardActions>

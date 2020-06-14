@@ -10,6 +10,7 @@ export const organizationService = {
     addOrganization,
     getMyOrganization,
     addEvent,
+    addFundraiser,
 };
 
 function getAllOrganization() {
@@ -93,6 +94,25 @@ function addEvent(toJson) {
       }
 
     return axios.post(`${config.apiUrl}/api/v1/event/`, data, requestOptions)
+}
+
+function addFundraiser(toJson) {
+
+    const requestOptions = {
+        headers: authHeader(),
+    };
+
+    let data = {
+        title: toJson.title,
+        organization_id: toJson.organization_id,
+        start_date: toJson.start_date,
+        end_date: toJson.end_date,
+        // city_id: toJson.city_id,
+        description: toJson.description
+        // type: toJson.type
+      }
+
+    return axios.post(`${config.apiUrl}/api/v1/fundraising/`, data, requestOptions)
 }
 
 function getOrganization(_id) {

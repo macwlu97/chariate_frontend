@@ -52,8 +52,14 @@ class App extends React.Component {
                         {alert.message == "Event successful" &&
                             <CustomizedDialogs _title="Dodawanie wydarzenia" _content="Pomyślnie dodałeś wydarzenie na Chariate.com gratulujemy!" _button_text="Ok"/>
                         }
+                        {alert.message == "Fundraiser successful" &&
+                            <CustomizedDialogs _title="Dodawanie zbiórki" _content="Pomyślnie dodałeś zbiórkęs na Chariate.com gratulujemy!" _button_text="Ok"/>
+                        }
+                        {alert.message == " successful" &&
+                            <CustomizedDialogs _title="Dodawanie zbiórki" _content="Pomyślnie dodałeś zbiórkęs na Chariate.com gratulujemy!" _button_text="Ok"/>
+                        }
                         {alert.message == "error form field" &&
-                            <CustomizedDialogs _title="Błędne dane" _content="Prosimy abyś wypełnił poprawnie formularz. :)" _button_text="Ok"/>
+                            <CustomizedDialogs _title="Błędne dasne" _content="Prosimy abyś wypełnił poprawnie formularz. :)" _button_text="Ok"/>
                         }
                         <Router history={history}>
                             <div>

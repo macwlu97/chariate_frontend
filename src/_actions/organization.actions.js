@@ -1,5 +1,6 @@
 import { orgConstants } from '../_constants';
 import { eventConstants } from '../_constants';
+import { fundraiserConstants } from '../_constants';
 import { organizationService } from '../_services';
 import { alertActions } from './';
 import { history } from '../_helpers';
@@ -12,6 +13,7 @@ export const organizationActions = {
     addOrganization,
     getMyOrganization,
     addEvent,
+    addFundraiser,
 };
 
 function getAllOrganization() {
@@ -93,6 +95,31 @@ function addEvent(toJson) {
     function success(event) { return { type: eventConstants.ADD_EVENT_SUCCESS, event } }
     function failure(error) { return { type: eventConstants.ADD_EVENT_FAILURE, error } }
 }
+
+function addFundraiser(toJson) {
+    return dispatch => {
+        dispatch(request());
+
+        organizationService.addFundraiser(toJson)
+            .then(
+                fundraiser => {
+                    dispatch(success(fundraiser))
+                    history.push('/');
+                    dispatch(alertActions.success('Fundraiser successful'));
+                },
+                error => {
+                    dispatch(failure(error))
+                    dispatch(alertActions.error(error.message));
+                }
+                
+            );
+    };
+
+    function request() { return { type: fundraiserConstants.ADD_FUNDRAISER_REQUEST } }
+    function success(event) { return { type: fundraiserConstants.ADD_FUNDRAISER_SUCCESS, event } }
+    function failure(error) { return { type: fundraiserConstants.ADD_FUNDRAISER_FAILURE, error } }
+}
+
 
 function getOrganization(_id) {
     return dispatch => {
