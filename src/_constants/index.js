@@ -6,3 +6,4 @@ export * from './city.constants';
 export * from './extendedCity.constants';
 export * from './event.constants';
 export * from './fundraiser.constants';
+export * from './typeinformation.constants';

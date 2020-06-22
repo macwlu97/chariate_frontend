@@ -10,6 +10,8 @@ import { registration } from './registration.reducer';
 import { search } from './search.reducer';
 import { city } from './city.reducer';
 import { extendedCity } from './extendedCity.reducer';
+import { typeinformation } from './typeinformation.reducer';
+
 
 const rootReducer = combineReducers({
   authentication,
@@ -22,6 +24,7 @@ const rootReducer = combineReducers({
   search,
   city,
   extendedCity,
+  typeinformation
 });
 
 export default rootReducer;

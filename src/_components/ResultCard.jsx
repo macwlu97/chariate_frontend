@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
+import ChipCard from './chip/chipCard';
 
 const useStyles = makeStyles({
   root: {
@@ -38,18 +39,19 @@ export default function ImgMediaCard({organization}) {
           <Typography variant="body2" color="textSecondary" component="p">
             {organization.description}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {organization.type === 3 && organization.end_date}
-          </Typography>
 
-          <Typography variant="body2" color="textSecondary" component="p">
-          {organization.type === 3 && organization.end_time}
-          </Typography>
-          
           
         </CardContent>
       </CardActionArea>
+      
       <CardActions>
+      <ChipCard 
+        type={organization.type} 
+        date={organization.type === 2 && organization.start_date || organization.type === 3 && organization.end_date} 
+        time={organization.type === 2 && organization.start_time || organization.type === 3 && organization.end_time}
+        addDate={[2,3].includes(organization.type) && organization.add_date}
+        city={organization.type === 2 && organization.city.name}
+      />
         <Button size="small" color="primary">
           Udostępnij
         </Button>

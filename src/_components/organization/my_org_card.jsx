@@ -47,7 +47,7 @@ export default function OutlinedCard({org_id, name, description, type, type_name
         <Typography variant="body2" component="p">
             {description}
           <br />
-          {'"a benevolent smile"'}
+          {/* {'"a benevolent smile"'} */}
         </Typography>
       </CardContent>
       <CardActions>
