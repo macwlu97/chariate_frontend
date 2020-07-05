@@ -7,3 +7,4 @@ export * from './extendedCity.constants';
 export * from './event.constants';
 export * from './fundraiser.constants';
 export * from './typeinformation.constants';
+export * from './informationOrg.constants';

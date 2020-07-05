@@ -11,6 +11,7 @@ export const organizationService = {
     getMyOrganization,
     addEvent,
     addFundraiser,
+    addInformation,
 };
 
 function getAllOrganization() {
@@ -113,6 +114,25 @@ function addFundraiser(toJson) {
       }
 
     return axios.post(`${config.apiUrl}/api/v1/fundraising/`, data, requestOptions)
+}
+
+function addInformation(toJson) {
+
+    const requestOptions = {
+        headers: authHeader(),
+    };
+
+    let data = {
+        content: toJson.content,
+        organization_id: toJson.organization_id,
+        type_info_id: toJson.type_info_id,
+        // end_date: toJson.end_date,
+        // city_id: toJson.city_id,
+        // description: toJson.description
+        // type: toJson.type
+      }
+
+    return axios.post(`${config.apiUrl}/api/v1/information/`, data, requestOptions)
 }
 
 function getOrganization(_id) {

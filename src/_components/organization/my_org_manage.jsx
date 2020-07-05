@@ -12,13 +12,17 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { typeinformationActions } from '../../_actions';
 import { useDispatch } from 'react-redux';
 import { alertActions } from '../../_actions';
+import { organizationActions } from '../../_actions';
 
-export default function FormDialogManage() {
+export default function FormDialogManage({org_id}) {
   const [open, setOpen] = React.useState(false);
   const [openSelect, setOpenSelect] = React.useState(false);
 
   const [typeinformationObj, setTypeinformationObj] = React.useState({});
   const [typeinformation, setTypeinformation] = React.useState(1);
+
+  const [contentField, setContentField] = React.useState({content: ''});
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -43,13 +47,22 @@ export default function FormDialogManage() {
   };
 
 
-  const handleAddEvent = () => {
- 
+  const handleAddInformation = () => {
+    if (typeof(contentField.content) == "undefined" || contentField.content.length < 3 ) {
+      dispatch(alertActions.success('error form field'));
+    } 
+    var toJson = {
+      content: contentField.content,
+      organization_id: org_id,
+      type_info_id: typeinformation
+    }
+    // console.log(toJson)
+    dispatch(organizationActions.addInformation(toJson))
     setOpen(false);
   };
 
   const handleChange = (e) => {
-    // const { name, value } = e.target;
+    const { name, value } = e.target;
     // if (name === "nameField") {
     //   setNameField({content: value})
     // } else if (name === "dateField") {
@@ -63,7 +76,14 @@ export default function FormDialogManage() {
     // } else {
     //   console.log("critical error - handle change")
     // }
-    console.log(typeinformation)
+    if (name === "contentField") {
+      setContentField({content: value})
+    } else if (name === "typeinformationOption"){
+      setTypeinformation(value)
+    } else {
+        console.log("critical error - handle change")
+    }
+    // console.log(typeinformation)
 }
 
 
@@ -106,13 +126,25 @@ export default function FormDialogManage() {
                         )}
               
         </Select>
-       
+        <TextField
+           margin="dense"
+          id="outlined-multiline-static"
+          label="Treść"
+          name="contentField"
+          multiline
+          rows={4}
+          // defaultValue="Opis"
+          variant="outlined"
+          fullWidth
+          value={contentField.content}
+          onChange={handleChange}
+        />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Anuluj
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleAddInformation} color="primary">
             Dodaj informację
           </Button>
         </DialogActions>
