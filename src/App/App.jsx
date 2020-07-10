@@ -58,6 +58,12 @@ class App extends React.Component {
                         {alert.message == "Information successful" &&
                             <CustomizedDialogs _title="Dodawanie informacji" _content="Pomyślnie dodałeś informację o organizacji na Chariate.com gratulujemy!" _button_text="Ok"/>
                         }
+                        {alert.message == "Information put successful" &&
+                            <CustomizedDialogs _title="Edytowanie informacji" _content="Pomyślnie aktualizowałeś informację o organizacji na Chariate.com gratulujemy!" _button_text="Ok"/>
+                        }
+                        {alert.message == "Information delete successful" &&
+                            <CustomizedDialogs _title="Usuwanie informacji" _content="Pomyślnie usunięto informację o organizacji na Chariate.com gratulujemy!" _button_text="Ok"/>
+                        }
                         {alert.message == "error form field" &&
                             <CustomizedDialogs _title="Błędne dane" _content="Prosimy abyś wypełnił poprawnie formularz. :)" _button_text="Ok"/>
                         }

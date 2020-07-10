@@ -11,11 +11,14 @@ export const organizationActions = {
     getOrganization,
     getAllEvent,
     getAllFundraising,
+    getAllInformation,
     addOrganization,
     getMyOrganization,
     addEvent,
     addFundraiser,
     addInformation,
+    putInformation,
+    deleteInformation,
 };
 
 function getAllOrganization() {
@@ -146,6 +149,65 @@ function addInformation(toJson) {
     function failure(error) { return { type: informationOrgConstants.ADD_INFORMATIONORG_FAILURE, error } }
 }
 
+function putInformation(toJson) {
+    return dispatch => {
+        dispatch(request());
+
+        organizationService.putInformation(toJson)
+            .then(
+                information => {
+                    dispatch(success(information))
+                    // history.push('/organization');
+                    dispatch(alertActions.success('Information put successful'));
+                    
+                    // setTimeout(function () {
+                    //     window.location.reload(false);
+                    // }, 5000);
+                    
+                },
+                error => {
+                    dispatch(failure(error))
+                    dispatch(alertActions.error(error.message));
+                }
+                
+            );
+    };
+
+    function request() { return { type: informationOrgConstants.PUT_INFORMATIONORG_REQUEST } }
+    function success(information) { return { type: informationOrgConstants.PUT_INFORMATIONORG_SUCCESS, information } }
+    function failure(error) { return { type: informationOrgConstants.PUT_INFORMATIONORG_FAILURE, error } }
+}
+
+function deleteInformation(toJson) {
+    return dispatch => {
+        dispatch(request());
+
+        organizationService.deleteInformation(toJson)
+            .then(
+                information => {
+                    dispatch(success(information))
+                    // history.push('/organization');
+                    dispatch(alertActions.success('Information delete successful'));
+                    
+                    // setTimeout(function () {
+                    //     window.location.reload(false);
+                    // }, 5000);
+                    
+                },
+                error => {
+                    dispatch(failure(error))
+                    dispatch(alertActions.error(error.message));
+                }
+                
+            );
+    };
+
+    function request() { return { type: informationOrgConstants.DELETE_INFORMATIONORG_REQUEST } }
+    function success(information) { return { type: informationOrgConstants.DELETE_INFORMATIONORG_SUCCESS, information } }
+    function failure(error) { return { type: informationOrgConstants.DELETE_INFORMATIONORG_FAILURE, error } }
+}
+
+
 function getOrganization(_id) {
     return dispatch => {
         dispatch(request());
@@ -192,4 +254,24 @@ function getAllFundraising() {
     function request() { return { type: orgConstants.GETALL_REQUEST } }
     function success(organization) { return { type: orgConstants.GETALL_SUCCESS, organization } }
     function failure(error) { return { type: orgConstants.GETALL_FAILURE, error } }
+}
+
+
+function getAllInformation(setInformation, org_id) {
+    return dispatch => {
+        dispatch(request());
+
+        organizationService.getAllInformation(org_id)
+            .then(
+                information => dispatch(success(information, setInformation)),
+                error => dispatch(failure(error))
+            );
+        
+    };
+
+    function request() { return { type: informationOrgConstants.GET_INFORMATIONORG_REQUEST } }
+    function success(information, setInformation) { 
+        setInformation(information)
+        return { type: informationOrgConstants.GET_INFORMATIONORG_SUCCESS, information } }
+    function failure(error) { return { type: informationOrgConstants.GET_INFORMATIONORG_FAILURE, error } }
 }

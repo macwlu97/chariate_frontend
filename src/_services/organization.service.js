@@ -7,11 +7,14 @@ export const organizationService = {
     getOrganization,
     getAllEvent,
     getAllFundraising,
+    getAllInformation,
     addOrganization,
     getMyOrganization,
     addEvent,
     addFundraiser,
     addInformation,
+    putInformation,
+    deleteInformation,
 };
 
 function getAllOrganization() {
@@ -135,6 +138,32 @@ function addInformation(toJson) {
     return axios.post(`${config.apiUrl}/api/v1/information/`, data, requestOptions)
 }
 
+function putInformation(toJson) {
+
+    const requestOptions = {
+        headers: authHeader(),
+    };
+
+    const information_id = toJson.information_id;
+    let data = {
+        content: toJson.content,
+      }
+
+    return axios.put(`${config.apiUrl}/api/v1/information/${information_id}`, data, requestOptions)
+}
+
+function deleteInformation(toJson) {
+
+    const requestOptions = {
+        headers: authHeader(),
+    };
+
+    const information_id = toJson.information_id;
+
+    return axios.delete(`${config.apiUrl}/api/v1/information/${information_id}`, requestOptions)
+}
+
+
 function getOrganization(_id) {
     const requestOptions = {
         // method: 'GET',
@@ -169,6 +198,19 @@ function getAllFundraising() {
     };
 
     return axios.get(`${config.apiUrl}/api/v1/fundraising/`, requestOptions).then((response) => {
+        var data = response.data
+        return data;
+  });
+
+}
+
+function getAllInformation(org_id) {
+    const requestOptions = {
+        // method: 'GET',
+        headers: authHeader()
+    };
+
+    return axios.get(`${config.apiUrl}/api/v1/information/organization/${org_id}`, requestOptions).then((response) => {
         var data = response.data
         return data;
   });

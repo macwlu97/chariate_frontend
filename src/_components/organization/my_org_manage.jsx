@@ -90,7 +90,7 @@ export default function FormDialogManage({org_id}) {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Zarządzaj informacjami
+        Dodaj informację
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Zarządzaj informacjami</DialogTitle>

@@ -8,6 +8,8 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import { alertActions } from '../_actions';
+import { useDispatch } from 'react-redux';
 
 const styles = theme => ({
   root: {
@@ -51,12 +53,14 @@ const DialogActions = withStyles(theme => ({
 
 export default function CustomizedDialogs({_title, _content, _button_text }) {
   const [open, setOpen] = React.useState(true);
-
+  const dispatch = useDispatch()
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+    
+    dispatch(alertActions.success(''));
   };
 
   return (
