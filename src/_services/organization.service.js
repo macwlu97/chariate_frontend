@@ -1,5 +1,5 @@
 import config from 'config';
-import { authHeader } from '../_helpers';
+import { authHeader, authHeaderFormData } from '../_helpers';
 import axios from 'axios';
 
 export const organizationService = {
@@ -15,6 +15,7 @@ export const organizationService = {
     addInformation,
     putInformation,
     deleteInformation,
+    putCoverImage,
 };
 
 function getAllOrganization() {
@@ -163,6 +164,19 @@ function deleteInformation(toJson) {
     return axios.delete(`${config.apiUrl}/api/v1/information/${information_id}`, requestOptions)
 }
 
+function putCoverImage(toJson, fileObj) {
+
+    const requestOptions = {
+        headers: authHeaderFormData(),
+    };
+
+    const organization_id = toJson.organization_id;
+    // let data = {
+    //     logo: toJson.file_binary,
+    //   }
+    
+    return axios.put(`${config.apiUrl}/api/v1/organization/upload_cover_image/${organization_id}`, fileObj, requestOptions)
+}
 
 function getOrganization(_id) {
     const requestOptions = {

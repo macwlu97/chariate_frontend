@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import FormDialogEvent from './my_org_add_event';
 import FormDialogFundraiser from './my_org_add_fundraiser';
 import FormDialogManage from './my_org_manage';
+import FormDialogLogo from './my_org_logo';
 import FullScreenInformationDialog from '../information_modal/information_modal';
 
 const useStyles = makeStyles({
@@ -55,6 +56,7 @@ export default function OutlinedCard({org_id, name, description, type, type_name
       <FormDialogEvent org_id={org_id}></FormDialogEvent>
       <FormDialogFundraiser org_id={org_id}></FormDialogFundraiser> 
       <FormDialogManage org_id={org_id}></FormDialogManage> 
+      <FormDialogLogo org_id={org_id}></FormDialogLogo> 
       <FullScreenInformationDialog org_id={org_id} headerName={name}></FullScreenInformationDialog>
       {/* <Button size="small">Dodaj zbiórkę</Button> <Button size="small">Zarządzaj informacjami</Button> */}
       </CardActions>

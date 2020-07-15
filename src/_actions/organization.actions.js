@@ -2,6 +2,7 @@ import { orgConstants } from '../_constants';
 import { eventConstants } from '../_constants';
 import { fundraiserConstants } from '../_constants';
 import { informationOrgConstants } from '../_constants';
+import { logoOrgConstants } from '../_constants';
 import { organizationService } from '../_services';
 import { alertActions } from './';
 import { history } from '../_helpers';
@@ -19,6 +20,7 @@ export const organizationActions = {
     addInformation,
     putInformation,
     deleteInformation,
+    putCoverImage,
 };
 
 function getAllOrganization() {
@@ -178,6 +180,8 @@ function putInformation(toJson) {
     function failure(error) { return { type: informationOrgConstants.PUT_INFORMATIONORG_FAILURE, error } }
 }
 
+
+
 function deleteInformation(toJson) {
     return dispatch => {
         dispatch(request());
@@ -207,6 +211,34 @@ function deleteInformation(toJson) {
     function failure(error) { return { type: informationOrgConstants.DELETE_INFORMATIONORG_FAILURE, error } }
 }
 
+function putCoverImage(toJson, fileObj) {
+    return dispatch => {
+        dispatch(request());
+
+        organizationService.putCoverImage(toJson, fileObj)
+            .then(
+                logo => {
+                    dispatch(success(logo))
+                    // history.push('/organization');
+                    dispatch(alertActions.success('Logo put successful'));
+                    
+                    // setTimeout(function () {
+                    //     window.location.reload(false);
+                    // }, 5000);
+                    
+                },
+                error => {
+                    dispatch(failure(error))
+                    dispatch(alertActions.error(error.message));
+                }
+                
+            );
+    };
+
+    function request() { return { type: logoOrgConstants.PUT_LOGOORG_REQUEST } }
+    function success(logo) { return { type: logoOrgConstants.PUT_LOGOORG_SUCCESS, logo } }
+    function failure(error) { return { type: logoOrgConstants.PUT_LOGOORG_FAILURE, error } }
+}
 
 function getOrganization(_id) {
     return dispatch => {
