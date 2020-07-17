@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function PreviewDescription() {
+export default function PreviewDescription({organization}) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -86,7 +86,7 @@ export default function PreviewDescription() {
         <FormControl disabled>
             <InputLabel htmlFor="component-disabled" spacing={3}>
              
-                Fundacja </InputLabel>
+                {organization.items && organization.items.name} </InputLabel>
             <Input id="component-disabled" 
         // value={name} onChange={handleChange} 
         />

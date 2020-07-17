@@ -12,13 +12,16 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import PreviewDescription from '../../../_components/PreviewDescription';
 import Divider from '@material-ui/core/Divider';
+import CardMedia from '@material-ui/core/CardMedia';
+import Box from '@material-ui/core/Box';
+
 
 class PreviewPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
           _id: this.props.match.params._id,
-          _type: this.props.match.params._type,
+        //   _type: this.props.match.params._type,
         }
 
         this.props.dispatch(organizationActions.getOrganization(this.state._id));
@@ -26,14 +29,25 @@ class PreviewPage extends React.Component {
 
     render() { //renderowanie warunkowe
         const { organization } = this.props;
+
         return (
             
             <React.Fragment>
                 <Typography variant="h4" component="h3" align="center" style={{ paddingTop: 10, paddingBottom: 20 }}>
-                    Preview – {organization.items && organization.items.name}
+                    {organization.items && organization.items.name}
                 </Typography> 
+                {(typeof(organization.items && organization.items.file_type) !== "undefined") && 
+                <Box component="span" m={1}>
+                
+                <CardMedia
+                component="img"
+                image={`data:${organization.items && organization.items.file_type};base64,${organization.items && atob(organization.items.logo)}`}
+                title="Logo organizacji"
+                height={200}
+                /></Box>
+                }
                  <Divider light />
-            <PreviewDescription/>
+            <PreviewDescription organization={organization}/>
         {/* <FormControl disabled >
             <InputLabel htmlFor="component-disabled" spacing={3}>{organization.items && organization.items.name}</InputLabel>
             <Input id="component-disabled" 
@@ -65,7 +79,7 @@ class PreviewPage extends React.Component {
                         )}
                     </ul>
                 } */}
-                <br/><br/><br/><br/><br/><br/><br/>
+                {/* <br/><br/><br/><br/><br/><br/><br/> */}
                 {/* ------------ */}
                 <p>
                 {/* <React.Button onClick={history.goBack}>Go Back</React.Button> */}

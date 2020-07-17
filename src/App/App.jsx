@@ -82,7 +82,10 @@ class App extends React.Component {
                                 <PrivateRoute exact path="/create_organization" layout={PrimaryLayout} component={CreateOrganizationPage} />
                                 <PrivateRoute exact path="/organization" layout={PrimaryLayout} component={OrganizationPage} />
                                 <PrivateRoute exact path="/profile" layout={PrimaryLayout} component={ProfilePage} />
-                                <PrivateRoute exact path="/preview/:_type,:_id" layout={PrimaryLayout} component={PreviewPage} />
+                                <PrivateRoute exact path="/preview_organization/:_id" layout={PrimaryLayout} component={PreviewPage} /> {/* organizations, society */}
+                                {/* <PrivateRoute exact path="/preview_event/:_id" layout={PrimaryLayout} component={PreviewPage} /> events */}
+                                {/* <PrivateRoute exact path="/preview_fundraiser/:_id" layout={PrimaryLayout} component={PreviewPage} /> fundraisers */}
+                                {/* <PrivateRoute exact path="/preview/:_type,:_id" layout={PrimaryLayout} component={PreviewPage} /> */}
 
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />

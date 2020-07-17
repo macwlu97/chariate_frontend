@@ -20,18 +20,28 @@ const useStyles = makeStyles({
 
 export default function ImgMediaCard({organization}) {
   const classes = useStyles();
+  let type_href;
+  if ([0,1].includes(organization.type)){
+    type_href = `/preview_organization/${organization.id}`;
+  } else if (organization.type === 2){
+    type_href = `/preview_event/${organization.id}`;
+  } else if (organization.type === 3){
+    type_href = `/preview_fundraiser/${organization.id}`;
+  }
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
-      <Link to={`/preview/0,${organization.id}`}>
+      <Link to={type_href}>
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
           height="140"
           image="https://source.unsplash.com/user/erondu"
           title="Contemplative Reptile"
-        /></Link>
+        />
+      </Link>
+        
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {organization.name}
@@ -56,8 +66,7 @@ export default function ImgMediaCard({organization}) {
           Udostępnij
         </Button>
         <Button size="small" color="primary">
-        <Link to={`/preview/0,${organization.id}`}>Obejrzyj profil</Link>
-        {/* Obejrzyj profil */}
+          <Link to={type_href}>Więcej informacji</Link>
         </Button>
       </CardActions>
     </Card>
