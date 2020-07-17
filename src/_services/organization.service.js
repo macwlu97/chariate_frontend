@@ -16,6 +16,7 @@ export const organizationService = {
     putInformation,
     deleteInformation,
     putCoverImage,
+    getCoverImage
 };
 
 function getAllOrganization() {
@@ -228,6 +229,32 @@ function getAllInformation(org_id) {
         var data = response.data
         return data;
   });
+
+}
+
+function getCoverImage(org_id) {
+    const requestOptions = {
+        // method: 'GET',
+        headers: authHeader(),
+        responseType: 'arraybuffer'
+    };
+    return axios.get(`${config.apiUrl}/api/v1/organization/get_cover_image/${org_id}`, requestOptions).then((response) => {
+        var data = response.data
+        let image = btoa(
+            new Uint8Array(response.data)
+              .reduce((data, byte) => data + String.fromCharCode(byte), '')
+          );
+        return `data:${response.headers['content-type'].toLowerCase()};base64,${image}`;
+        // data = Buffer.from(data, 'binary').toString('base64')
+        // console.log(data)
+        // return data;
+  });
+//     return axios.get(`${config.apiUrl}/api/v1/organization/get_cover_image/${org_id}`, requestOptions).then((response) => {
+//         var data = response.data
+//         var data = btoa(data)
+//         console.log(data)
+//         return data;
+//   });
 
 }
 

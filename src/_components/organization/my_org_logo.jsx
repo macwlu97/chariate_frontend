@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 
 import Box from '@material-ui/core/Box';
 
-import { typeinformationActions } from '../../_actions';
+// import { organizationActions } from '../../_actions';
 import { useDispatch } from 'react-redux';
 import { alertActions } from '../../_actions';
 import { organizationActions } from '../../_actions';
@@ -54,13 +54,16 @@ export default function FormDialogLogo({org_id}) {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    // dispatch(typeinformationActions.getAll(setTypeinformationObj))
-  }, []);
+  // useEffect(() => {
+  //   dispatch(organizationActions.getCoverImage(setFileBinary, org_id))
+  // }, []);
 
 
   const handleClickOpen = () => {
     setOpen(true);
+    dispatch(organizationActions.getCoverImage(setFileBinary, org_id))
+    setFilenameField("handleClickFile")
+    console.log(filenameField)
   };
 
   const handleClose = () => {
@@ -132,13 +135,13 @@ export default function FormDialogLogo({org_id}) {
 
 <Box component="span" m={1}>
 <Typography variant="h5" component="h5">
-{typeof(filenameField) == "undefined" || filenameField.length > 7 && `Nazwa pliku: ${filenameField}`}
+{(typeof(filenameField) != "undefined" || filenameField.length > 7)  && filenameField != "handleClickFile" && `Nazwa pliku: ${filenameField}`}
 </Typography>
 </Box>
 
 <Divider/>
 
-{typeof(filenameField) == "undefined" || filenameField.length > 7 && 
+{(typeof(fileBinary) != "undefined") && 
 <Box component="span" m={1}>
 <CardMedia
   component="img"

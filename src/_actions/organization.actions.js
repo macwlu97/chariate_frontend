@@ -21,6 +21,7 @@ export const organizationActions = {
     putInformation,
     deleteInformation,
     putCoverImage,
+    getCoverImage
 };
 
 function getAllOrganization() {
@@ -306,4 +307,23 @@ function getAllInformation(setInformation, org_id) {
         setInformation(information)
         return { type: informationOrgConstants.GET_INFORMATIONORG_SUCCESS, information } }
     function failure(error) { return { type: informationOrgConstants.GET_INFORMATIONORG_FAILURE, error } }
+}
+
+function getCoverImage(setFileBinary, org_id) {
+    return dispatch => {
+        dispatch(request());
+
+        organizationService.getCoverImage(org_id)
+            .then(
+                logo => dispatch(success(logo, setFileBinary)),
+                error => dispatch(failure(error))
+            );
+        
+    };
+
+    function request() { return { type: logoOrgConstants.GET_LOGOORG_REQUEST } }
+    function success(logo, setFileBinary) { 
+        setFileBinary(logo)
+        return { type: logoOrgConstants.GET_LOGOORG_SUCCESS, logo } }
+    function failure(error) { return { type: logoOrgConstants.GET_LOGOORG_FAILURE, error } }
 }
