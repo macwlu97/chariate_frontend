@@ -11,6 +11,7 @@ import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 // import UpperToolbar from './UpperToolbar';
 // import HeaderPage from './HeaderPage';
 // import Collections from './Collections';
@@ -24,7 +25,7 @@ import Container from '@material-ui/core/Container';
 import PrimaryMenu from './PrimaryMenu'
 import PromotedOrg from './PromotedOrg'
 import PrimaryBreadcrumb from './PrimaryBreadcrumb'
-
+import FooterPage from './FooterPage';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,8 +45,24 @@ export default function PrimaryLayout(props) {
       
       <CssBaseline />
       <PrimaryMenu />
-      {/* <Container maxWidth="lg"> */}
-      <div style={{ padding: 40 }}>
+      <Container maxWidth="lg" className={classes.root}>
+      <PrimaryBreadcrumb/>
+      <Box className={classes.root}>
+      <Paper className={classes.root}>
+        {props.children}
+      </Paper>
+      </Box>
+      </Container>
+      {/* <div style={{ padding: 40 }}> */}
+        
+        {/* <Grid container > */}
+          {/* <Grid item md={8} > */}
+            
+          {/* </Grid> */}
+        {/* </Grid> */}
+      {/* </div> */}
+
+      {/* <div style={{ padding: 40 }}>
         <PrimaryBreadcrumb/>
         <Grid container className={classes.root} spacing="10">
           <Grid item md={8} >
@@ -57,7 +74,8 @@ export default function PrimaryLayout(props) {
             <PromotedOrg/> 
           </Grid>
         </Grid>
-      </div>
+      </div> */}
+      <FooterPage/>
     </React.Fragment>
   );
 }
