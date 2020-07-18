@@ -26,19 +26,23 @@ class PreviewPage extends React.Component {
 
         this.props.dispatch(organizationActions.getOrganization(this.state._id));
       }
-
+    
     render() { //renderowanie warunkowe
         const { organization } = this.props;
+        let isNotUndefinedTypeOfCoverImage;
+        let isCoverImageNotNull;
+        
+        isNotUndefinedTypeOfCoverImage = (organization.items && typeof(organization.items.file_type) !== "undefined") ? true:false;
+        isCoverImageNotNull = (organization.items && organization.items.file_type !== null) ? true:false;
 
         return (
             
             <React.Fragment>
                 <Typography variant="h4" component="h3" align="center" style={{ paddingTop: 10, paddingBottom: 20 }}>
                     {organization.items && organization.items.name}
-                </Typography> 
-                {(typeof(organization.items && organization.items.file_type) !== "undefined") && 
+                </Typography>
+                {(isNotUndefinedTypeOfCoverImage && isCoverImageNotNull) && 
                 <Box component="span" m={1}>
-                
                 <CardMedia
                 component="img"
                 image={`data:${organization.items && organization.items.file_type};base64,${organization.items && atob(organization.items.logo)}`}

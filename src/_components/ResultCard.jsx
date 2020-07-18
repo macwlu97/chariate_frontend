@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom';
 import ChipCard from './chip/chipCard';
+import { useDispatch } from 'react-redux';
+import { organizationActions } from '../_actions/';
 
 const useStyles = makeStyles({
   root: {
@@ -20,6 +22,11 @@ const useStyles = makeStyles({
 
 export default function ImgMediaCard({organization}) {
   const classes = useStyles();
+  const dispatch = useDispatch()
+  const [fileBinary, setFileBinary] = React.useState();
+  useEffect(() => {
+      dispatch(organizationActions.getCoverImage(setFileBinary, organization.id))
+    }, []);
   let type_href;
   if ([0,1].includes(organization.type)){
     type_href = `/preview_organization/${organization.id}`;
@@ -28,7 +35,15 @@ export default function ImgMediaCard({organization}) {
   } else if (organization.type === 3){
     type_href = `/preview_fundraiser/${organization.id}`;
   }
-
+  
+  let cover_image;
+  if (typeof(fileBinary) !== "undefined"){
+    cover_image = `${fileBinary}`
+  } else {
+    cover_image = "https://www.oferty-biznesowe.pl/media/thumbnail/company/9632618.jpg"
+  }
+  // {(typeof(fileBinary) !== "undefined") && `${fileBinary}` }
+  // https://www.oferty-biznesowe.pl/media/thumbnail/company/9632618.jpg
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -37,7 +52,7 @@ export default function ImgMediaCard({organization}) {
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image="https://source.unsplash.com/user/erondu"
+          image={cover_image}
           title="Contemplative Reptile"
         />
       </Link>
