@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   export default function HeaderPage() {
     const classes = useStyles();
     const [search_city, setSearch_city] = React.useState(0);
-    const [search_text, setSearch_text] = React.useState('Organizacja');
+    const [search_text, setSearch_text] = React.useState('');
 
     const onClick = () => {
       
