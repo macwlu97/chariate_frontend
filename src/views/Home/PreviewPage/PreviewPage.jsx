@@ -25,16 +25,17 @@ class PreviewPage extends React.Component {
         }
 
         this.props.dispatch(organizationActions.getOrganization(this.state._id));
+        this.props.dispatch(organizationActions.getAllInformation(this.state._id));
       }
     
     render() { //renderowanie warunkowe
-        const { organization } = this.props;
+        const { organization, informationOrg } = this.props;
         let isNotUndefinedTypeOfCoverImage;
         let isCoverImageNotNull;
         
         isNotUndefinedTypeOfCoverImage = (organization.items && typeof(organization.items.file_type) !== "undefined") ? true:false;
         isCoverImageNotNull = (organization.items && organization.items.file_type !== null) ? true:false;
-
+        
         return (
             
             <React.Fragment>
@@ -51,7 +52,7 @@ class PreviewPage extends React.Component {
                 /></Box>
                 }
                  <Divider light />
-            <PreviewDescription organization={organization}/>
+            <PreviewDescription organization={organization} information={informationOrg}/>
         {/* <FormControl disabled >
             <InputLabel htmlFor="component-disabled" spacing={3}>{organization.items && organization.items.name}</InputLabel>
             <Input id="component-disabled" 
@@ -98,11 +99,12 @@ class PreviewPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { authentication, organization } = state;
+    const { authentication, organization, informationOrg } = state;
     const { user } = authentication;
     return {
         user,
         organization,
+        informationOrg
     };
 }
 

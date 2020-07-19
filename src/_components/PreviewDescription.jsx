@@ -1,31 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+// import React from 'react';
+// import PropTypes from 'prop-types';
+// import { makeStyles } from '@material-ui/core/styles';
+// import Tabs from '@material-ui/core/Tabs';
+// import Tab from '@material-ui/core/Tab';
+// import Typography from '@material-ui/core/Typography';
+// import Box from '@material-ui/core/Box';
 
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
+import InfoIcon from '@material-ui/icons/Info';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <Typography
-      component="div"
+    <div
       role="tabpanel"
       hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
   );
 }
 
@@ -37,24 +51,20 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    id: `scrollable-auto-tab-${index}`,
+    'aria-controls': `scrollable-auto-tabpanel-${index}`,
   };
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    width: '100%',
     backgroundColor: theme.palette.background.paper,
-    display: 'flex',
-    height: 424,
-  },
-  tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`,
   },
 }));
 
-export default function PreviewDescription({organization}) {
+export default function PreviewDescription({organization, information}) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -62,15 +72,35 @@ export default function PreviewDescription({organization}) {
     setValue(newValue);
   };
 
+  var howManyPhoneNumber;
+  var PhoneNumbersList;
+  var aboutOrganizationList;
+  var charFieldOrganizationList;
+  PhoneNumbersList = information.items && information.items.results.filter(el => el.type_info_id === 4);
+  howManyPhoneNumber = PhoneNumbersList ? PhoneNumbersList.length : 0;
+  aboutOrganizationList = information.items && information.items.results.filter(el => el.type_info_id === 10);
+  charFieldOrganizationList = information.items && information.items.results.filter(el => el.type_info_id === 2);
+
+  const aboutOrganization = () => {
+    var count = aboutOrganizationList ? aboutOrganizationList.length : 0
+    var returned_object = aboutOrganizationList ? aboutOrganizationList[0] : null
+    var returnIfElse = `Brak opisu.`;
+
+    if (count === 1) return returned_object
+    else return returnIfElse;
+  }
+
   return (
     <div className={classes.root}>
+    <AppBar position="static" color="default">
       <Tabs
-        orientation="vertical"
-        variant="scrollable"
         value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        className={classes.tabs}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="scrollable auto tabs example"
       >
         <Tab label="Informacje" {...a11yProps(0)} />
         <Tab label="Co robimy" {...a11yProps(1)} />
@@ -80,29 +110,65 @@ export default function PreviewDescription({organization}) {
         <Tab label="Recenzje" {...a11yProps(5)} />
         <Tab label="Notatki" {...a11yProps(6)} />
       </Tabs>
+      </AppBar>
       <TabPanel value={value} index={0}>
-      <Grid container spacing="6" direction="row" alignItems="center">
-      <Grid item md={4}>
-        <FormControl disabled>
+      <Grid container 
+      spacing="6" direction="row" alignItems="center"
+      >
+       
+      <Grid item md={6}>
+        {/* <Box m={1}>
+          <FormControl disabled>
             <InputLabel htmlFor="component-disabled" spacing={3}>
-             
-                {organization.items && organization.items.name} </InputLabel>
-            <Input id="component-disabled" 
-        // value={name} onChange={handleChange} 
-        />
+              {organization.items && organization.items.name} </InputLabel>
+            <Input id="component-disabled"/>
             <FormHelperText>Nazwa</FormHelperText>
-        </FormControl>
+          </FormControl>
+        </Box> */}
+        <Box>
+          <Typography variant="h4" component="h5">
+                      O nas:
+          </Typography>
+          <Box mt={0.5} />
+          {/* <Divider/> */}
+          {aboutOrganization().content}
+        </Box>
+
+        
+        {charFieldOrganizationList && charFieldOrganizationList.map((charField, index) => 
+          <Box mt={3} style={{
+            display: 'flex',
+            alignItems: 'center',
+          }}>
+            <InfoIcon color="primary" fontSize="large" m={2} />
+            <Box m={0.5} />
+            {charField.content}
+          </Box>
+        )}
+        
+       
         </Grid>
-        <Grid item md={4}>
+
+        <Grid item md={6}>
+        <Typography variant="h4" component="h5">
+                    Zadzwoń
+        </Typography>
+        {/* {informationObj.results &&
+          <List>
+          {informationObj.results.map((informationElement, index) => */}
+        {PhoneNumbersList && PhoneNumbersList.map((phoneNumber, index) => 
+        <Box>
         <FormControl disabled >
-            <InputLabel htmlFor="component-disabled" spacing={3}>753222111 </InputLabel>
+            <InputLabel htmlFor="component-disabled" spacing={3}>{phoneNumber.content} </InputLabel>
             <Input id="component-disabled" 
-        // value={name} onChange={handleChange} 
         />
-            <FormHelperText>Phone number</FormHelperText>
-        </FormControl>    
+            <FormHelperText>{phoneNumber.name} nr. {index+1}</FormHelperText>
+        </FormControl>
+        </Box>
+        )}
         </Grid>
-        <Grid item md={5}>
+        {/* <Grid item md={5}>
+
         <Typography variant="h4" component="h5">
                     Godziny otwarcia
                 </Typography>
@@ -121,10 +187,11 @@ export default function PreviewDescription({organization}) {
         - Doświadczenie w działaniu
         
                 </Typography>
-                </Grid>
+                </Grid> */}
       
       </Grid>
       </TabPanel>
+
       <TabPanel value={value} index={1}>
         Item Two
       </TabPanel>

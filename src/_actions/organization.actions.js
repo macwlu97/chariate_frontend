@@ -290,24 +290,45 @@ function getAllFundraising() {
 }
 
 
-function getAllInformation(setInformation, org_id) {
-    return dispatch => {
-        dispatch(request());
+function getAllInformation(org_id, setInformation) {
+    if(typeof(setInformation) !== "undefined"){
+        return dispatch => {
+            dispatch(request());
 
-        organizationService.getAllInformation(org_id)
-            .then(
-                information => dispatch(success(information, setInformation)),
-                error => dispatch(failure(error))
-            );
-        
-    };
+            organizationService.getAllInformation(org_id)
+                .then(
+                    information => dispatch(success(information, setInformation)),
+                    error => dispatch(failure(error))
+                );
+            
+        };
 
-    function request() { return { type: informationOrgConstants.GET_INFORMATIONORG_REQUEST } }
-    function success(information, setInformation) { 
-        setInformation(information)
-        return { type: informationOrgConstants.GET_INFORMATIONORG_SUCCESS, information } }
-    function failure(error) { return { type: informationOrgConstants.GET_INFORMATIONORG_FAILURE, error } }
+        function request() { return { type: informationOrgConstants.GET_INFORMATIONORG_REQUEST } }
+        function success(information, setInformation) { 
+            setInformation(information)
+            return { type: informationOrgConstants.GET_INFORMATIONORG_SUCCESS, information } }
+        function failure(error) { return { type: informationOrgConstants.GET_INFORMATIONORG_FAILURE, error } }
+
+    } else {
+
+        return dispatch => {
+            dispatch(request());
+
+            organizationService.getAllInformation(org_id)
+                .then(
+                    information => dispatch(success(information)),
+                    error => dispatch(failure(error))
+                );
+            
+        };
+
+        function request() { return { type: informationOrgConstants.GET_INFORMATIONORG_REQUEST } }
+        function success(information) { 
+            return { type: informationOrgConstants.GET_INFORMATIONORG_SUCCESS, information } }
+        function failure(error) { return { type: informationOrgConstants.GET_INFORMATIONORG_FAILURE, error } }
+    }
 }
+
 
 function getCoverImage(setFileBinary, org_id) {
     return dispatch => {

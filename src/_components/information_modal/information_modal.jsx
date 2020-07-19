@@ -55,7 +55,7 @@ export default function FullScreenInformationDialog({org_id, headerName}) {
   };
 
   useEffect(() => {
-    dispatch(organizationActions.getAllInformation(setInformationObj, org_id))
+    dispatch(organizationActions.getAllInformation(org_id, setInformationObj))
   }, [updated]);
 
   const handleEditItem = (itemId, content) => {
