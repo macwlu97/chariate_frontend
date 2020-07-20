@@ -21,7 +21,9 @@ export const organizationActions = {
     putInformation,
     deleteInformation,
     putCoverImage,
-    getCoverImage
+    getCoverImage,
+    getOrganizationFundraising,
+    getOrganizationEvent
 };
 
 function getAllOrganization() {
@@ -128,11 +130,11 @@ function addFundraiser(toJson) {
     function failure(error) { return { type: fundraiserConstants.ADD_FUNDRAISER_FAILURE, error } }
 }
 
-function addInformation(toJson) {
+function addInformation(toJson, mode) {
     return dispatch => {
         dispatch(request());
 
-        organizationService.addInformation(toJson)
+        organizationService.addInformation(toJson, mode)
             .then(
                 information => {
                     dispatch(success(information))
@@ -289,6 +291,83 @@ function getAllFundraising() {
     function failure(error) { return { type: orgConstants.GETALL_FAILURE, error } }
 }
 
+function getOrganizationFundraising(org_id, setOrganizationFundraising) {
+    if(typeof(setOrganizationFundraising) !== "undefined"){
+        return dispatch => {
+            dispatch(request());
+
+            organizationService.getOrganizationFundraising(org_id)
+                .then(
+                    fundraiser => dispatch(success(fundraiser, setOrganizationFundraising)),
+                    error => dispatch(failure(error))
+                );
+            
+        };
+
+        function request() { return { type: fundraiserConstants.GET_FUNDRAISER_REQUEST } }
+        function success(fundraiser, setOrganizationFundraising) { 
+            setOrganizationFundraising(fundraiser)
+            return { type: fundraiserConstants.GET_FUNDRAISER_SUCCESS, fundraiser } }
+        function failure(error) { return { type: fundraiserConstants.GET_FUNDRAISER_FAILURE, error } }
+
+    } else {
+
+        return dispatch => {
+            dispatch(request());
+
+            organizationService.getOrganizationFundraising(org_id)
+                .then(
+                    fundraiser => dispatch(success(fundraiser)),
+                    error => dispatch(failure(error))
+                );
+            
+        };
+
+        function request() { return { type: fundraiserConstants.GET_FUNDRAISER_REQUEST } }
+        function success(fundraiser) { 
+            return { type: fundraiserConstants.GET_FUNDRAISER_SUCCESS, fundraiser } }
+        function failure(error) { return { type: fundraiserConstants.GET_FUNDRAISER_FAILURE, error } }
+    }
+}
+
+function getOrganizationEvent(org_id, setOrganizationEvent) {
+    if(typeof(setOrganizationEvent) !== "undefined"){
+        return dispatch => {
+            dispatch(request());
+
+            organizationService.getOrganizationEvent(org_id)
+                .then(
+                    event => dispatch(success(event, setOrganizationEvent)),
+                    error => dispatch(failure(error))
+                );
+            
+        };
+
+        function request() { return { type: eventConstants.GET_EVENT_REQUEST } }
+        function success(event, setOrganizationEvent) { 
+            setOrganizationEvent(event)
+            return { type: eventConstants.GET_EVENT_SUCCESS, event } }
+        function failure(error) { return { type: eventConstants.GET_EVENT_FAILURE, error } }
+
+    } else {
+
+        return dispatch => {
+            dispatch(request());
+
+            organizationService.getOrganizationEvent(org_id)
+                .then(
+                    event => dispatch(success(event)),
+                    error => dispatch(failure(error))
+                );
+            
+        };
+
+        function request() { return { type: eventConstants.GET_EVENT_REQUEST } }
+        function success(event) { 
+            return { type: eventConstants.GET_EVENT_SUCCESS, event } }
+        function failure(error) { return { type: eventConstants.GET_EVENT_FAILURE, error } }
+    }
+}
 
 function getAllInformation(org_id, setInformation) {
     if(typeof(setInformation) !== "undefined"){

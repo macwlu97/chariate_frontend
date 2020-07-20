@@ -22,6 +22,9 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import InfoIcon from '@material-ui/icons/Info';
 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -72,19 +75,30 @@ export default function PreviewDescription({organization, information}) {
     setValue(newValue);
   };
 
-  var howManyPhoneNumber;
-  var PhoneNumbersList;
-  var aboutOrganizationList;
-  var charFieldOrganizationList;
+  var howManyPhoneNumber, PhoneNumbersList, aboutOrganizationList, charFieldOrganizationList, whatWeDoList,
+  goalsList;
+
   PhoneNumbersList = information.items && information.items.results.filter(el => el.type_info_id === 4);
   howManyPhoneNumber = PhoneNumbersList ? PhoneNumbersList.length : 0;
   aboutOrganizationList = information.items && information.items.results.filter(el => el.type_info_id === 10);
   charFieldOrganizationList = information.items && information.items.results.filter(el => el.type_info_id === 2);
+  whatWeDoList = information.items && information.items.results.filter(el => el.type_info_id === 8);
+  goalsList = information.items && information.items.results.filter(el => el.type_info_id === 9);
+
 
   const aboutOrganization = () => {
     var count = aboutOrganizationList ? aboutOrganizationList.length : 0
     var returned_object = aboutOrganizationList ? aboutOrganizationList[0] : null
     var returnIfElse = `Brak opisu.`;
+
+    if (count === 1) return returned_object
+    else return returnIfElse;
+  }
+
+  const whatWeDoOrganization = () => {
+    var count = whatWeDoList ? whatWeDoList.length : 0
+    var returned_object = whatWeDoList ? whatWeDoList[0] : null
+    var returnIfElse = `Brak danych.`;
 
     if (count === 1) return returned_object
     else return returnIfElse;
@@ -113,7 +127,7 @@ export default function PreviewDescription({organization, information}) {
       </AppBar>
       <TabPanel value={value} index={0}>
       <Grid container 
-      spacing="6" direction="row" alignItems="center"
+      spacing="6" direction="row" 
       >
        
       <Grid item md={6}>
@@ -125,7 +139,7 @@ export default function PreviewDescription({organization, information}) {
             <FormHelperText>Nazwa</FormHelperText>
           </FormControl>
         </Box> */}
-        <Box>
+        <Box my={2}>
           <Typography variant="h4" component="h5">
                       O nas:
           </Typography>
@@ -134,39 +148,62 @@ export default function PreviewDescription({organization, information}) {
           {aboutOrganization().content}
         </Box>
 
-        
+        <Grid container my={2}>
         {charFieldOrganizationList && charFieldOrganizationList.map((charField, index) => 
-          <Box mt={3} style={{
+          <Grid md={6} mt={3} style={{
             display: 'flex',
             alignItems: 'center',
           }}>
             <InfoIcon color="primary" fontSize="large" m={2} />
             <Box m={0.5} />
             {charField.content}
-          </Box>
+          </Grid>
         )}
         
        
         </Grid>
+</Grid>
+
 
         <Grid item md={6}>
-        <Typography variant="h4" component="h5">
-                    Zadzwoń
-        </Typography>
-        {/* {informationObj.results &&
-          <List>
-          {informationObj.results.map((informationElement, index) => */}
-        {PhoneNumbersList && PhoneNumbersList.map((phoneNumber, index) => 
-        <Box>
-        <FormControl disabled >
-            <InputLabel htmlFor="component-disabled" spacing={3}>{phoneNumber.content} </InputLabel>
-            <Input id="component-disabled" 
-        />
-            <FormHelperText>{phoneNumber.name} nr. {index+1}</FormHelperText>
-        </FormControl>
-        </Box>
-        )}
+          <Box my={2}>
+            <Typography variant="h4" component="h5">
+                        Zadzwoń
+            </Typography>
+          </Box>
+          <Box mt={0.5} />
+          
+          {PhoneNumbersList && PhoneNumbersList.map((phoneNumber, index) => 
+          <Box>
+          <FormControl disabled >
+              <InputLabel htmlFor="component-disabled" spacing={3}>{phoneNumber.content} </InputLabel>
+              <Input id="component-disabled" 
+          />
+              <FormHelperText>{phoneNumber.name} nr. {index+1}</FormHelperText>
+          </FormControl>
+          </Box>
+          )}
+
+
+        <Grid container>
+          <Box my={6}>
+            <Typography variant="h4" component="h5">
+                        Cele
+            </Typography>
+            <List>
+            {goalsList && goalsList.map((goal, index) => 
+             
+              <ListItem> {goal.content}</ListItem>
+             
+            )}
+            </List>
+          </Box>
+            
         </Grid>
+        </Grid>
+
+
+
         {/* <Grid item md={5}>
 
         <Typography variant="h4" component="h5">
@@ -193,10 +230,31 @@ export default function PreviewDescription({organization, information}) {
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        Item Two
+        <Grid container spacing="6" direction="row" alignItems="center">
+          <Box my={2}>
+              <Typography variant="h4" component="h5">
+                          Co robimy?
+              </Typography>
+              <Box mt={0.5} />
+              {/* <Divider/> */}
+              {whatWeDoOrganization().content}
+            </Box>
+        </Grid>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+      a
+
+
+        {/* {charFieldOrganizationList && charFieldOrganizationList.map((charField, index) => 
+          <Grid md={6} mt={3} style={{
+            display: 'flex',
+            alignItems: 'center',
+          }}>
+            <InfoIcon color="primary" fontSize="large" m={2} />
+            <Box m={0.5} />
+            {charField.content}
+          </Grid>
+        )} */}
       </TabPanel>
       <TabPanel value={value} index={3}>
         Item Four

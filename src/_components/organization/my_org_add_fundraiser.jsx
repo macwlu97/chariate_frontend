@@ -46,20 +46,25 @@ export default function FormDialogFundraiser({org_id}) {
     var diffe = datefieldValue - today;
 
     if (typeof(nameField.content) == "undefined" || nameField.content.length < 8 ) {
+      console.log("nameField error")
       dispatch(alertActions.success('error form field'));
       
     }
     else if (typeof(dateField.content) == "undefined" || dateField.content.length < 2 ) {
+      console.log("datefield error")
       dispatch(alertActions.success('error form field'));
       
     }
     else if (typeof(timeField.content) == "undefined" || timeField.content.length < 2 ) {
+      console.log("timefield error")
       dispatch(alertActions.success('error form field'));
     }
     else if (typeof(descriptionField.content) == "undefined" || descriptionField.content.length < 30 ) {
+      console.log("descriptionField error")
       dispatch(alertActions.success('error form field'));
     } 
     else if (typeof(dateField.content) == "undefined" || dateField.content.length < 2 || diffe < 1) {
+      console.log("dateField error")
       dispatch(alertActions.success('error form field'));
     } else {
       

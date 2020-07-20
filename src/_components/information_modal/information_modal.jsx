@@ -162,6 +162,7 @@ export default function FullScreenInformationDialog({org_id, headerName}) {
                 fullWidth
                 value={contentField.content}
                 onChange={handleChange}
+                
               />
               {updated === 0 && <Button onClick={handleEditInformation} className={classes.buttonStyle} color="primary" disabled={typeof(contentField.content) == "undefined" || contentField.content.length < 10}>
                 Edytuj informację

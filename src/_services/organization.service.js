@@ -16,7 +16,9 @@ export const organizationService = {
     putInformation,
     deleteInformation,
     putCoverImage,
-    getCoverImage
+    getCoverImage,
+    getOrganizationFundraising,
+    getOrganizationEvent
 };
 
 function getAllOrganization() {
@@ -121,21 +123,33 @@ function addFundraiser(toJson) {
     return axios.post(`${config.apiUrl}/api/v1/fundraising/`, data, requestOptions)
 }
 
-function addInformation(toJson) {
+function addInformation(toJson, mode) {
 
     const requestOptions = {
         headers: authHeader(),
     };
 
-    let data = {
-        content: toJson.content,
-        organization_id: toJson.organization_id,
-        type_info_id: toJson.type_info_id,
-        // end_date: toJson.end_date,
-        // city_id: toJson.city_id,
-        // description: toJson.description
-        // type: toJson.type
-      }
+    let data;
+    if (mode === "Organizacja") {
+        data = {
+            content: toJson.content,
+            organization_id: toJson.organization_id,
+            type_info_id: toJson.type_info_id,
+        }
+    } else if (mode === "Event") {
+        data = {
+            content: toJson.content,
+            event_id: toJson.event_id,
+            type_info_id: toJson.type_info_id,
+
+        }
+    } else if (mode === "Fundraising"){
+        data = {
+            content: toJson.content,
+            fundraising_id: toJson.fundraising_id,
+            type_info_id: toJson.type_info_id,
+        }
+    }
 
     return axios.post(`${config.apiUrl}/api/v1/information/`, data, requestOptions)
 }
@@ -219,6 +233,32 @@ function getAllFundraising() {
 
 }
 
+function getOrganizationFundraising(org_id) {
+    const requestOptions = {
+        // method: 'GET',
+        headers: authHeader()
+    };
+
+    return axios.get(`${config.apiUrl}/api/v1/fundraising/organization/${org_id}`, requestOptions).then((response) => {
+        var data = response.data
+        return data;
+  });
+
+}
+
+function getOrganizationEvent(org_id) {
+    const requestOptions = {
+        // method: 'GET',
+        headers: authHeader()
+    };
+
+    return axios.get(`${config.apiUrl}/api/v1/event/organization/${org_id}`, requestOptions).then((response) => {
+        var data = response.data
+        return data;
+  });
+
+}
+
 function getAllInformation(org_id) {
     const requestOptions = {
         // method: 'GET',
@@ -231,6 +271,7 @@ function getAllInformation(org_id) {
   });
 
 }
+
 
 function getCoverImage(org_id) {
     const requestOptions = {
