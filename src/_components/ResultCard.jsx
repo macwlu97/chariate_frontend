@@ -24,18 +24,23 @@ export default function ImgMediaCard({organization}) {
   const classes = useStyles();
   const dispatch = useDispatch()
   const [fileBinary, setFileBinary] = React.useState();
-  useEffect(() => {
-      dispatch(organizationActions.getCoverImage(setFileBinary, organization.id))
-    }, []);
+  let img_organization_id;
   let type_href;
   if ([0,1].includes(organization.type)){
+    img_organization_id = organization.id;
     type_href = `/preview_organization/${organization.id}`;
   } else if (organization.type === 2){
+    img_organization_id = organization.organization.id;
     type_href = `/preview_event/${organization.id}`;
   } else if (organization.type === 3){
+    img_organization_id = organization.organization.id;
     type_href = `/preview_fundraiser/${organization.id}`;
   }
   
+  useEffect(() => {
+    dispatch(organizationActions.getCoverImage(setFileBinary, img_organization_id))
+  }, []);
+
   let cover_image;
   if (typeof(fileBinary) !== "undefined"){
     cover_image = `${fileBinary}`
