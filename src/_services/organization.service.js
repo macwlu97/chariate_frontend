@@ -18,7 +18,9 @@ export const organizationService = {
     putCoverImage,
     getCoverImage,
     getOrganizationFundraising,
-    getOrganizationEvent
+    getOrganizationEvent,
+    getAllEventInformation,
+    getAllFundraiserInformation
 };
 
 function getAllOrganization() {
@@ -266,6 +268,32 @@ function getAllInformation(org_id) {
     };
 
     return axios.get(`${config.apiUrl}/api/v1/information/organization/${org_id}`, requestOptions).then((response) => {
+        var data = response.data
+        return data;
+  });
+
+}
+
+function getAllEventInformation(event_id) {
+    const requestOptions = {
+        // method: 'GET',
+        headers: authHeader()
+    };
+
+    return axios.get(`${config.apiUrl}/api/v1/information/event/${event_id}`, requestOptions).then((response) => {
+        var data = response.data
+        return data;
+  });
+
+}
+
+function getAllFundraiserInformation(fundraiser_id) {
+    const requestOptions = {
+        // method: 'GET',
+        headers: authHeader()
+    };
+
+    return axios.get(`${config.apiUrl}/api/v1/information/fundraising/${fundraiser_id}`, requestOptions).then((response) => {
         var data = response.data
         return data;
   });

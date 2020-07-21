@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -58,6 +59,8 @@ export default function OutlinedCard({org_id, name, description, type, type_name
       <FormDialogManage org_id={org_id}></FormDialogManage> 
       <FormDialogLogo org_id={org_id}></FormDialogLogo> 
       <FullScreenInformationDialog org_id={org_id} headerName={name}></FullScreenInformationDialog>
+      <Link to={`/event/${org_id}`}><Button variant="outlined" color="primary">Wydarzenia</Button></Link>
+      <Link to={`/fundraiser/${org_id}`}><Button variant="outlined" color="primary">Zbiórki</Button></Link>
       {/* <Button size="small">Dodaj zbiórkę</Button> <Button size="small">Zarządzaj informacjami</Button> */}
       </CardActions>
     </Card> 

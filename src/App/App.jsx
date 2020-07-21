@@ -9,6 +9,8 @@ import { HomePage } from '../views/Home/HomePage';
 import { LoginPage } from '../views/AuthorizationSystem/LoginPage';
 import { RegisterPage } from '../views/AuthorizationSystem/RegisterPage';
 import { OrganizationPage } from '../views/OrganizationPage';
+import { EventPage } from '../views/EventPage';
+import { FundraiserPage } from '../views/FundraiserPage';
 import { CreateOrganizationPage } from '../views/CreateOrganizationPage';
 import { SearchPage } from '../views/SearchPage';
 
@@ -81,6 +83,8 @@ class App extends React.Component {
 
                                 <PrivateRoute exact path="/create_organization" layout={PrimaryLayout} component={CreateOrganizationPage} />
                                 <PrivateRoute exact path="/organization" layout={PrimaryLayout} component={OrganizationPage} />
+                                <PrivateRoute exact path="/event/:_id" layout={PrimaryLayout} component={EventPage} />
+                                <PrivateRoute exact path="/fundraiser/:_id" layout={PrimaryLayout} component={FundraiserPage} />
                                 <PrivateRoute exact path="/profile" layout={PrimaryLayout} component={ProfilePage} />
                                 <PrivateRoute exact path="/preview_organization/:_id" layout={PrimaryLayout} component={PreviewPage} /> {/* organizations, society */}
                                 {/* <PrivateRoute exact path="/preview_event/:_id" layout={PrimaryLayout} component={PreviewPage} /> events */}
