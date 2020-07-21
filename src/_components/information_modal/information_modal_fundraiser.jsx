@@ -117,7 +117,7 @@ export default function FullScreenInformationDialogFundraiser({fundraiser_id, he
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Zarządzanie eventami: {headerName}
+              Zarządzanie zbiórkami: {headerName}
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               Zamknij 
