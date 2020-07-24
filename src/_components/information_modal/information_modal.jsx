@@ -48,6 +48,7 @@ export default function FullScreenInformationDialog({org_id, headerName}) {
 
   const handleClickOpen = () => {
     setOpen(true);
+    dispatch(organizationActions.getAllInformation(org_id, setInformationObj))
   };
 
   const handleClose = () => {

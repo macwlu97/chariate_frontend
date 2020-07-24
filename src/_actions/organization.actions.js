@@ -10,6 +10,8 @@ import { history } from '../_helpers';
 export const organizationActions = {
     getAllOrganization,
     getOrganization,
+    getEvent,
+    getFundraising,
     getAllEvent,
     getAllFundraising,
     getAllInformation,
@@ -140,7 +142,7 @@ function addInformation(toJson, mode) {
             .then(
                 information => {
                     dispatch(success(information))
-                    history.push('/');
+                    history.push('/organization');
                     dispatch(alertActions.success('Information successful'));
                 },
                 error => {
@@ -259,6 +261,38 @@ function getOrganization(_id) {
     function request() { return { type: orgConstants.GETALL_REQUEST } }
     function success(organization) { return { type: orgConstants.GETALL_SUCCESS, organization } }
     function failure(error) { return { type: orgConstants.GETALL_FAILURE, error } }
+}
+
+function getEvent(_id) {
+    return dispatch => {
+        dispatch(request());
+
+        organizationService.getEvent(_id)
+            .then(
+                event => dispatch(success(event)),
+                error => dispatch(failure(error))
+            );
+    };
+
+    function request() { return { type: eventConstants.GET_EVENT_REQUEST } }
+    function success(event) { return { type: eventConstants.GET_EVENT_SUCCESS, event } }
+    function failure(error) { return { type: eventConstants.GET_EVENT_FAILURE, error } }
+}
+
+function getFundraising(_id) {
+    return dispatch => {
+        dispatch(request());
+
+        organizationService.getFundraising(_id)
+            .then(
+                fundraiser => dispatch(success(fundraiser)),
+                error => dispatch(failure(error))
+            );
+    };
+
+    function request() { return { type: fundraiserConstants.GET_FUNDRAISER_REQUEST } }
+    function success(fundraiser) { return { type: fundraiserConstants.GET_FUNDRAISER_SUCCESS, fundraiser } }
+    function failure(error) { return { type: fundraiserConstants.GET_FUNDRAISER_FAILURE, error } }
 }
 
 function getAllEvent() {

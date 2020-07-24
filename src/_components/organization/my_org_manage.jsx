@@ -53,6 +53,7 @@ export default function FormDialogManage({org_id}) {
 
   const handleClickOpen = () => {
     setOpen(true);
+    setContentField({content: ''})
   };
 
   const handleClose = () => {

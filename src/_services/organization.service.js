@@ -5,6 +5,8 @@ import axios from 'axios';
 export const organizationService = {
     getAllOrganization,
     getOrganization,
+    getEvent,
+    getFundraising,
     getAllEvent,
     getAllFundraising,
     getAllInformation,
@@ -208,6 +210,29 @@ function getOrganization(_id) {
     // return fetch(`${config.apiUrl}/api/v1/organization/`, requestOptions).then(handleResponse);
 }
 
+function getEvent(_id) {
+    const requestOptions = {
+        // method: 'GET',
+        headers: authHeader()
+    };
+
+    return axios.get(`${config.apiUrl}/api/v1/event/${_id}`, requestOptions).then((response) => {
+        var data = response.data
+        return data;
+  });
+}
+
+function getFundraising(_id) {
+    const requestOptions = {
+        // method: 'GET',
+        headers: authHeader()
+    };
+
+    return axios.get(`${config.apiUrl}/api/v1/fundraising/${_id}`, requestOptions).then((response) => {
+        var data = response.data
+        return data;
+  });
+}
 
 function getAllEvent() {
     const requestOptions = {

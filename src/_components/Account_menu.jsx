@@ -80,14 +80,14 @@ export default function CustomizedMenus() {
           <ListItemText primary="Konto" />
         </StyledMenuItem>
         </Link>
-        <Link to="/message">
+        {/* <Link to="/message">
         <StyledMenuItem>
           <ListItemIcon>
             <DraftsIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Prywatne wiadomości" />
         </StyledMenuItem>
-        </Link>
+        </Link> */}
         <Link to="/organization">
         <StyledMenuItem>
           <ListItemIcon>

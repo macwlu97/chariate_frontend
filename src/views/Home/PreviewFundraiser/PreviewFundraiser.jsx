@@ -15,8 +15,13 @@ import Divider from '@material-ui/core/Divider';
 import CardMedia from '@material-ui/core/CardMedia';
 import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
+import Grid from '@material-ui/core/Grid';
+import FaceIcon from '@material-ui/icons/Face';
+import DoneIcon from '@material-ui/icons/Done';
 
-class PreviewPage extends React.Component {
+import CoverImage from '../../../_components/CoverImage';
+
+class PreviewFundraiser extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -24,30 +29,52 @@ class PreviewPage extends React.Component {
         //   _type: this.props.match.params._type,
         }
 
-        this.props.dispatch(organizationActions.getOrganization(this.state._id));
-        this.props.dispatch(organizationActions.getAllInformation(this.state._id));
+        this.props.dispatch(organizationActions.getFundraising(this.state._id));
+        this.props.dispatch(organizationActions.getAllFundraiserInformation(this.state._id));
       }
     
     render() { //renderowanie warunkowe
-        const { organization, informationOrg } = this.props;
+        const { fundraiser, information } = this.props;
         let isNotUndefinedTypeOfCoverImage;
         let isCoverImageNotNull;
         let type; 
 
-        isNotUndefinedTypeOfCoverImage = (organization.items && typeof(organization.items.file_type) !== "undefined") ? true:false;
-        isCoverImageNotNull = (organization.items && organization.items.file_type !== null) ? true:false;
+        // isNotUndefinedTypeOfCoverImage = (organization.items && typeof(organization.items.file_type) !== "undefined") ? true:false;
+        // isCoverImageNotNull = (organization.items && organization.items.file_type !== null) ? true:false;
         
-        type = organization.items && organization.items.type;
+        // type = organization.items && organization.items.type;
         return (
             
             <React.Fragment>
-                <Typography variant="h4" component="h3" align="center" >
-                    {organization.items && organization.items.name} <Chip label={type == 0 && "Fundacja" || type == 1 && "Społeczność" || type == 2 && "Wydarzenie" || type == 3 && "Zbiórka"} />
-                </Typography>
+                <Grid Container>
+                    <Grid item md={12}>
+                        <Typography variant="h4" component="h3" align="center">
+                            {fundraiser.items && fundraiser.items.title} <Chip label={"Zbiórka"} />
+                        </Typography>
+                        <Box my={2}/>
+                        <CoverImage org_id={fundraiser.items && fundraiser.items.organization_id} type={2}/>
+                    </Grid>
+
+                    <Grid container spacing="6" direction="row" >
+                        <Grid item md={6}>
+                            <Box>ss
+                            {/* <Chip
+                                icon={<FaceIcon />}
+                                label={`Początek wydarzenia: ${fundraiser.items && fundraiser.items.start_date}`}
+                                // onDelete={handleDelete}
+                                color="primary"
+                            /> */}
+                            </Box>
+                        </Grid>
+                        <Grid item md={6}>
+                            ss
+                        </Grid>
+                    </Grid>
+                </Grid>
                 {/* <Box my={1}>
                     <Chip label={type == 0 && "Fundacja" || type == 1 && "Społeczność" || type == 2 && "Wydarzenie" || type == 3 && "Zbiórka"} />
                 </Box> */}
-                {(isNotUndefinedTypeOfCoverImage && isCoverImageNotNull) && 
+                {/* {(isNotUndefinedTypeOfCoverImage && isCoverImageNotNull) && 
                 <Box component="span" m={1}>
                 <CardMedia
                 component="img"
@@ -55,28 +82,10 @@ class PreviewPage extends React.Component {
                 title="Logo organizacji"
                 height={200}
                 /></Box>
-                }
-                 <Divider light />
-            <PreviewDescription organization={organization} information={informationOrg}/>
-        {/* <FormControl disabled >
-            <InputLabel htmlFor="component-disabled" spacing={3}>{organization.items && organization.items.name}</InputLabel>
-            <Input id="component-disabled" 
-        // value={name} onChange={handleChange} 
-        />
-            <FormHelperText>Nazwa</FormHelperText>
-        </FormControl>
-         */}
-      {/* <Fab color="secondary" aria-label="edit"  style={{fontSize: '30px'}}>
-        <EditIcon style={{fontSize: '10px'}}/>
-      </Fab> */}
-        {/* <FormControl disabled>
-            <InputLabel htmlFor="component-disabled">{user}</InputLabel>
-            <Input id="component-disabled" 
-        // value={name} onChange={handleChange} 
-        />
-            <FormHelperText>Imię</FormHelperText>
-        </FormControl> */}
-                
+                } */}
+                 {/* <Divider light /> */}
+            {/* <PreviewDescription organization={organization} information={informationOrg}/> */}
+        
 
                 {/* {organization.loading && <em>Ładuje uzytkownikow...</em>}
                 {organization.error && <span className="text-danger">ERROR: {organization.error}</span>}
@@ -104,14 +113,14 @@ class PreviewPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { authentication, organization, informationOrg } = state;
+    const { authentication, fundraiser, information } = state;
     const { user } = authentication;
     return {
         user,
-        organization,
-        informationOrg
+        fundraiser,
+        information,
     };
 }
 
-const connectedPreviewPage = connect(mapStateToProps)(PreviewPage);
-export { connectedPreviewPage as PreviewPage };
+const connectedPreviewFundraiser = connect(mapStateToProps)(PreviewFundraiser);
+export { connectedPreviewFundraiser as PreviewFundraiser };

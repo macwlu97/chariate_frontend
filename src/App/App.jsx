@@ -24,6 +24,8 @@ import PrimaryLayout from '../Layouts/PrimaryLayout/PrimaryLayout';
 import SearchLayout from '../Layouts/SearchLayout/SearchLayout';
 import { ProfilePage } from '../views/Home/ProfilePage/ProfilePage';
 import { PreviewPage } from '../views/Home/PreviewPage/PreviewPage';
+import { PreviewEvent } from '../views/Home/PreviewEvent/PreviewEvent';
+import { PreviewFundraiser } from '../views/Home/PreviewFundraiser/PreviewFundraiser';
 
 class App extends React.Component {
     constructor(props) {
@@ -87,8 +89,8 @@ class App extends React.Component {
                                 <PrivateRoute exact path="/fundraiser/:_id" layout={PrimaryLayout} component={FundraiserPage} />
                                 <PrivateRoute exact path="/profile" layout={PrimaryLayout} component={ProfilePage} />
                                 <PrivateRoute exact path="/preview_organization/:_id" layout={PrimaryLayout} component={PreviewPage} /> {/* organizations, society */}
-                                {/* <PrivateRoute exact path="/preview_event/:_id" layout={PrimaryLayout} component={PreviewPage} /> events */}
-                                {/* <PrivateRoute exact path="/preview_fundraiser/:_id" layout={PrimaryLayout} component={PreviewPage} /> fundraisers */}
+                                <PrivateRoute exact path="/preview_event/:_id" layout={PrimaryLayout} component={PreviewEvent} /> {/* events */}
+                                <PrivateRoute exact path="/preview_fundraiser/:_id" layout={PrimaryLayout} component={PreviewFundraiser} /> 
                                 {/* <PrivateRoute exact path="/preview/:_type,:_id" layout={PrimaryLayout} component={PreviewPage} /> */}
 
                                 <Route path="/login" component={LoginPage} />

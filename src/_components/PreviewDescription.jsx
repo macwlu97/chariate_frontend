@@ -6,6 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
 // import React from 'react';
 // import PropTypes from 'prop-types';
 // import { makeStyles } from '@material-ui/core/styles';
@@ -24,6 +25,7 @@ import InfoIcon from '@material-ui/icons/Info';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Link from '@material-ui/core/Link';
 
 
 function TabPanel(props) {
@@ -65,6 +67,18 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     backgroundColor: theme.palette.background.paper,
   },
+  mainFeaturedPost: {
+    position: 'relative',
+    backgroundColor: theme.palette.grey[800],
+    color: theme.palette.common.white,
+    marginBottom: theme.spacing(4),
+    backgroundImage: 'url(https://source.unsplash.com/user/erondu)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    // width: 500,
+    height: 450,
+  },
 }));
 
 export default function PreviewDescription({organization, information}) {
@@ -76,7 +90,7 @@ export default function PreviewDescription({organization, information}) {
   };
 
   var howManyPhoneNumber, PhoneNumbersList, aboutOrganizationList, charFieldOrganizationList, whatWeDoList,
-  goalsList;
+  goalsList, addressList, notesList, emailList, registeredInfoList, websiteList;
 
   PhoneNumbersList = information.items && information.items.results.filter(el => el.type_info_id === 4);
   howManyPhoneNumber = PhoneNumbersList ? PhoneNumbersList.length : 0;
@@ -84,7 +98,11 @@ export default function PreviewDescription({organization, information}) {
   charFieldOrganizationList = information.items && information.items.results.filter(el => el.type_info_id === 2);
   whatWeDoList = information.items && information.items.results.filter(el => el.type_info_id === 8);
   goalsList = information.items && information.items.results.filter(el => el.type_info_id === 9);
-
+  addressList = information.items && information.items.results.filter(el => el.type_info_id === 12);
+  notesList = information.items && information.items.results.filter(el => el.type_info_id === 11);
+  emailList = information.items && information.items.results.filter(el => el.type_info_id === 14);
+  registeredInfoList = information.items && information.items.results.filter(el => el.type_info_id === 13);
+  websiteList = information.items && information.items.results.filter(el => el.type_info_id === 15);
 
   const aboutOrganization = () => {
     var count = aboutOrganizationList ? aboutOrganizationList.length : 0
@@ -104,6 +122,7 @@ export default function PreviewDescription({organization, information}) {
     else return returnIfElse;
   }
 
+  const preventDefault = (event) => event.preventDefault();
   return (
     <div className={classes.root}>
     <AppBar position="static" color="default">
@@ -118,11 +137,11 @@ export default function PreviewDescription({organization, information}) {
       >
         <Tab label="Informacje" {...a11yProps(0)} />
         <Tab label="Co robimy" {...a11yProps(1)} />
-        <Tab label="Cele" {...a11yProps(2)} />
-        <Tab label="Posty" {...a11yProps(3)} />
+        {/* <Tab label="Cele" {...a11yProps(2)} /> */}
+        {/* <Tab label="Posty" {...a11yProps(3)} />
         <Tab label="Zdjęcia" {...a11yProps(4)} />
-        <Tab label="Recenzje" {...a11yProps(5)} />
-        <Tab label="Notatki" {...a11yProps(6)} />
+        <Tab label="Recenzje" {...a11yProps(5)} /> */}
+        <Tab label="Notatki" {...a11yProps(2)} />
       </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -160,30 +179,7 @@ export default function PreviewDescription({organization, information}) {
           </Grid>
         )}
         
-       
         </Grid>
-</Grid>
-
-
-        <Grid item md={6}>
-          <Box my={2}>
-            <Typography variant="h4" component="h5">
-                        Zadzwoń
-            </Typography>
-          </Box>
-          <Box mt={0.5} />
-          
-          {PhoneNumbersList && PhoneNumbersList.map((phoneNumber, index) => 
-          <Box>
-          <FormControl disabled >
-              <InputLabel htmlFor="component-disabled" spacing={3}>{phoneNumber.content} </InputLabel>
-              <Input id="component-disabled" 
-          />
-              <FormHelperText>{phoneNumber.name} nr. {index+1}</FormHelperText>
-          </FormControl>
-          </Box>
-          )}
-
 
         <Grid container>
           <Box my={6}>
@@ -198,10 +194,101 @@ export default function PreviewDescription({organization, information}) {
             )}
             </List>
           </Box>
+
+          
             
         </Grid>
-        </Grid>
+</Grid>
 
+        <Grid item md={6}>
+          <Grid container md={12}>
+            <Grid item md={6}>
+              <Box mt={2} >
+                <Typography variant="h4" component="h5">
+                            Zadzwoń
+                </Typography>
+              </Box>
+              <Box mt={0.5} />
+              
+              {PhoneNumbersList && PhoneNumbersList.map((phoneNumber, index) => 
+              <Box>
+                <FormControl disabled >
+                    <InputLabel htmlFor="component-disabled" spacing={3}>{phoneNumber.content} </InputLabel>
+                    <Input id="component-disabled" 
+                />
+                    <FormHelperText>{phoneNumber.name} nr. {index+1}</FormHelperText>
+                </FormControl>
+              </Box>
+              )}
+            </Grid>
+
+            <Grid item md={6}>
+              <Box mt={2}>
+                <Typography variant="h4" component="h5">
+                            Napisz
+                </Typography>
+              </Box>
+              <Box mt={0.5} />
+              
+              {emailList && emailList.map((email, index) => 
+              <Box>
+                <FormControl disabled >
+                    <InputLabel htmlFor="component-disabled" spacing={3}>{email.content} </InputLabel>
+                    <Input id="component-disabled" 
+                />
+                    <FormHelperText>{email.name} nr. {index+1}</FormHelperText>
+                </FormControl>
+              </Box>
+              )}
+            </Grid>
+            
+          <Grid item md={6}>
+            <Box my={2}>
+              <Typography variant="h4" component="h5">
+                          Adres rejestrowy
+              </Typography>
+              <List>
+              {addressList && addressList.map((address, index) => 
+              
+                <ListItem> {address.content}</ListItem>
+              
+              )}
+              </List>
+            </Box>
+          </Grid>
+
+          <Grid item md={6}>
+            <Box my={2}>
+              <Typography variant="h4" component="h5">
+                          Strona internetowa
+              </Typography>
+              <List>
+              {websiteList && websiteList.map((website, index) => 
+              
+                <ListItem><Link href={`https://${website.content}`}>
+                {website.content}</Link></ListItem>
+              
+              )}
+              </List>
+            </Box>
+          </Grid>
+
+          <Grid item md={6}>
+            <Box my={2}>
+              <Typography variant="h4" component="h5">
+                          Dane rejestrowe
+              </Typography>
+              <List>
+              {registeredInfoList && registeredInfoList.map((registeredInfo, index) => 
+              
+                <ListItem>{registeredInfo.content}</ListItem>
+              
+              )}
+              </List>
+            </Box>
+          </Grid>
+        </Grid>
+      </Grid>
 
 
         {/* <Grid item md={5}>
@@ -231,18 +318,25 @@ export default function PreviewDescription({organization, information}) {
 
       <TabPanel value={value} index={1}>
         <Grid container spacing="6" direction="row" alignItems="center">
-          <Box my={2}>
-              <Typography variant="h4" component="h5">
-                          Co robimy?
-              </Typography>
-              <Box mt={0.5} />
-              {/* <Divider/> */}
-              {whatWeDoOrganization().content}
-            </Box>
+          <Grid item xs>
+            <Box my={2}>
+                <Typography variant="h3" component="h4">
+                            Co robimy?
+                </Typography>
+                <Box mt={0.5} />
+                {/* <Divider/> */}
+                <Typography variant="h5" component="h6">
+                {whatWeDoOrganization().content}
+                </Typography>
+              </Box>
+          </Grid>
+          <Grid item xs>
+            <Paper className={classes.mainFeaturedPost} ></Paper>
+          </Grid>
         </Grid>
       </TabPanel>
-      <TabPanel value={value} index={2}>
-      a
+      {/* <TabPanel value={value} index={2}>
+      a */}
 
 
         {/* {charFieldOrganizationList && charFieldOrganizationList.map((charField, index) => 
@@ -255,8 +349,8 @@ export default function PreviewDescription({organization, information}) {
             {charField.content}
           </Grid>
         )} */}
-      </TabPanel>
-      <TabPanel value={value} index={3}>
+      {/* </TabPanel> */}
+      {/* <TabPanel value={value} index={3}>
         Item Four
       </TabPanel>
       <TabPanel value={value} index={4}>
@@ -264,9 +358,19 @@ export default function PreviewDescription({organization, information}) {
       </TabPanel>
       <TabPanel value={value} index={5}>
         Item Six
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Item Seven
+      </TabPanel> */}
+      <TabPanel value={value} index={2}>
+        <Grid container spacing="6" direction="row" alignItems="center">
+            <Grid item xs>
+              <List>
+                {notesList && notesList.map((notes, index) => 
+                  <ListItem> {notes.content}</ListItem>
+                )}
+              </List>
+          
+            </Grid>
+            
+        </Grid>
       </TabPanel>
     </div>
   );

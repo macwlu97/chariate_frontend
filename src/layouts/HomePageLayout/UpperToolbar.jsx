@@ -25,7 +25,7 @@ export default function UpperToolbar() {
 
 <Toolbar className={classes.toolbar}>
 {/* <Button size="small">Powiadomienia</Button> */}
-<NotificationPopup/>
+{/* <NotificationPopup/> */}
 <Typography
   component="h2"
   variant="h5"
@@ -36,9 +36,9 @@ export default function UpperToolbar() {
 >
   
 </Typography>
-<IconButton>
+{/* <IconButton>
   <SearchIcon />
-</IconButton>
+</IconButton> */}
 
   <AccountMenu />
 
