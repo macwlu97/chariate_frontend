@@ -29,6 +29,10 @@ import FooterPage from './FooterPage';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    padding: theme.spacing(1, 2),
+  },
+
+  container: {
     padding: theme.spacing(3, 2),
   },
 }));
@@ -44,38 +48,19 @@ export default function PrimaryLayout(props) {
     <React.Fragment>
       
       <CssBaseline />
-      <PrimaryMenu />
+      
       <Container maxWidth="lg" className={classes.root}>
-      <PrimaryBreadcrumb/>
-      <Box className={classes.root}>
-      <Paper className={classes.root}>
+      {/* <PrimaryBreadcrumb/> */}
+      <Box className={classes.container}>
+      <Paper className={classes.container}>
+      <PrimaryMenu />
+        <Box my={4}/>
         {props.children}
+        <FooterPage/>
       </Paper>
       </Box>
       </Container>
-      {/* <div style={{ padding: 40 }}> */}
-        
-        {/* <Grid container > */}
-          {/* <Grid item md={8} > */}
-            
-          {/* </Grid> */}
-        {/* </Grid> */}
-      {/* </div> */}
-
-      {/* <div style={{ padding: 40 }}>
-        <PrimaryBreadcrumb/>
-        <Grid container className={classes.root} spacing="10">
-          <Grid item md={8} >
-            <Paper className={classes.root} style={{minHeight: 500}}>
-              {props.children}
-            </Paper>
-          </Grid>
-          <Grid item md={3}>
-            <PromotedOrg/> 
-          </Grid>
-        </Grid>
-      </div> */}
-      <FooterPage/>
+      
     </React.Fragment>
   );
 }

@@ -16,10 +16,14 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
 import Grid from '@material-ui/core/Grid';
-import FaceIcon from '@material-ui/icons/Face';
-import DoneIcon from '@material-ui/icons/Done';
+import RoomIcon from '@material-ui/icons/Room';
+import TodayIcon from '@material-ui/icons/Today';
 
+import EventTimeline from '../../../_components/event_timeline/event_timeline';
 import CoverImage from '../../../_components/CoverImage';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import PeopleIcon from '@material-ui/icons/People';
 
 class PreviewEvent extends React.Component {
     constructor(props){
@@ -34,11 +38,20 @@ class PreviewEvent extends React.Component {
       }
     
     render() { //renderowanie warunkowe
-        const { event, information } = this.props;
+        const { event, informationOrg } = this.props;
         let isNotUndefinedTypeOfCoverImage;
         let isCoverImageNotNull;
         let type; 
-
+        
+        let detailedInformationList, scheduleInformationList, addressInformationList;
+        let detailedCount, scheduleCount, addressCount;
+        detailedInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 20);
+        scheduleInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 21);
+        addressInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 22);
+        
+        detailedCount = detailedInformationList ? detailedInformationList.length : 0;
+        scheduleCount = scheduleInformationList ? scheduleInformationList.length : 0;
+        addressCount = addressInformationList ? addressInformationList.length : 0;
         // isNotUndefinedTypeOfCoverImage = (organization.items && typeof(organization.items.file_type) !== "undefined") ? true:false;
         // isCoverImageNotNull = (organization.items && organization.items.file_type !== null) ? true:false;
         
@@ -55,54 +68,80 @@ class PreviewEvent extends React.Component {
                         <CoverImage org_id={event.items && event.items.organization_id} type={2}/>
                     </Grid>
 
-                    <Grid container spacing="6" direction="row" >
-                        <Grid item md={6}>
-                            <Box>
-                            <Chip
-                                icon={<FaceIcon />}
-                                label={`Początek wydarzenia: ${event.items && event.items.start_date}`}
-                                // onDelete={handleDelete}
-                                color="primary"
-                            />
+                    <Grid container spacing="6" direction="row">
+                        <Grid item md={2}>
+                            <Box my = {2}>
+                                <Chip
+                                    icon={<TodayIcon />}
+                                    label={`${event.items && event.items.start_date}`}
+                                    // onDelete={handleDelete}
+                                    color="primary"
+                                />
                             </Box>
+                            <Box my = {2}>
+                                <Chip
+                                    icon={<RoomIcon />}
+                                    label={`Lokalizacja: ${event.items && event.items.city.name}`}
+                                    // onDelete={handleDelete}
+                                    color="primary"
+                                />
+                            </Box>
+                            {(addressCount >= 1 &&
+                            <Box my = {2}>
+                                {addressInformationList && addressInformationList.map((addressElement, index) => 
+                                <ListItem> {addressElement.content}</ListItem>
+                                )}
+                            </Box>) || addressCount == 0 && <Box my={2}><ListItem>Brak miejsca wydarzenia.</ListItem></Box>}
+                            <Box my = {2}>
+                                <Chip
+                                    icon={<PeopleIcon />}
+                                    label={`Organizator: ${event.items && event.items.organization.name}`}
+                                    // onDelete={handleDelete}
+                                    color="primary"
+                                />
+                            </Box>
+                            
                         </Grid>
-                        <Grid item md={6}>
-                            ss
+
+                        <Grid item md={10}>
+                            <Box my={3}>
+                                <Typography variant="h4" component="h3">
+                                        Szczegółowe informacje
+                                </Typography>
+                            </Box>
+                            {(detailedCount >= 1 && 
+                                <Box my={1}>
+                                    <Typography variant="h6" component="h4" align="center">
+                                        {detailedInformationList && detailedInformationList.map((detailElement, index) => 
+                                            <ListItem> {detailElement.content}</ListItem>
+                                            )}
+                                    </Typography>
+                                </Box>) || 
+                            (detailedCount == 0 && 
+                                <Typography variant="h6" component="h4" align="center">
+                                    <Box my={2}>Brak szczegółowego opisu.</Box>
+                                </Typography>
+                            )}
+                        
+                        <Box my={3}>
+                            <Typography variant="h4" component="h3">
+                                    Harmonogram
+                            </Typography>
+                        </Box>
+
+                        {(scheduleCount >= 1 &&
+                            <EventTimeline scheduleInformationList={scheduleInformationList}/>)
+                        || 
+                        (scheduleCount == 0 && 
+                            <Typography variant="h6" component="h4" align="center">
+                                <Box my={2}>Brak harmonogramu.</Box>
+                            </Typography>
+                        )}
+
                         </Grid>
                     </Grid>
                 </Grid>
-                {/* <Box my={1}>
-                    <Chip label={type == 0 && "Fundacja" || type == 1 && "Społeczność" || type == 2 && "Wydarzenie" || type == 3 && "Zbiórka"} />
-                </Box> */}
-                {/* {(isNotUndefinedTypeOfCoverImage && isCoverImageNotNull) && 
-                <Box component="span" m={1}>
-                <CardMedia
-                component="img"
-                image={`data:${organization.items && organization.items.file_type};base64,${organization.items && atob(organization.items.logo)}`}
-                title="Logo organizacji"
-                height={200}
-                /></Box>
-                } */}
-                 {/* <Divider light /> */}
-            {/* <PreviewDescription organization={organization} information={informationOrg}/> */}
-        
-
-                {/* {organization.loading && <em>Ładuje uzytkownikow...</em>}
-                {organization.error && <span className="text-danger">ERROR: {organization.error}</span>}
-                {organization.items &&
-                    <ul>
-                        {organization.items.results.map((org, index) =>
-                            <li key={org.id}>
-                                {org.name + ' ' + org.description}
-                            </li>
-                        )}
-                    </ul>
-                } */}
-                {/* <br/><br/><br/><br/><br/><br/><br/> */}
-                {/* ------------ */}
-                <p>
-                {/* <React.Button onClick={history.goBack}>Go Back</React.Button> */}
-                </p>
+                
 
             
             </React.Fragment>
@@ -113,12 +152,12 @@ class PreviewEvent extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { authentication, event, information } = state;
+    const { authentication, event, informationOrg } = state;
     const { user } = authentication;
     return {
         user,
         event,
-        information,
+        informationOrg,
     };
 }
 

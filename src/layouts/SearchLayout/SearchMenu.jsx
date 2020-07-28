@@ -206,7 +206,7 @@ export default function PrimarySearchAppBar(props) {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
+            {/* <IconButton aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <MailIcon />
               </Badge>
@@ -215,7 +215,7 @@ export default function PrimarySearchAppBar(props) {
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton
               edge="end"
               aria-label="account of current user"

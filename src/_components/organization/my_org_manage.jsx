@@ -29,7 +29,7 @@ export default function FormDialogManage({org_id}) {
   const [openEventSelect, setOpenEventSelect] = React.useState(false);
 
   const [typeinformationObj, setTypeinformationObj] = React.useState({});
-  const [typeinformation, setTypeinformation] = React.useState(1);
+  const [typeinformation, setTypeinformation] = React.useState(0);
 
   const [organizationFundraisingObj, setOrganizationFundraisingObj] = React.useState(0);
   const [organizationFundraising, setOrganizationFundraising] = React.useState(0);
@@ -43,6 +43,8 @@ export default function FormDialogManage({org_id}) {
   const [contentField, setContentField] = React.useState({content: ''});
 
   const dispatch = useDispatch()
+
+  let informationOrganization, informationEvent, informationFundraiser;
 
   useEffect(() => {
     dispatch(typeinformationActions.getAll(setTypeinformationObj))
@@ -70,6 +72,7 @@ export default function FormDialogManage({org_id}) {
 
   const handleCloseSelectMode = () => {
     setOpenModeSelect(false);
+    setTypeinformation(0)
   };
   
   const handleOpenSelectMode = () => {
@@ -157,6 +160,37 @@ export default function FormDialogManage({org_id}) {
     }
     // console.log(typeinformation)
 }
+
+// getInformation = typeinformationObj.results && typeinformationObj.results.map((typeElement, index) => {
+// <MenuItem key={typeElement.id} value={typeElement.id} >
+//   {typeElement.text_field}
+// </MenuItem>
+// }
+// )
+
+let informationOrganizationList;
+informationOrganizationList = (typeinformationObj.results && typeinformationObj.results.filter(el => el.mode === 0))
+informationOrganization = informationOrganizationList && informationOrganizationList.map((typeElement, index) => 
+<MenuItem key={typeElement.id} value={typeElement.id} >
+  {typeElement.text_field}
+</MenuItem>
+)
+
+let informationEventList;
+informationEventList = (typeinformationObj.results && typeinformationObj.results.filter(el => el.mode === 1))
+informationEvent = informationEventList && informationEventList.map((typeElement, index) => 
+<MenuItem key={typeElement.id} value={typeElement.id}>
+  {typeElement.text_field}
+</MenuItem>
+)
+
+let informationFundraiserList;
+informationFundraiserList = (typeinformationObj.results && typeinformationObj.results.filter(el => el.mode === 2))
+informationFundraiser = informationFundraiserList && informationFundraiserList.map((typeElement, index) => 
+<MenuItem key={typeElement.id} value={typeElement.id} >
+  {typeElement.text_field}
+</MenuItem>
+)
 
 
   return (
@@ -259,12 +293,15 @@ export default function FormDialogManage({org_id}) {
           onChange={handleChange}
           name="typeinformationOption"
         > 
-          {typeinformationObj.results && typeinformationObj.results.map((typeElement, index) =>
+          {/* {typeinformationObj.results && typeinformationObj.results.map((typeElement, index) =>
                           <MenuItem key={typeElement.id} value={typeElement.id} >
                             {typeElement.text_field}
                           </MenuItem>
-                        )}
-              
+                        )} */}
+          {typeinformation === 0 && <MenuItem value={0}>Wybierz informację</MenuItem>}
+          {(mode === "Organizacja" && informationOrganization) 
+          || (mode === "Event" && informationEvent) 
+          || (mode === "Fundraiser" && informationFundraiser)}
         </Select>
         </Box>
         <TextField
