@@ -7,7 +7,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
 import FullScreenInformationDialogEvent from '../information_modal/information_modal_event';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   table: {
@@ -27,10 +29,10 @@ const useStyles = makeStyles({
 //   createData('Gingerbread', 356, 16.0, 49, 3.9),
 // ];
 // var rows;
-export default function SimpleTable({event}) {
+export default function SimpleTable({event, mode}) {
   const classes = useStyles();
-
   
+  var tableElementsCount = event.items && event.items.results !== undefined && event.items.results.length
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -40,21 +42,34 @@ export default function SimpleTable({event}) {
             <TableCell align="right">Nazwa organizacji</TableCell>
             <TableCell align="right">Dzień rozpoczęcia</TableCell>
             <TableCell align="right">Czas rozpoczęcia</TableCell>
-            <TableCell align="right">Akcja</TableCell>
+            {mode === 0 && <TableCell align="right">Akcja</TableCell>}
           </TableRow>
         </TableHead>
         <TableBody>
-          {event.items && event.items.results.map((eventElement, index) => (
+          {event.items && event.items.results !== undefined && event.items.results.map((eventElement, index) => (
             <TableRow key={eventElement.id}>
               <TableCell component="th" scope="row">
-                {eventElement.name}
+              <Button size="small" color="primary"><Link to={`/preview_event/${eventElement.id}`}> {eventElement.name} </Link></Button>
               </TableCell>
               <TableCell align="right">{eventElement.organization_name}</TableCell>
               <TableCell align="right">{eventElement.start_date}</TableCell>
               <TableCell align="right">{eventElement.time_event}</TableCell>
-              <TableCell align="right"><FullScreenInformationDialogEvent event_id={eventElement.id} headerName={eventElement.organization_name}></FullScreenInformationDialogEvent></TableCell>
+              {mode === 0 && <TableCell align="right"><FullScreenInformationDialogEvent event_id={eventElement.id} headerName={eventElement.organization_name}></FullScreenInformationDialogEvent></TableCell>}
             </TableRow>
           ))}
+
+          {tableElementsCount === 0 && (
+            <TableRow key={0}>
+              <TableCell component="th" scope="row">
+                Brak danych.
+              </TableCell>
+              <TableCell align="right"></TableCell>
+              <TableCell align="right"></TableCell>
+              <TableCell align="right"></TableCell>
+              {mode === 0 && <TableCell align="right"></TableCell>}
+              
+            </TableRow>
+          )}
         </TableBody>
       </Table>
     </TableContainer>

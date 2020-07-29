@@ -8,6 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import FullScreenInformationDialogFundraiser from '../information_modal/information_modal_fundraiser';
+import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   table: {
@@ -27,10 +29,10 @@ const useStyles = makeStyles({
 //   createData('Gingerbread', 356, 16.0, 49, 3.9),
 // ];
 // var rows;
-export default function SimpleTableFundraiser({fundraiser}) {
+export default function SimpleTableFundraiser({fundraiser, mode}) {
   const classes = useStyles();
 
-  
+  var tableElementsCount = fundraiser.items && fundraiser.items.results !== undefined && fundraiser.items.results.length
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -40,22 +42,35 @@ export default function SimpleTableFundraiser({fundraiser}) {
             <TableCell align="right">Nazwa zbiórki</TableCell>
             <TableCell align="right">Dzień zakończenia</TableCell>
             <TableCell align="right">Czas zakończenia</TableCell>
-            <TableCell align="right">Akcja</TableCell>
+            {mode === 0 && <TableCell align="right">Akcja</TableCell>}
           </TableRow>
         </TableHead>
         <TableBody>
-          {fundraiser.items && fundraiser.items.results.map((fundraiserElement, index) => (
+          {fundraiser.items && fundraiser.items.results !== undefined && fundraiser.items.results.map((fundraiserElement, index) => (
             <TableRow key={fundraiserElement.id}>
               <TableCell component="th" scope="row">
-                {fundraiserElement.name}
+                <Button size="small" color="primary"><Link to={`/preview_fundraiser/${fundraiserElement.id}`}> {fundraiserElement.name} </Link></Button>
               </TableCell>
               <TableCell align="right">{fundraiserElement.organization_name}</TableCell>
               <TableCell align="right">{fundraiserElement.start_date}</TableCell>
               <TableCell align="right">{fundraiserElement.time_fundraising}</TableCell>
-              <TableCell align="right"><FullScreenInformationDialogFundraiser fundraiser_id={fundraiserElement.id} headerName={fundraiserElement.organization_name}></FullScreenInformationDialogFundraiser>
-              </TableCell>
+              {mode === 0 &&<TableCell align="right"><FullScreenInformationDialogFundraiser fundraiser_id={fundraiserElement.id} headerName={fundraiserElement.organization_name}></FullScreenInformationDialogFundraiser>
+              </TableCell>}
             </TableRow>
           ))}
+
+          {tableElementsCount === 0 && (
+            <TableRow key={0}>
+              <TableCell component="th" scope="row">
+                Brak danych.
+              </TableCell>
+              <TableCell align="right"></TableCell>
+              <TableCell align="right"></TableCell>
+              <TableCell align="right"></TableCell>
+              {mode === 0 && <TableCell align="right"></TableCell>}
+              
+            </TableRow>
+          )}
         </TableBody>
       </Table>
     </TableContainer>

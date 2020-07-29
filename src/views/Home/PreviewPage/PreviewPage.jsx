@@ -26,10 +26,13 @@ class PreviewPage extends React.Component {
 
         this.props.dispatch(organizationActions.getOrganization(this.state._id));
         this.props.dispatch(organizationActions.getAllInformation(this.state._id));
+        this.props.dispatch(organizationActions.getOrganizationEvent(this.state._id))
+        this.props.dispatch(organizationActions.getOrganizationFundraising(this.state._id))
+
       }
     
     render() { //renderowanie warunkowe
-        const { organization, informationOrg } = this.props;
+        const { organization, informationOrg, event, fundraiser } = this.props;
         let isNotUndefinedTypeOfCoverImage;
         let isCoverImageNotNull;
         let type; 
@@ -57,7 +60,7 @@ class PreviewPage extends React.Component {
                 /></Box>
                 }
                  <Divider light />
-            <PreviewDescription organization={organization} information={informationOrg}/>
+            <PreviewDescription organization={organization} information={informationOrg} event={event} fundraiser={fundraiser}/>
         {/* <FormControl disabled >
             <InputLabel htmlFor="component-disabled" spacing={3}>{organization.items && organization.items.name}</InputLabel>
             <Input id="component-disabled" 
@@ -104,12 +107,14 @@ class PreviewPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { authentication, organization, informationOrg } = state;
+    const { authentication, organization, informationOrg, event, fundraiser } = state;
     const { user } = authentication;
     return {
         user,
         organization,
-        informationOrg
+        informationOrg,
+        event,
+        fundraiser
     };
 }
 

@@ -35,7 +35,7 @@ class EventPage extends React.Component {
                     Zarządzaj swoimi eventami organizacji
                 </Typography>
                 
-               <SimpleTable event={event}></SimpleTable>
+               <SimpleTable event={event} mode={0}></SimpleTable>
                 
                
                 <p>

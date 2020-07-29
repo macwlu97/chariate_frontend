@@ -27,6 +27,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Link from '@material-ui/core/Link';
 
+import SimpleTable from '../_components/Table/SimpleTable';
+import SimpleTableFundraiser from '../_components/Table/SimpleTableFundraiser';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -81,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PreviewDescription({organization, information}) {
+export default function PreviewDescription({organization, information, event, fundraiser}) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -142,6 +144,8 @@ export default function PreviewDescription({organization, information}) {
         <Tab label="Zdjęcia" {...a11yProps(4)} />
         <Tab label="Recenzje" {...a11yProps(5)} /> */}
         <Tab label="Notatki" {...a11yProps(2)} />
+        <Tab label="Wydarzenia" {...a11yProps(3)} />
+        <Tab label="Zbiórki" {...a11yProps(4)} />
       </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -371,6 +375,13 @@ export default function PreviewDescription({organization, information}) {
             </Grid>
             
         </Grid>
+      </TabPanel>
+
+      <TabPanel value={value} index={3}>
+        <SimpleTable event={event} mode={1}></SimpleTable>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <SimpleTableFundraiser fundraiser={fundraiser}  mode={1}></SimpleTableFundraiser>
       </TabPanel>
     </div>
   );

@@ -45,6 +45,7 @@ class PreviewEvent extends React.Component {
         
         let detailedInformationList, scheduleInformationList, addressInformationList;
         let detailedCount, scheduleCount, addressCount;
+        let owner, cityName;
         detailedInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 20);
         scheduleInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 21);
         addressInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 22);
@@ -52,6 +53,10 @@ class PreviewEvent extends React.Component {
         detailedCount = detailedInformationList ? detailedInformationList.length : 0;
         scheduleCount = scheduleInformationList ? scheduleInformationList.length : 0;
         addressCount = addressInformationList ? addressInformationList.length : 0;
+
+        cityName = (event.items && event.items.city !== undefined) ? event.items && event.items.city.name : "";
+        owner = (event.items && event.items.organization !== undefined) ? event.items && event.items.organization.name : "";
+        
         // isNotUndefinedTypeOfCoverImage = (organization.items && typeof(organization.items.file_type) !== "undefined") ? true:false;
         // isCoverImageNotNull = (organization.items && organization.items.file_type !== null) ? true:false;
         
@@ -81,7 +86,7 @@ class PreviewEvent extends React.Component {
                             <Box my = {2}>
                                 <Chip
                                     icon={<RoomIcon />}
-                                    label={`Lokalizacja: ${event.items && event.items.city.name}`}
+                                    label={`Lokalizacja: ${cityName}`}
                                     // onDelete={handleDelete}
                                     color="primary"
                                 />
@@ -95,7 +100,7 @@ class PreviewEvent extends React.Component {
                             <Box my = {2}>
                                 <Chip
                                     icon={<PeopleIcon />}
-                                    label={`Organizator: ${event.items && event.items.organization.name}`}
+                                    label={`Organizator: ${owner}`}
                                     // onDelete={handleDelete}
                                     color="primary"
                                 />

@@ -41,12 +41,11 @@ class PreviewFundraiser extends React.Component {
     
     render() { //renderowanie warunkowe
         const { fundraiser, informationOrg } = this.props;
-        let isNotUndefinedTypeOfCoverImage;
-        let isCoverImageNotNull;
-        let type; 
 
         let goalsInformationList, postsInformationList, numbersInformationList, aboutInformationList, phoneNumberList, bankAccountList;
         let goalsCount, postsCount, numbersCount, aboutCount, phoneCount, bankAccCount;
+        let owner; 
+
         goalsInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 23);
         postsInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 24);
         numbersInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 25);
@@ -61,10 +60,9 @@ class PreviewFundraiser extends React.Component {
         phoneCount = phoneNumberList ? phoneNumberList.length : 0;
         bankAccCount = bankAccountList ? bankAccountList.length : 0;
 
-        // isNotUndefinedTypeOfCoverImage = (organization.items && typeof(organization.items.file_type) !== "undefined") ? true:false;
-        // isCoverImageNotNull = (organization.items && organization.items.file_type !== null) ? true:false;
-        
-        // type = organization.items && organization.items.type;
+        // cityName = (fundraiser.items && fundraiser.items.city !== undefined) ? fundraiser.items && fundraiser.items.city.name : "";
+        owner = (fundraiser.items && fundraiser.items.organization !== undefined) ? fundraiser.items && fundraiser.items.organization.name : "";
+
         return (
             
             <React.Fragment>
@@ -98,7 +96,7 @@ class PreviewFundraiser extends React.Component {
                             <Box my = {2}>
                                 <Chip
                                     icon={<PeopleIcon />}
-                                    label={`Organizator: ${fundraiser.items && fundraiser.items.organization.name}`}
+                                    label={`Organizator: ${owner}`}
                                     // onDelete={handleDelete}
                                     color="primary"
                                 />
