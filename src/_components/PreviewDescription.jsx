@@ -94,6 +94,9 @@ export default function PreviewDescription({organization, information, event, fu
   var howManyPhoneNumber, PhoneNumbersList, aboutOrganizationList, charFieldOrganizationList, whatWeDoList,
   goalsList, addressList, notesList, emailList, registeredInfoList, websiteList;
 
+  var charFieldOrganizationListCount, goalsListCount, addressListCount, notesListCount, emailListCount, registeredInfoListCount, websiteListCount;
+
+
   PhoneNumbersList = information.items && information.items.results.filter(el => el.type_info_id === 4);
   howManyPhoneNumber = PhoneNumbersList ? PhoneNumbersList.length : 0;
   aboutOrganizationList = information.items && information.items.results.filter(el => el.type_info_id === 10);
@@ -106,12 +109,20 @@ export default function PreviewDescription({organization, information, event, fu
   registeredInfoList = information.items && information.items.results.filter(el => el.type_info_id === 13);
   websiteList = information.items && information.items.results.filter(el => el.type_info_id === 15);
 
+  charFieldOrganizationListCount = charFieldOrganizationList ? charFieldOrganizationList.length : 0;
+  goalsListCount = goalsList ? goalsList.length : 0;
+  addressListCount = addressList ? addressList.length : 0;
+  notesListCount = notesList ? notesList.length : 0;
+  emailListCount = emailList ? emailList.length : 0;
+  registeredInfoListCount = registeredInfoList ? registeredInfoList.length : 0;
+  websiteListCount = websiteList ? websiteList.length : 0;
+
   const aboutOrganization = () => {
     var count = aboutOrganizationList ? aboutOrganizationList.length : 0
     var returned_object = aboutOrganizationList ? aboutOrganizationList[0] : null
     var returnIfElse = `Brak opisu.`;
 
-    if (count === 1) return returned_object
+    if (count === 1) return returned_object.content
     else return returnIfElse;
   }
 
@@ -120,7 +131,7 @@ export default function PreviewDescription({organization, information, event, fu
     var returned_object = whatWeDoList ? whatWeDoList[0] : null
     var returnIfElse = `Brak danych.`;
 
-    if (count === 1) return returned_object
+    if (count === 1) return returned_object.content
     else return returnIfElse;
   }
 
@@ -168,7 +179,9 @@ export default function PreviewDescription({organization, information, event, fu
           </Typography>
           <Box mt={0.5} />
           {/* <Divider/> */}
-          {aboutOrganization().content}
+          <List>
+            <ListItem>{aboutOrganization()}</ListItem>
+          </List>
         </Box>
 
         <Grid container my={2}>
@@ -196,6 +209,7 @@ export default function PreviewDescription({organization, information, event, fu
               <ListItem> {goal.content}</ListItem>
              
             )}
+            {goalsListCount === 0 && <ListItem>Brak danych.</ListItem>}
             </List>
           </Box>
 
@@ -224,6 +238,8 @@ export default function PreviewDescription({organization, information, event, fu
                 </FormControl>
               </Box>
               )}
+              
+              {howManyPhoneNumber === 0 && <List><ListItem>Brak danych.</ListItem></List>}
             </Grid>
 
             <Grid item md={6}>
@@ -244,6 +260,7 @@ export default function PreviewDescription({organization, information, event, fu
                 </FormControl>
               </Box>
               )}
+              {emailListCount === 0 && <List><ListItem>Brak danych.</ListItem></List>}
             </Grid>
             
           <Grid item md={6}>
@@ -257,6 +274,7 @@ export default function PreviewDescription({organization, information, event, fu
                 <ListItem> {address.content}</ListItem>
               
               )}
+              {addressListCount === 0 && <ListItem>Brak danych.</ListItem>}
               </List>
             </Box>
           </Grid>
@@ -273,6 +291,8 @@ export default function PreviewDescription({organization, information, event, fu
                 {website.content}</Link></ListItem>
               
               )}
+
+              {websiteListCount === 0 && <ListItem>Brak danych.</ListItem>}
               </List>
             </Box>
           </Grid>
@@ -288,6 +308,7 @@ export default function PreviewDescription({organization, information, event, fu
                 <ListItem>{registeredInfo.content}</ListItem>
               
               )}
+              {registeredInfoListCount === 0 && <ListItem>Brak danych.</ListItem>}
               </List>
             </Box>
           </Grid>
@@ -330,7 +351,7 @@ export default function PreviewDescription({organization, information, event, fu
                 <Box mt={0.5} />
                 {/* <Divider/> */}
                 <Typography variant="h5" component="h6">
-                {whatWeDoOrganization().content}
+                {whatWeDoOrganization()}
                 </Typography>
               </Box>
           </Grid>
@@ -370,6 +391,7 @@ export default function PreviewDescription({organization, information, event, fu
                 {notesList && notesList.map((notes, index) => 
                   <ListItem> {notes.content}</ListItem>
                 )}
+                {notesListCount === 0 && <ListItem>Brak danych.</ListItem>}
               </List>
           
             </Grid>

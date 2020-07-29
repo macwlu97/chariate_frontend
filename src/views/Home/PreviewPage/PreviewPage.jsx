@@ -59,41 +59,13 @@ class PreviewPage extends React.Component {
                 height={200}
                 /></Box>
                 }
-                 <Divider light />
-            <PreviewDescription organization={organization} information={informationOrg} event={event} fundraiser={fundraiser}/>
-        {/* <FormControl disabled >
-            <InputLabel htmlFor="component-disabled" spacing={3}>{organization.items && organization.items.name}</InputLabel>
-            <Input id="component-disabled" 
-        // value={name} onChange={handleChange} 
-        />
-            <FormHelperText>Nazwa</FormHelperText>
-        </FormControl>
-         */}
-      {/* <Fab color="secondary" aria-label="edit"  style={{fontSize: '30px'}}>
-        <EditIcon style={{fontSize: '10px'}}/>
-      </Fab> */}
-        {/* <FormControl disabled>
-            <InputLabel htmlFor="component-disabled">{user}</InputLabel>
-            <Input id="component-disabled" 
-        // value={name} onChange={handleChange} 
-        />
-            <FormHelperText>Imię</FormHelperText>
-        </FormControl> */}
-                
 
-                {/* {organization.loading && <em>Ładuje uzytkownikow...</em>}
-                {organization.error && <span className="text-danger">ERROR: {organization.error}</span>}
-                {organization.items &&
-                    <ul>
-                        {organization.items.results.map((org, index) =>
-                            <li key={org.id}>
-                                {org.name + ' ' + org.description}
-                            </li>
-                        )}
-                    </ul>
-                } */}
-                {/* <br/><br/><br/><br/><br/><br/><br/> */}
-                {/* ------------ */}
+                {!(isNotUndefinedTypeOfCoverImage && isCoverImageNotNull) &&
+                    <Box my={2}/>
+                }
+                 <Divider light />
+                <PreviewDescription organization={organization} information={informationOrg} event={event} fundraiser={fundraiser}/>
+        
                 <p>
                 {/* <React.Button onClick={history.goBack}>Go Back</React.Button> */}
                 </p>
