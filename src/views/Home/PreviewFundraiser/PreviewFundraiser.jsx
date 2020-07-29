@@ -21,6 +21,12 @@ import DoneIcon from '@material-ui/icons/Done';
 
 import CoverImage from '../../../_components/CoverImage';
 
+import RoomIcon from '@material-ui/icons/Room';
+import TodayIcon from '@material-ui/icons/Today';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import PeopleIcon from '@material-ui/icons/People';
+
 class PreviewFundraiser extends React.Component {
     constructor(props){
         super(props);
@@ -34,10 +40,26 @@ class PreviewFundraiser extends React.Component {
       }
     
     render() { //renderowanie warunkowe
-        const { fundraiser, information } = this.props;
+        const { fundraiser, informationOrg } = this.props;
         let isNotUndefinedTypeOfCoverImage;
         let isCoverImageNotNull;
         let type; 
+
+        let goalsInformationList, postsInformationList, numbersInformationList, aboutInformationList, phoneNumberList, bankAccountList;
+        let goalsCount, postsCount, numbersCount, aboutCount, phoneCount, bankAccCount;
+        goalsInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 23);
+        postsInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 24);
+        numbersInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 25);
+        aboutInformationList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 26);
+        phoneNumberList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 28);
+        bankAccountList = informationOrg.items && informationOrg.items.results.filter(el => el.type_info_id === 27);
+
+        goalsCount = goalsInformationList ? goalsInformationList.length : 0;
+        postsCount = postsInformationList ? postsInformationList.length : 0;
+        numbersCount = numbersInformationList ? numbersInformationList.length : 0;
+        aboutCount = aboutInformationList ? aboutInformationList.length : 0;
+        phoneCount = phoneNumberList ? phoneNumberList.length : 0;
+        bankAccCount = bankAccountList ? bankAccountList.length : 0;
 
         // isNotUndefinedTypeOfCoverImage = (organization.items && typeof(organization.items.file_type) !== "undefined") ? true:false;
         // isCoverImageNotNull = (organization.items && organization.items.file_type !== null) ? true:false;
@@ -56,53 +78,108 @@ class PreviewFundraiser extends React.Component {
                     </Grid>
 
                     <Grid container spacing="6" direction="row" >
-                        <Grid item md={6}>
-                            <Box>ss
-                            {/* <Chip
-                                icon={<FaceIcon />}
-                                label={`Początek wydarzenia: ${fundraiser.items && fundraiser.items.start_date}`}
-                                // onDelete={handleDelete}
-                                color="primary"
-                            /> */}
+                        <Grid item md={3}>
+                            <Box my = {2}>
+                                        <Chip
+                                            icon={<TodayIcon />}
+                                            label={`Dodano: ${fundraiser.items && fundraiser.items.start_date}`}
+                                            // onDelete={handleDelete}
+                                            color="primary"
+                                        />
                             </Box>
+                            <Box my = {2}>
+                                    <Chip
+                                        icon={<TodayIcon />}
+                                        label={`Koniec zbiórki dnia: ${fundraiser.items && fundraiser.items.end_date}`}
+                                        // onDelete={handleDelete}
+                                        color="primary"
+                                    />
+                            </Box>
+                            <Box my = {2}>
+                                <Chip
+                                    icon={<PeopleIcon />}
+                                    label={`Organizator: ${fundraiser.items && fundraiser.items.organization.name}`}
+                                    // onDelete={handleDelete}
+                                    color="primary"
+                                />
+                            </Box>
+
+                            <Box my = {2}>
+                                <Typography variant="h4" component="h5">
+                                    Zadzwoń
+                                </Typography>
+                            {(phoneCount >= 1 && phoneNumberList && phoneNumberList.map((phoneNumber, index) => 
+                                    <Box mx={2}>
+                                        <FormControl disabled >
+                                            <InputLabel htmlFor="component-disabled" spacing={3}>{phoneNumber.content} </InputLabel>
+                                            <Input id="component-disabled" 
+                                        />
+                                            <FormHelperText>{phoneNumber.name} nr. {index+1}</FormHelperText>
+                                        </FormControl>
+                                    </Box>
+                                )
+                            ) || phoneCount == 0 && <Box my={2}><ListItem>Brak numerów telefonu.</ListItem></Box>}
+                            </Box>
+
+                            <Box my = {2}>
+                                <Typography variant="h4" component="h5">
+                                    Numery kont wpłat
+                                </Typography>
+                                <List>
+                            {(bankAccCount >= 1 && bankAccountList && bankAccountList.map((bankAccount, index) => 
+                                <ListItem>{bankAccount.content} </ListItem>
+                                           )
+                            ) || bankAccCount == 0 && <Box my={2}><ListItem>Brak kont bankowych.</ListItem></Box>}
+                            </List></Box>
+              
+
                         </Grid>
-                        <Grid item md={6}>
-                            ss
+                        <Grid item md={9}>
+                            <Box my={2}>
+                                    <Typography variant="h4" component="h3">
+                                            Wizytówka
+                                    </Typography>
+                            </Box>
+                            <Box>
+                                <Typography variant="h6" component="h7">
+                                    <ListItem> {`${fundraiser.items && fundraiser.items.description}`} </ListItem>
+                                </Typography>
+                            </Box>
+
+                            {(aboutCount >= 1 && 
+                                        aboutInformationList && aboutInformationList.map((aboutElement, index) =>
+                                            <Box>
+                                                <Typography variant="h6" component="h7">
+                                                    <ListItem> {aboutElement.content}</ListItem>
+                                                </Typography>
+                                            </Box>
+                                        )
+                            )} 
+
+                            <Box my={3}>
+                                <Typography variant="h4" component="h3">
+                                        Cele
+                                </Typography>
+                            </Box>
+
+                            {(goalsCount >= 1 &&
+                                goalsInformationList && goalsInformationList.map((goalElement, index) =>
+                                            <Box>
+                                                <Typography variant="h6" component="h7">
+                                                    <ListItem> {goalElement.content}</ListItem>
+                                                </Typography>
+                                            </Box>
+                                        ))
+                            || 
+                            (goalsCount == 0 && 
+                                <Typography variant="h6" component="h4" align="center">
+                                    <Box my={2}>Brak celów.</Box>
+                                </Typography>
+                            )}
                         </Grid>
                     </Grid>
                 </Grid>
-                {/* <Box my={1}>
-                    <Chip label={type == 0 && "Fundacja" || type == 1 && "Społeczność" || type == 2 && "Wydarzenie" || type == 3 && "Zbiórka"} />
-                </Box> */}
-                {/* {(isNotUndefinedTypeOfCoverImage && isCoverImageNotNull) && 
-                <Box component="span" m={1}>
-                <CardMedia
-                component="img"
-                image={`data:${organization.items && organization.items.file_type};base64,${organization.items && atob(organization.items.logo)}`}
-                title="Logo organizacji"
-                height={200}
-                /></Box>
-                } */}
-                 {/* <Divider light /> */}
-            {/* <PreviewDescription organization={organization} information={informationOrg}/> */}
-        
 
-                {/* {organization.loading && <em>Ładuje uzytkownikow...</em>}
-                {organization.error && <span className="text-danger">ERROR: {organization.error}</span>}
-                {organization.items &&
-                    <ul>
-                        {organization.items.results.map((org, index) =>
-                            <li key={org.id}>
-                                {org.name + ' ' + org.description}
-                            </li>
-                        )}
-                    </ul>
-                } */}
-                {/* <br/><br/><br/><br/><br/><br/><br/> */}
-                {/* ------------ */}
-                <p>
-                {/* <React.Button onClick={history.goBack}>Go Back</React.Button> */}
-                </p>
 
             
             </React.Fragment>
@@ -113,12 +190,12 @@ class PreviewFundraiser extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { authentication, fundraiser, information } = state;
+    const { authentication, fundraiser, informationOrg } = state;
     const { user } = authentication;
     return {
         user,
         fundraiser,
-        information,
+        informationOrg,
     };
 }
 

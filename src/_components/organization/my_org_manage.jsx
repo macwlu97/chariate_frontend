@@ -301,7 +301,7 @@ informationFundraiser = informationFundraiserList && informationFundraiserList.m
           {typeinformation === 0 && <MenuItem value={0}>Wybierz informację</MenuItem>}
           {(mode === "Organizacja" && informationOrganization) 
           || (mode === "Event" && informationEvent) 
-          || (mode === "Fundraiser" && informationFundraiser)}
+          || (mode === "Fundraising" && informationFundraiser)}
         </Select>
         </Box>
         <TextField
