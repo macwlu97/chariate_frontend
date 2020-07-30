@@ -9,11 +9,13 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { styled } from "@material-ui/core";
+import { styled, GridList } from "@material-ui/core";
 
 import { cityActions } from '../../_actions';
 import { useDispatch, useSelector } from "react-redux";
 import { cityService } from '../../_services';
+
+
 
 const StyledGrid = styled(Grid)({
   backgroundColor: "blue",
@@ -58,55 +60,42 @@ const useStyles = makeStyles(theme => ({
       }, [])
     
       return (
-        <React.Fragment>
-    <Typography variant="h4" align="left" color="inherit" paragraph >
-        <Box fontFamily="Arial" m={1} paddingTop={2}>Popularne działania w Twojej okolicy</Box> 
-      </Typography>    
-      <Typography variant="h6" align="left" color="inherit" paragraph >
-        <Box fontFamily="Arial" m={1} > Odkrywaj organizacje, akcje i zbiórki poprzez podanie lokalizacji </Box> 
-      </Typography>  
-     
-      <Paper className={classes.quick_search}>
-      <Grid container spacing={4}>
+          <Grid container spacing="2" direction="row">
+            <Grid item xs={12} md={12}>
+              <Typography variant="h4" align="left" color="inherit" paragraph >
+                <Box fontFamily="Arial" m={1} paddingTop={2}>Popularne działania w Twojej okolicy</Box> 
+              </Typography>    
+              <Typography variant="h6" align="left" color="inherit" paragraph >
+                <Box fontFamily="Arial" m={1} > Odkrywaj organizacje, akcje i zbiórki poprzez podanie lokalizacji </Box> 
+              </Typography>  
+            </Grid>
 
-      {allCity.results && allCity.results.map((obj, index) => (
-               <React.Fragment>
-              <Grid item xs={12} md={4} className={classes.cityGrid} > 
-                {/* {city.results && city.results.} */}
-               <ListItemLink  href={`/search/?city=${obj.id}&text=&type=5&sort=popularity`}>
-                 <ListItemText primary={<Typography variant="h6" style={{ color: '#000000' }}><b style={{  background: '#ffffff', padding: 2 }}>{obj.name}</b></Typography>} secondary={<Typography variant="h6" style={{ color: '#000000'}}><i style={{  background: '#ffffff', padding: 2  }}>({obj.sum_organization} miejsc)</i></Typography>}/>
-               </ListItemLink> </Grid>
-               </React.Fragment>
-              ))}
-
-              </Grid>
-
-       
-      {/* {city.results && city.results.map((org, index) =>
-                          <MenuItem value={org.id}>
-                                {org.name}
-                            </MenuItem>
-                        )} */}
-              {/* <List component="nav" aria-label="secondary mailbox folders"> */}
-                {/* {[1,2,3,4,5,6,7,8,9,10].map(post => (
-               <React.Fragment>
-              <Grid item xs={12} md={4}> 
-
-               <ListItemLink  href="/organization">
-                 <ListItemText primary="Warszawa" secondary="(670 miejsc)"/>
-               </ListItemLink> </Grid>
-               </React.Fragment>
-              ))}
-
-              </Grid> */}
-               {/* </List> */}
-              
-             
-              {/* </Grid> */}
+            {/* <Grid container spacing="6" direction="row"> */}
+              {/* <Paper className={classes.quick_search}> */}
+                
+                {allCity.results && allCity.results.map((obj, index) => (
+                      <Grid item xs={3} md={3}>
+                      <Paper >
+                        <ListItemLink  href={`/search/?city=${obj.id}&text=&type=5&sort=popularity`}>
+                          <ListItemText primary={<Typography variant="h6" style={{ color: '#000000' }}><b style={{  padding: 2 }}>{obj.name}</b></Typography>} secondary={<Typography variant="h6" style={{ color: '#000000'}}><i style={{ padding: 2  }}>({obj.sum_organization} miejsc)</i></Typography>}/>
+                        </ListItemLink> 
+                      </Paper>
+                      </Grid>
+                  ))}
+                  {/* {allCity.results && allCity.results.map((obj, index) => (
+                      <Grid item xs className={classes.cityGrid} > 
+                        <ListItemLink  href={`/search/?city=${obj.id}&text=&type=5&sort=popularity`}>
+                          <ListItemText primary={<Typography variant="h6" style={{ color: '#000000' }}><b style={{  background: '#ffffff', padding: 2 }}>{obj.name}</b></Typography>} secondary={<Typography variant="h6" style={{ color: '#000000'}}><i style={{  background: '#ffffff', padding: 2  }}>({obj.sum_organization} miejsc)</i></Typography>}/>
+                        </ListItemLink> 
+                      </Grid>
+                  ))} */}
+               
+              {/* </Paper> */}
+          {/* </Grid> */}
+          </Grid>
 
               
-      </Paper>
+      
 
-      </React.Fragment>
-);
+)
 }

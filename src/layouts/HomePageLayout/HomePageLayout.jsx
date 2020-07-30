@@ -160,10 +160,10 @@ export default function HomePageLayout(props) {
       
 
       
-          <Grid container spacing={5} className={classes.mainGrid}>
-            <Grid item xs={12} md={12}>
+          {/* <Grid container spacing={1} className={classes.mainGrid}>
+            <Grid item xs={12} md={12}> */}
            
-              <Divider />
+              {/* <Divider /> */}
               
               {/* {props.children} */}
                 
@@ -173,10 +173,10 @@ export default function HomePageLayout(props) {
                   {post}
                 </Markdown>
               ))} */}
-            </Grid>
+            {/* </Grid>
             
            
-          </Grid>
+          </Grid> */}
         </main>
       </Container>
       <FooterPage />
