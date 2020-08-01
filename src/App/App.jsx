@@ -71,6 +71,10 @@ class App extends React.Component {
                         {alert.message == "Logo put successful" &&
                             <CustomizedDialogs _title="Wgrywanie loga" _content="Pomyślnie załadowano logo organizacji na Chariate.com gratulujemy!" _button_text="Ok"/>
                         }
+                        {alert.message == "Account update" &&
+                            <CustomizedDialogs _title="Aktualizacja danych konta" _content="Pomyślnie zaaktualizowano dane konta na Chariate.com gratulujemy!" _button_text="Ok"/>
+                        }
+
                         {alert.message == "error form field" &&
                             <CustomizedDialogs _title="Błędne dane" _content="Prosimy abyś wypełnił poprawnie formularz. :)" _button_text="Ok"/>
                         }

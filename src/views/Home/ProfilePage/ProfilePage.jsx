@@ -10,6 +10,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
+import Grid from '@material-ui/core/Grid';
+import ProfileForm from '../../../_components/user/ProfileForm';
+import Box from '@material-ui/core/Box';
 
 class ProfilePage extends React.Component {
     componentDidMount() {
@@ -21,49 +24,17 @@ class ProfilePage extends React.Component {
         return (
             
             <React.Fragment>
-                <Typography variant="h3" component="h3" align="center">
-                    Konto
+                <Grid Container>
+                <Grid item md={12} align="center">
+                <Typography variant="h3" component="h3">
+                    Ustawienia konta
                 </Typography>
-                
-        <FormControl disabled >
-            <InputLabel htmlFor="component-disabled" spacing={3}>{user.name}</InputLabel>
-            <Input id="component-disabled" 
-        // value={name} onChange={handleChange} 
-        />
-            <FormHelperText>Nazwa</FormHelperText>
-        </FormControl>
-        <IconButton m={1}>
-            <EditIcon style={{fontSize: '15px'}}/>
-        </IconButton>
-      {/* <Fab color="secondary" aria-label="edit"  style={{fontSize: '30px'}}>
-        <EditIcon style={{fontSize: '10px'}}/>
-      </Fab> */}
-        {/* <FormControl disabled>
-            <InputLabel htmlFor="component-disabled">{user}</InputLabel>
-            <Input id="component-disabled" 
-        // value={name} onChange={handleChange} 
-        />
-            <FormHelperText>Imię</FormHelperText>
-        </FormControl> */}
-                
-
-                {/* {organization.loading && <em>Ładuje uzytkownikow...</em>}
-                {organization.error && <span className="text-danger">ERROR: {organization.error}</span>}
-                {organization.items &&
-                    <ul>
-                        {organization.items.results.map((org, index) =>
-                            <li key={org.id}>
-                                {org.name + ' ' + org.description}
-                            </li>
-                        )}
-                    </ul>
-                } */}
-                <br/><br/><br/><br/><br/><br/><br/>
-                ------------
-                <p>
-                    <Link to="/">powróć</Link>
-                </p>
-
+                <Box my={3}/>
+                <ProfileForm userInfo={user}/>
+                <Box my={3}/>
+                    <Link to="/">POWRÓĆ</Link>
+                </Grid>
+                </Grid>
             
             </React.Fragment>
 

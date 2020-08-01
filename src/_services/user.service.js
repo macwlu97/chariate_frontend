@@ -7,7 +7,8 @@ export const userService = {
     register,
     logout,
     getAll,
-    refresh_token
+    refresh_token,
+    update
 };
 
 function login(email, password) {
@@ -104,6 +105,19 @@ function getAll() {
     };
 
     return fetch(`${config.apiUrl}/api/v1/user/`, requestOptions).then(handleResponse);
+}
+
+function update(toJson) {
+
+    const requestOptions = {
+        headers: authHeader(),
+    };
+
+    let data = {
+        password: toJson.password,
+      }
+
+    return axios.put(`${config.apiUrl}/api/v1/update/`, data, requestOptions)
 }
 
 function handleResponse(response) {

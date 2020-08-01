@@ -8,7 +8,8 @@ export const userActions = {
     register,
     logout,
     getAll,
-    refresh_token
+    refresh_token,
+    update
 };
 
 function login(email, password) {
@@ -76,6 +77,30 @@ function refresh_token(token) {
     function request(user) { return { type: userConstants.REFRESH_REQUEST, user } }
     function success(user) { return { type: userConstants.REFRESH_SUCCESS, user } }
     function failure(error) { return { type: userConstants.REFRESH_FAILURE, error } }
+}
+
+function update(toJson) {
+    return dispatch => {
+        dispatch(request());
+
+        userService.update(toJson)
+            .then(
+                user => { 
+                    dispatch(success(user))
+                    dispatch(alertActions.success('Account update'));
+                    // history.push('/');
+                    //poczekac i wylogować?
+                },
+                error => {
+                    dispatch(failure(error))
+                    dispatch(alertActions.error(error.message));
+                }
+            );
+    };
+
+    function request(user) { return { type: userConstants.USERS_UPDATE_REQUEST, user } }
+    function success(user) { return { type: userConstants.USERS_UPDATE_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.USERS_UPDATE_FAILURE, error } }
 }
 
 function logout() {
