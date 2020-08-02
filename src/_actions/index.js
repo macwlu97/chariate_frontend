@@ -5,3 +5,4 @@ export * from './search.actions';
 export * from './city.actions';
 export * from './typeinformation.actions';
 export * from './like.actions';
+export * from './collections.actions';

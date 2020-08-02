@@ -10,3 +10,4 @@ export * from './typeinformation.constants';
 export * from './informationOrg.constants';
 export * from './logoOrg.constants';
 export * from './like.constants';
+export * from './collections.constants';

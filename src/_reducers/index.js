@@ -14,7 +14,7 @@ import { typeinformation } from './typeinformation.reducer';
 import { informationOrg } from './informationOrg.reducer';
 import { logoOrg } from './logoOrg.reducer';
 import { like } from './like.reducer';
-
+import { collections } from './collections.reducer';
 
 const rootReducer = combineReducers({
   authentication,
@@ -30,7 +30,8 @@ const rootReducer = combineReducers({
   typeinformation,
   informationOrg,
   logoOrg,
-  like
+  like,
+  collections
 });
 
 export default rootReducer;
