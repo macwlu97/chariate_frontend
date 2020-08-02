@@ -22,6 +22,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     height: 50
   },
+  paper_element: {
+    height: 50,
+    width: 150
+  },
   button: {
     display: 'block',
     marginTop: theme.spacing(2),
@@ -128,7 +132,7 @@ export default function InputWithIcon({nameField, setNameField, shortNameField, 
       </FormControl></div>
 
       <div>
-      <Paper  component="form" className={classes.root}>
+      <Paper  component="form" className={classes.paper_element}>
       
       <FormControl className={classes.formControl}>
         <Select

@@ -24,7 +24,7 @@ class ProfilePage extends React.Component {
         return (
             
             <React.Fragment>
-                <Grid Container>
+                <Grid container>
                 <Grid item md={12} align="center">
                 <Typography variant="h3" component="h3">
                     Ustawienia konta

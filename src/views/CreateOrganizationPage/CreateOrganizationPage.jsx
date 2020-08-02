@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import { userActions, organizationActions } from '../../_actions';
 import VerticalLinearStepper from '../../_components/forms/organization/organizationStepper';
-
+import Grid from '@material-ui/core/Grid';
 
 class CreateOrganizationPage extends React.Component {
     componentDidMount() {
@@ -20,8 +20,14 @@ class CreateOrganizationPage extends React.Component {
                 <Typography variant="h3" component="h3" align="center">
                     Utwórz organizację
                 </Typography>
-                
-            <VerticalLinearStepper></VerticalLinearStepper>
+                <Grid container direction="row">
+                    <Grid item md={5}></Grid>
+                    <Grid item md={4}>
+                        <VerticalLinearStepper></VerticalLinearStepper>
+                    </Grid>
+                    <Grid item md={3}></Grid>
+                </Grid>
+            
 
             
             </React.Fragment>
