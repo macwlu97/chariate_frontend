@@ -27,20 +27,28 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import PeopleIcon from '@material-ui/icons/People';
 
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { likeActions } from '../../../_actions';
+
 class PreviewFundraiser extends React.Component {
     constructor(props){
         super(props);
         this.state = {
           _id: this.props.match.params._id,
+          like_status: 0
         //   _type: this.props.match.params._type,
         }
 
         this.props.dispatch(organizationActions.getFundraising(this.state._id));
         this.props.dispatch(organizationActions.getAllFundraiserInformation(this.state._id));
+        this.props.dispatch(likeActions.get_my_like_fundraising(this.state._id))
       }
-    
+    setLikeStatus = (num) => {
+        this.setState(state => ({ like_status: num, }));
+        console.log(num)
+    };
     render() { //renderowanie warunkowe
-        const { fundraiser, informationOrg } = this.props;
+        const { user, fundraiser, informationOrg, like } = this.props;
 
         let goalsInformationList, postsInformationList, numbersInformationList, aboutInformationList, phoneNumberList, bankAccountList;
         let goalsCount, postsCount, numbersCount, aboutCount, phoneCount, bankAccCount;
@@ -70,6 +78,22 @@ class PreviewFundraiser extends React.Component {
                     <Grid item md={12}>
                         <Typography variant="h4" component="h3" align="center">
                             {fundraiser.items && fundraiser.items.title} <Chip label={"Zbiórka"} />
+                            {(like.items && (like.items.status === 0 && this.state.like_status === 0) &&
+                                <IconButton aria-label="add to favorites" onClick={()=>{
+
+                                    console.log(`like by ${fundraiser.items && fundraiser.items.id} and ${user.id}`)
+                                    var toJson = {
+                                        fundraising_id: fundraiser.items && fundraiser.items.id,
+                                        add_user_id: user.id,
+                                    }
+                                    const { dispatch } = this.props;
+                                    dispatch(likeActions.postLikeFundraising(toJson))
+                                    this.setLikeStatus(1)
+                            }}>
+                                
+                            <FavoriteIcon />Polub</IconButton>) 
+                            || (like.items && (like.items.status === 1 ||  this.state.like_status === 1) && <Chip color="primary" label="Polubione"/>)
+                            }
                         </Typography>
                         <Box my={2}/>
                         <CoverImage org_id={fundraiser.items && fundraiser.items.organization_id} type={2}/>
@@ -188,12 +212,13 @@ class PreviewFundraiser extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { authentication, fundraiser, informationOrg } = state;
+    const { authentication, fundraiser, informationOrg, like } = state;
     const { user } = authentication;
     return {
         user,
         fundraiser,
         informationOrg,
+        like
     };
 }
 

@@ -13,6 +13,7 @@ import { extendedCity } from './extendedCity.reducer';
 import { typeinformation } from './typeinformation.reducer';
 import { informationOrg } from './informationOrg.reducer';
 import { logoOrg } from './logoOrg.reducer';
+import { like } from './like.reducer';
 
 
 const rootReducer = combineReducers({
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
   extendedCity,
   typeinformation,
   informationOrg,
-  logoOrg
+  logoOrg,
+  like
 });
 
 export default rootReducer;

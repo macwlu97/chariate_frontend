@@ -6,6 +6,9 @@ import { userActions, organizationActions } from '../../_actions';
 import OutlinedCard from '../../_components/organization/my_org_card';
 
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 class OrganizationPage extends React.Component {
     componentDidMount() {
@@ -16,6 +19,10 @@ class OrganizationPage extends React.Component {
       
     render() {
         const { user, users, organization } = this.props;
+
+        let organizationCount;
+        organizationCount = organization.items && organization.items.results ? organization.items.results.length : 0;
+
         return (
             
             <React.Fragment>
@@ -23,7 +30,7 @@ class OrganizationPage extends React.Component {
                     Zarządzaj swoimi organizacjami 
                 </Typography>
                 
-                {organization.loading && <em>Ładuje uzytkownikow...</em>}
+                {organization.loading && <em>Ładuje organizacje...</em>}
                 {organization.error && <span className="text-danger">ERROR: {organization.error}</span>}
                 {organization.items &&
                     <ul>
@@ -32,6 +39,8 @@ class OrganizationPage extends React.Component {
                         )}
                     </ul>
                 }
+
+                {organizationCount === 0 && <Box my={2}><ListItem>Brak organizacji.</ListItem></Box>}
                 
                 
                 <p>

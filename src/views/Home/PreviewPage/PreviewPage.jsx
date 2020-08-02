@@ -16,11 +16,15 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
 
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { likeActions } from '../../../_actions';
+
 class PreviewPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
           _id: this.props.match.params._id,
+          like_status: 0
         //   _type: this.props.match.params._type,
         }
 
@@ -28,11 +32,16 @@ class PreviewPage extends React.Component {
         this.props.dispatch(organizationActions.getAllInformation(this.state._id));
         this.props.dispatch(organizationActions.getOrganizationEvent(this.state._id))
         this.props.dispatch(organizationActions.getOrganizationFundraising(this.state._id))
+        this.props.dispatch(likeActions.get_my_like_organization(this.state._id))
+
 
       }
-    
+    setLikeStatus = (num) => {
+        this.setState(state => ({ like_status: num, }));
+        console.log(num)
+    };
     render() { //renderowanie warunkowe
-        const { organization, informationOrg, event, fundraiser } = this.props;
+        const { user, organization, informationOrg, event, fundraiser, like } = this.props;
         let isNotUndefinedTypeOfCoverImage;
         let isCoverImageNotNull;
         let type; 
@@ -45,7 +54,23 @@ class PreviewPage extends React.Component {
             
             <React.Fragment>
                 <Typography variant="h4" component="h3" align="center" >
-                    {organization.items && organization.items.name} <Chip label={type == 0 && "Fundacja" || type == 1 && "Społeczność" || type == 2 && "Wydarzenie" || type == 3 && "Zbiórka"} />
+                    {organization.items && organization.items.name} <Chip label={type == 0 && "Fundacja" || type == 1 && "Społeczność" || type == 2 && "Wydarzenie" || type == 3 && "Zbiórka"} /> 
+                    {(like.items && (like.items.status === 0 && this.state.like_status === 0) &&
+                    <IconButton aria-label="add to favorites" onClick={()=>{
+
+                        console.log(`like by ${organization.items && organization.items.id} and ${user.id}`)
+                        var toJson = {
+                            organization_id: organization.items && organization.items.id,
+                            add_user_id: user.id,
+                        }
+                        const { dispatch } = this.props;
+                        dispatch(likeActions.postLikeOrganization(toJson))
+                        this.setLikeStatus(1)
+                    }}>
+                    
+                    <FavoriteIcon />Polub
+                    </IconButton>) || (like.items && (like.items.status === 1 ||  this.state.like_status === 1) && <Chip color="primary" label="Polubione"/>)
+                    }
                 </Typography>
                 {/* <Box my={1}>
                     <Chip label={type == 0 && "Fundacja" || type == 1 && "Społeczność" || type == 2 && "Wydarzenie" || type == 3 && "Zbiórka"} />
@@ -79,14 +104,15 @@ class PreviewPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { authentication, organization, informationOrg, event, fundraiser } = state;
+    const { authentication, organization, informationOrg, event, fundraiser, like } = state;
     const { user } = authentication;
     return {
         user,
         organization,
         informationOrg,
         event,
-        fundraiser
+        fundraiser,
+        like
     };
 }
 

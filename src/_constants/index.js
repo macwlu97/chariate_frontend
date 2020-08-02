@@ -9,3 +9,4 @@ export * from './fundraiser.constants';
 export * from './typeinformation.constants';
 export * from './informationOrg.constants';
 export * from './logoOrg.constants';
+export * from './like.constants';
