@@ -31,7 +31,6 @@ function getAllOrganization() {
         headers: authHeader()
     };
 
-
     return axios.get(`${config.apiUrl}/api/v1/organization/`, requestOptions).then((response) => {
         var data = response.data
         return data;
