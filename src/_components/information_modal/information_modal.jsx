@@ -122,19 +122,9 @@ export default function FullScreenInformationDialog({org_id, headerName}) {
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               Zamknij 
-              {/* zapisz */}
             </Button>
           </Toolbar>
         </AppBar>
-        {/* <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-          </ListItem>
-        </List> */}
         {informationObj.results &&
           <List>
           {informationObj.results.map((informationElement, index) =>
@@ -150,7 +140,6 @@ export default function FullScreenInformationDialog({org_id, headerName}) {
               {edited === informationElement.id &&
               <ClickAwayListener onClickAway={() => handleEditItem(0, '')}>
               <ListItem key={index}>
-              {/* Rodzaj informacji: {informationElement.name} */}
               <TextField
                 margin="dense"
                 id="outlined-multiline-static"
@@ -178,14 +167,6 @@ export default function FullScreenInformationDialog({org_id, headerName}) {
             )}
           </List>
         }
-
-        
-                    {/* <ul>
-                        
-                            <OutlinedCard org_id={org.id} name={org.name} description={org.description} type={org.type} type_name={org.type_name} sh_name={org.sh_name} city={org.city}></OutlinedCard>
-                        )}
-                    </ul> */}
-                
       </Dialog>
     </div>
   );

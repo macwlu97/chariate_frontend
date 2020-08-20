@@ -17,11 +17,6 @@ import Collections from './Collections';
 import QuickSearch from './QuickSearch';
 import PopularActions from './PopularActions';
 import FooterPage from './FooterPage';
-// import Markdown from './Markdown';
-// import post1 from './blog-post.1.md';
-// import post2 from './blog-post.2.md';
-// import post3 from './blog-post.3.md';
-
 
 
 const useStyles = makeStyles(theme => ({
@@ -97,16 +92,6 @@ const useStyles = makeStyles(theme => ({
 
 const sections = [
   'Strona główna',
-  // 'Technology',
-  // 'Design',
-  // 'Culture',
-  // 'Business',
-  // 'Politics',
-  // 'Opinion',
-  // 'Science',
-  // 'Health',
-  // 'Style',
-  // 'Travel',
 ];
 
 const featuredPosts = [
@@ -137,46 +122,11 @@ export default function HomePageLayout(props) {
       <CssBaseline />
       <Container maxWidth="lg">
         <UpperToolbar />
-        {/* <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-          {sections.map(section => (
-            <Link
-              color="inherit"
-              noWrap
-              key={section}
-              variant="body2"
-              href="#"
-              className={classes.toolbarLink}
-            >
-              {section}
-            </Link>
-          ))}
-        </Toolbar> */}
         <main>
           <HeaderPage />
           <Collections />
           <QuickSearch />
           <PopularActions />
-      
-      
-
-      
-          {/* <Grid container spacing={1} className={classes.mainGrid}>
-            <Grid item xs={12} md={12}> */}
-           
-              {/* <Divider /> */}
-              
-              {/* {props.children} */}
-                
-              
-              {/* {posts.map(post => (
-                <Markdown className={classes.markdown} key={post.substring(0, 40)}>
-                  {post}
-                </Markdown>
-              ))} */}
-            {/* </Grid>
-            
-           
-          </Grid> */}
         </main>
       </Container>
       <FooterPage />

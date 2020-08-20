@@ -58,16 +58,6 @@ const useStyles = makeStyles(theme => ({
         console.log('Redirected to /organization');
       }
     };
-  //   const memoizedHandleClick = useCallback(
-  //   () => {
-  //     console.log({search_city})
-  //     // const redirect = '/search/'+search_city+'/'+search_text;
-  //     // history.push(redirect);
-  //     console.log('Redirected to /organization');
-
-  //   },
-  //   [], // Tells React to memoize regardless of arguments.
-  // );
     return (
 
 

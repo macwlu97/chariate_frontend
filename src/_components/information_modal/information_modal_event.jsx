@@ -125,15 +125,6 @@ export default function FullScreenInformationDialogEvent({event_id, headerName})
             </Button>
           </Toolbar>
         </AppBar>
-        {/* <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-          </ListItem>
-        </List> */}
         {informationObj.results &&
           <List>
           {informationObj.results.map((informationElement, index) =>
@@ -177,14 +168,6 @@ export default function FullScreenInformationDialogEvent({event_id, headerName})
             )}
           </List>
         }
-
-        
-                    {/* <ul>
-                        
-                            <OutlinedCard org_id={org.id} name={org.name} description={org.description} type={org.type} type_name={org.type_name} sh_name={org.sh_name} city={org.city}></OutlinedCard>
-                        )}
-                    </ul> */}
-                
       </Dialog>
     </div>
   );

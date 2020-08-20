@@ -69,9 +69,6 @@ const useStyles = makeStyles(theme => ({
                 <Box fontFamily="Arial" m={1} > Odkrywaj organizacje, akcje i zbiórki poprzez podanie lokalizacji </Box> 
               </Typography>  
             </Grid>
-
-            {/* <Grid container spacing="6" direction="row"> */}
-              {/* <Paper className={classes.quick_search}> */}
                 
                 {allCity.results && allCity.results.map((obj, index) => (
                       <Grid item xs={3} md={3}>
@@ -82,20 +79,6 @@ const useStyles = makeStyles(theme => ({
                       </Paper>
                       </Grid>
                   ))}
-                  {/* {allCity.results && allCity.results.map((obj, index) => (
-                      <Grid item xs className={classes.cityGrid} > 
-                        <ListItemLink  href={`/search/?city=${obj.id}&text=&type=5&sort=popularity`}>
-                          <ListItemText primary={<Typography variant="h6" style={{ color: '#000000' }}><b style={{  background: '#ffffff', padding: 2 }}>{obj.name}</b></Typography>} secondary={<Typography variant="h6" style={{ color: '#000000'}}><i style={{  background: '#ffffff', padding: 2  }}>({obj.sum_organization} miejsc)</i></Typography>}/>
-                        </ListItemLink> 
-                      </Grid>
-                  ))} */}
-               
-              {/* </Paper> */}
-          {/* </Grid> */}
           </Grid>
-
-              
-      
-
-)
+  )
 }

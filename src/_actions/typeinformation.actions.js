@@ -3,7 +3,6 @@ import { typeinformationService } from '../_services';
 
 export const typeinformationActions = {
     getAll,
-    // getAllExtended
 };
 
 function getAll(setTypeinformation) {
@@ -25,20 +24,3 @@ function getAll(setTypeinformation) {
     function failure(error) { return { type: typeinformationConstants.GETALL_FAILURE, error } }
 }
 
-// function getAllExtended() {
-//     return dispatch => {
-//         dispatch(request());
-
-//         cityService.getAllExtended()
-//             .then(
-//                 extendedCity => dispatch(success(extendedCity)),
-//                 error => dispatch(failure(error))
-//             );
-        
-//     };
-
-//     function request() { return { type: extendedCityConstants.GETALL_REQUEST } }
-//     function success(extendedCity) { 
-//         return { type: extendedCityConstants.GETALL_SUCCESS, extendedCity } }
-//     function failure(error) { return { type: extendedCityConstants.GETALL_FAILURE, error } }
-// }

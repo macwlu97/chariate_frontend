@@ -104,11 +104,6 @@ export default function VerticalLinearStepper() {
         dispatch(organizationActions.addOrganization(toJson))
       }
 
-      // if (toJson.name.length >= 8 && toJson.shortNameField.length >= 2 && toJson.descriptionField.length >= 30 && toJson.name.length > 5 && toJson.city_id && toJson.typeOption){
-      //   dispatch(organizationActions.addOrganization(toJson))
-      // } else {
-      //   dispatch(alertActions.success('error form field'));
-      // }
       console.log(toJson)
     }
   };
@@ -153,14 +148,6 @@ export default function VerticalLinearStepper() {
           </Step>
         ))}
       </Stepper>
-      {/* {activeStep === steps.length && (
-        <Paper square elevation={0} className={classes.resetContainer}>
-          <Typography>Gratulujemy założenia nowej organizacji w naszej aplikacji!</Typography>
-          <Button onClick={handleReset} className={classes.button}>
-            Reset
-          </Button>
-        </Paper>
-      )} */}
     </div>
   );
 }

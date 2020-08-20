@@ -29,14 +29,6 @@ export default function FormDialogFundraiser({org_id}) {
     setOpen(false);
   };
 
-  // const handleCloseSelect = () => {
-  //   setOpenSelect(false);
-  // };
-  
-  // const handleOpenSelect = () => {
-  //   setOpenSelect(true);
-  // };
-
   const handleAddFundraiser = () => {
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -79,10 +71,6 @@ export default function FormDialogFundraiser({org_id}) {
       dispatch(organizationActions.addFundraiser(toJson))
       // console.log(toJson)
     }
-    // console.log(nameField.content)
-    // console.log(dateField.content)
-    // console.log(timeField.content)
-    // console.log(city)
     setOpen(false);
   };
 

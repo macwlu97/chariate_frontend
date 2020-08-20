@@ -132,19 +132,6 @@ export default function FormDialogManage({org_id}) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // if (name === "nameField") {
-    //   setNameField({content: value})
-    // } else if (name === "dateField") {
-    //   // console.log(value)
-    //   setDateField({content: value})
-    // } else if (name === "timeField") {
-    //   // console.log(value)
-    //   setTimeField({content: value})
-    // } else if (name === "cityOption"){
-    //   setCity(value)
-    // } else {
-    //   console.log("critical error - handle change")
-    // }
     if (name === "contentField") {
       setContentField({content: value})
     } else if (name === "typeinformationOption"){
@@ -160,13 +147,6 @@ export default function FormDialogManage({org_id}) {
     }
     // console.log(typeinformation)
 }
-
-// getInformation = typeinformationObj.results && typeinformationObj.results.map((typeElement, index) => {
-// <MenuItem key={typeElement.id} value={typeElement.id} >
-//   {typeElement.text_field}
-// </MenuItem>
-// }
-// )
 
 let informationOrganizationList;
 informationOrganizationList = (typeinformationObj.results && typeinformationObj.results.filter(el => el.mode === 0))
@@ -293,11 +273,7 @@ informationFundraiser = informationFundraiserList && informationFundraiserList.m
           onChange={handleChange}
           name="typeinformationOption"
         > 
-          {/* {typeinformationObj.results && typeinformationObj.results.map((typeElement, index) =>
-                          <MenuItem key={typeElement.id} value={typeElement.id} >
-                            {typeElement.text_field}
-                          </MenuItem>
-                        )} */}
+
           {typeinformation === 0 && <MenuItem value={0}>Wybierz informację</MenuItem>}
           {(mode === "Organizacja" && informationOrganization) 
           || (mode === "Event" && informationEvent) 

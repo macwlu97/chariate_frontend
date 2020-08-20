@@ -12,16 +12,6 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-// import UpperToolbar from './UpperToolbar';
-// import HeaderPage from './HeaderPage';
-// import Collections from './Collections';
-// import QuickSearch from './QuickSearch';
-// import PopularActions from './PopularActions';
-// import FooterPage from './FooterPage';
-// import Markdown from './Markdown';
-// import post1 from './blog-post.1.md';
-// import post2 from './blog-post.2.md';
-// import post3 from './blog-post.3.md';
 import PrimaryMenu from './PrimaryMenu'
 import PromotedOrg from './PromotedOrg'
 import PrimaryBreadcrumb from './PrimaryBreadcrumb'

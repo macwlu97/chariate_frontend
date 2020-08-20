@@ -58,7 +58,6 @@ function get_my_like_organization(org_id) {
         headers: authHeader()
     };
 
-    // return fetch(`${config.apiUrl}/api/v1/user/`, requestOptions).then(handleResponse);
     return axios.get(`${config.apiUrl}/api/v1/like/organization/${org_id}`, requestOptions).then((response) => {
         var data = response.data
         return data;
@@ -70,7 +69,6 @@ function get_my_like_event(event_id) {
         headers: authHeader()
     };
 
-    // return fetch(`${config.apiUrl}/api/v1/user/`, requestOptions).then(handleResponse);
     return axios.get(`${config.apiUrl}/api/v1/like/event/${event_id}`, requestOptions).then((response) => {
         var data = response.data
         return data;
@@ -82,7 +80,6 @@ function get_my_like_fundraising(fundraising_id) {
         headers: authHeader()
     };
 
-    // return fetch(`${config.apiUrl}/api/v1/user/`, requestOptions).then(handleResponse);
     return axios.get(`${config.apiUrl}/api/v1/like/fundraising/${fundraising_id}`, requestOptions).then((response) => {
         var data = response.data
         return data;

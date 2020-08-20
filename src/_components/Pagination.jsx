@@ -20,9 +20,7 @@ export default function BasicPagination({setterPage, counter}) {
   // console.log(counter)
   return (
     <div className={classes.root}>
-    {/* Page: {page} */}
       <Pagination count={pager} color="primary"  onChange={handleChange}/>
-      {/* <Pagination count={10} color="secondary" /> */}
     </div>
   );
 }

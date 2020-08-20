@@ -7,13 +7,6 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
-// import React from 'react';
-// import PropTypes from 'prop-types';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Tabs from '@material-ui/core/Tabs';
-// import Tab from '@material-ui/core/Tab';
-// import Typography from '@material-ui/core/Typography';
-// import Box from '@material-ui/core/Box';
 
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -167,14 +160,6 @@ export default function PreviewDescription({organization, information, event, fu
       >
        
       <Grid item md={6}>
-        {/* <Box m={1}>
-          <FormControl disabled>
-            <InputLabel htmlFor="component-disabled" spacing={3}>
-              {organization.items && organization.items.name} </InputLabel>
-            <Input id="component-disabled"/>
-            <FormHelperText>Nazwa</FormHelperText>
-          </FormControl>
-        </Box> */}
         <Box my={2}>
           <Typography variant="h4" component="h5">
                       O nas:
@@ -200,25 +185,20 @@ export default function PreviewDescription({organization, information, event, fu
         
         </Grid>
 
-        <Grid container>
-          <Box my={6}>
-            <Typography variant="h4" component="h5">
-                        Cele
-            </Typography>
-            <List>
-            {goalsList && goalsList.map((goal, index) => 
-             
-              <ListItem> {goal.content}</ListItem>
-             
-            )}
-            {goalsListCount === 0 && <ListItem>Brak danych.</ListItem>}
-            </List>
-          </Box>
-
-          
-            
+          <Grid container>
+            <Box my={6}>
+              <Typography variant="h4" component="h5">
+                          Cele
+              </Typography>
+              <List>
+              {goalsList && goalsList.map((goal, index) => 
+                <ListItem> {goal.content}</ListItem>
+              )}
+              {goalsListCount === 0 && <ListItem>Brak danych.</ListItem>}
+              </List>
+            </Box> 
+          </Grid>
         </Grid>
-</Grid>
 
         <Grid item md={6}>
           <Grid container md={12}>
@@ -316,29 +296,6 @@ export default function PreviewDescription({organization, information, event, fu
           </Grid>
         </Grid>
       </Grid>
-
-
-        {/* <Grid item md={5}>
-
-        <Typography variant="h4" component="h5">
-                    Godziny otwarcia
-                </Typography>
-        <Typography variant="h5" component="h5">
-        Dzisiaj  10:00 do 22:00
-        [Więcej]
-                </Typography>
-                </Grid>
-        
-        <Grid item md={5}>
-        <Typography variant="h4" component="h5">
-                    More info
-                </Typography>
-        <Typography variant="h5" component="h5">
-        - Zarejestrowana<br/>
-        - Doświadczenie w działaniu
-        
-                </Typography>
-                </Grid> */}
       
       </Grid>
       </TabPanel>
@@ -351,7 +308,6 @@ export default function PreviewDescription({organization, information, event, fu
                             Co robimy?
                 </Typography>
                 <Box mt={0.5} />
-                {/* <Divider/> */}
                 <Typography variant="h5" component="h6">
                 {whatWeDoOrganization()}
                 </Typography>
@@ -362,30 +318,7 @@ export default function PreviewDescription({organization, information, event, fu
           </Grid>
         </Grid>
       </TabPanel>
-      {/* <TabPanel value={value} index={2}>
-      a */}
-
-
-        {/* {charFieldOrganizationList && charFieldOrganizationList.map((charField, index) => 
-          <Grid md={6} mt={3} style={{
-            display: 'flex',
-            alignItems: 'center',
-          }}>
-            <InfoIcon color="primary" fontSize="large" m={2} />
-            <Box m={0.5} />
-            {charField.content}
-          </Grid>
-        )} */}
-      {/* </TabPanel> */}
-      {/* <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Item Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Item Six
-      </TabPanel> */}
+     
       <TabPanel value={value} index={2}>
         <Grid container spacing="6" direction="row" alignItems="center">
             <Grid item xs>

@@ -41,12 +41,9 @@ export default function ChipCard({type, date, time, addDate, city}) {
       />
       {type == 2 && <Chip
         size="small"
-        // avatar={"Start:"}
         label={`Data rozpoczęcia: ${date.concat(" ", time)}`}
         clickable
         color="primary"
-        // onDelete={handleDelete}
-        // deleteIcon={<DoneIcon />}
       />}
       {type == 3 && <Chip
         size="small"
@@ -54,18 +51,13 @@ export default function ChipCard({type, date, time, addDate, city}) {
         label={date.concat(" ", time)}
         clickable
         color="primary"
-        // onDelete={handleDelete}
-        // deleteIcon={<DoneIcon />}
       />}
 
         {[2,3].includes(type) && <Chip
         size="small"
-        // avatar={<Avatar>ADD:</Avatar>}
         label={`Dodano: ${addDate}`}
         clickable
         color="primary"
-        // onDelete={handleDelete}
-        // deleteIcon={<DoneIcon />}
       />}
 
     {type == 2 && <Chip
@@ -73,8 +65,6 @@ export default function ChipCard({type, date, time, addDate, city}) {
         label={`Miasto: ${city}`}
         clickable
         color="primary"
-        // onDelete={handleDelete}
-        // deleteIcon={<DoneIcon />}
       />}
     </div>
   );

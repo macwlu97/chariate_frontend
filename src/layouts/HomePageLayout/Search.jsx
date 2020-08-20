@@ -35,9 +35,6 @@ export default function CustomizedInputBase({search_text, setSearch_text, onClic
 
   return (
     <Paper component="form" className={classes.root}>
-      {/* <IconButton className={classes.iconButton} aria-label="menu">
-        <MenuIcon />
-      </IconButton> */}
       <InputBase
         className={classes.input}
         placeholder="Wpisz frazę"
@@ -48,10 +45,6 @@ export default function CustomizedInputBase({search_text, setSearch_text, onClic
       <IconButton  className={classes.iconButton} aria-label="search" onClick={onClick}>
         <SearchIcon/>
       </IconButton>
-      {/* <Divider className={classes.divider} orientation="vertical" /> */}
-      {/* <IconButton color="primary" className={classes.iconButton} aria-label="directions">
-        <DirectionsIcon />
-      </IconButton> */}
     </Paper>
   );
 }

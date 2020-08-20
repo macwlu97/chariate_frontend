@@ -25,21 +25,6 @@ function login(email, password) {
         
         return data
       });
-
-    // const requestOptions = {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ email, password })
-    // };
-
-    // return fetch(`${config.apiUrl}/api/v1/obtain_token/`, requestOptions)
-    //     .then(handleResponse)
-    //     .then(user => {
-    //         // store user details and jwt token in local storage to keep user logged in between page refreshes
-    //         localStorage.setItem('user', JSON.stringify(user));
-
-    //         return user;
-    //     });
 }
 
 function register(email, password, first_name, last_name) {
@@ -53,14 +38,6 @@ function register(email, password, first_name, last_name) {
     }
 
     return axios.post(`${config.apiUrl}/api/v1/create/`, payload)
-
-    // const requestOptions = {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ email, password, first_name, last_name })
-    // };
-
-    // return fetch(`${config.apiUrl}/api/v1/create/`, requestOptions).then(handleResponse)
 }
 
 function refresh_token(token) {
@@ -75,22 +52,6 @@ function refresh_token(token) {
             localStorage.setItem('user', JSON.stringify(user_temporary));
             return user;
           });
-
-    // const requestOptions = {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ token })
-    // };
-
-    // return fetch(`${config.apiUrl}/api/v1/api-token-refresh/`, requestOptions)
-    //     .then(handleResponse)
-    //     .then(user => {
-    //         // store user details and jwt token in local storage to keep user logged in between page refreshes
-    //         var user_temporary =  JSON.parse(localStorage.getItem('user'));
-    //         user_temporary.token = user.token+"chww";
-    //         localStorage.setItem('user', JSON.stringify(user_temporary));
-    //         return user;
-    //     });
 }
 
 function logout() {
@@ -137,19 +98,3 @@ function handleResponse(response) {
         return data;
     });
 }
-
-// function handleResponse(response) {
-//         const data = response.data && JSON.parse(response.data);
-//         if (!response.ok) {
-//             if (response.status === 401) {
-//                 // auto logout if 401 response returned from api
-//                 logout();
-//                 location.reload(true);
-//             }
-
-//             const error = (data && data.message) || response.statusText;
-//             return Promise.reject(error);
-//         }
-
-//         return data;
-// }

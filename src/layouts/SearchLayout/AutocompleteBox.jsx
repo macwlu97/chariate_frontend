@@ -35,35 +35,10 @@ function ControlledOpenSelect({search_city, setSearch_city, search_text, type, _
   const classes = useStyles();
   const [city, setCity] = useState({});
   const dispatch = useDispatch()
-  // const mapDispatchToProps = dispatch => {
-  //   return {
-  //     // dispatching plain actions
-  //     cityw: () =>  dispatch(cityActions.getAll()),
-  //   }
-  // }
 
     useEffect(() => {
       dispatch(cityActions.getAll(setCity))
   }, []);
-    
-
-
-  // useEffect(() => {
-  //   cityActions.getAll();
-  // }, []);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(cityActions.getAll());
-  // }, [])
-  
-  // setCity(mapDispatchToProps())
-  // dispatch(cityActions.getAll());
-  // useEffect(() => {
-  //   // Zaktualizuj tytuł dokumentu korzystając z interfejsu API przeglądarki
-  //   // var city = cityActions.getAll();
-  //   dispatch(cityActions.getAll());
-  // });
-  
 
   const [open, setOpen] = React.useState(false);
   
@@ -80,16 +55,6 @@ function ControlledOpenSelect({search_city, setSearch_city, search_text, type, _
     setOpen(true);
   };
 
-  // const onClick = (cityId,type,search_text,_sort) => { 
-  //   console.log("tws")
-  //   const redirect = `/search/?city=${cityId}&text=${search_text}&type=${type}&sort=${_sort}`
-  //   // '/search/'+cityId+','+type+','+search_text+','+_sort;
-  //   // const redirect = '/search/'+props.cityId+','+props.type+','+props.search_text+','+props._sort;
-  //   console.log(redirect)
-  //   history.push(redirect);
-  //   console.log('Redirected to /search');
-  // }; 
-
   return (
     <div>
       <Paper  component="form" className={classes.root}>
@@ -105,16 +70,13 @@ function ControlledOpenSelect({search_city, setSearch_city, search_text, type, _
           onChange={handleChange}
         >
                  
-              
-         
-                {/* <MenuItem value={0}><NavLink to={`/search/?city=0&text=${search_text}&type=${type}&sort=${_sort}`} > Polska </NavLink></MenuItem> */}
-        <MenuItem value={0} component={Link} to={`/search/?city=0&text=${search_text}&type=${type}&sort=${_sort}`}>Polska</MenuItem>
+      <MenuItem value={0} component={Link} to={`/search/?city=0&text=${search_text}&type=${type}&sort=${_sort}`}>Polska</MenuItem>
      {city.results && city.results.map((org, index) =>
-                          <MenuItem value={org.id} component={Link} to={`/search/?city=${org.id}&text=${search_text}&type=${type}&sort=${_sort}`}>
-                          {/* onClick={() => onClick(org.id,type,search_text,_sort)} */}
-                            {org.name}
-                          </MenuItem>
-                        )}
+        <MenuItem value={org.id} component={Link} to={`/search/?city=${org.id}&text=${search_text}&type=${type}&sort=${_sort}`}>
+        {/* onClick={() => onClick(org.id,type,search_text,_sort)} */}
+          {org.name}
+        </MenuItem>
+      )}
               
         </Select>
       </FormControl>

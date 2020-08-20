@@ -24,29 +24,23 @@ export default function UpperToolbar() {
     return (
 
 <Toolbar className={classes.toolbar}>
-{/* <Button size="small">Powiadomienia</Button> */}
-{/* <NotificationPopup/> */}
-<Typography
-  component="h2"
-  variant="h5"
-  color="inherit"
-  align="center"
-  noWrap
-  className={classes.toolbarTitle}
->
-  
-</Typography>
-{/* <IconButton>
-  <SearchIcon />
-</IconButton> */}
+  <Typography
+    component="h2"
+    variant="h5"
+    color="inherit"
+    align="center"
+    noWrap
+    className={classes.toolbarTitle}
+  >
+  </Typography>
 
   <AccountMenu />
 
-<Link to="/login">
-<Button variant="outlined" size="small">
-  Wyloguj
-</Button>
-</Link>
+  <Link to="/login">
+    <Button variant="outlined" size="small">
+      Wyloguj
+    </Button>
+  </Link>
 </Toolbar>
   );
 }

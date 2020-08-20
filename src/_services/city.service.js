@@ -12,7 +12,6 @@ function getAll() {
         headers: authHeader()
     };
 
-    // return fetch(`${config.apiUrl}/api/v1/user/`, requestOptions).then(handleResponse);
     return axios.get(`${config.apiUrl}/api/v1/city/`, requestOptions).then((response) => {
         var data = response.data
         return data;
@@ -24,7 +23,6 @@ function getAllExtended() {
         headers: authHeader()
     };
 
-    // return fetch(`${config.apiUrl}/api/v1/user/`, requestOptions).then(handleResponse);
     return axios.get(`${config.apiUrl}/api/v1/city/num_organization/`, requestOptions).then((response) => {
         var data = response.data
         return data;

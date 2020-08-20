@@ -146,7 +146,6 @@ export default function InputWithIcon({nameField, setNameField, shortNameField, 
           onChange={handleChange}
           name="cityOption"
         >
-        {/* <MenuItem value={0}>Polska</MenuItem> */}
      {cityObj.results && cityObj.results.map((org, index) =>
                           <MenuItem key={org.id} value={org.id} >
                             {org.name}

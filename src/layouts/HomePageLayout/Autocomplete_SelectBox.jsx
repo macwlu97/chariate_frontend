@@ -34,33 +34,10 @@ export default function ControlledOpenSelect({search_city, setSearch_city}) {
   const classes = useStyles();
   const [city, setCity] = useState({});
   const dispatch = useDispatch()
-  // const mapDispatchToProps = dispatch => {
-  //   return {
-  //     // dispatching plain actions
-  //     cityw: () =>  dispatch(cityActions.getAll()),
-  //   }
-  // }
 
     useEffect(() => {
       dispatch(cityActions.getAll(setCity))
   }, []);
-    
-
-  // useEffect(() => {
-  //   cityActions.getAll();
-  // }, []);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(cityActions.getAll());
-  // }, [])
-  
-  // setCity(mapDispatchToProps())
-  // dispatch(cityActions.getAll());
-  // useEffect(() => {
-  //   // Zaktualizuj tytuł dokumentu korzystając z interfejsu API przeglądarki
-  //   // var city = cityActions.getAll();
-  //   dispatch(cityActions.getAll());
-  // });
   
 
   const [open, setOpen] = React.useState(false);

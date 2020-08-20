@@ -25,12 +25,6 @@ const onClick = (cityId,type,search_text,_sort) => {
 function RecipeReviewCard(props) {
   const classes = useStyles();
   const [search_city, setSearch_city] = React.useState(props.cityId);
-  // const [spacing, setSpacing] = React.useState(2);
-//   useEffect(() => {
-//     // () => onClick(search_city,0,props.search_text,props._sort)
-//     // onClick(search_city,props.type,props.search_text,props._sort)
-//     props.setter(search_city)
-// }, [search_city]);
 
   return (
     <React.Fragment>

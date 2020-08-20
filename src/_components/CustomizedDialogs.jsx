@@ -65,9 +65,6 @@ export default function CustomizedDialogs({_title, _content, _button_text }) {
 
   return (
     <div>
-      {/* <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
-        Open dialog
-      </Button> */}
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {_title}

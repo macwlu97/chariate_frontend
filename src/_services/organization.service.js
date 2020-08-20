@@ -27,7 +27,6 @@ export const organizationService = {
 
 function getAllOrganization() {
     const requestOptions = {
-        // method: 'GET',
         headers: authHeader()
     };
 
@@ -35,12 +34,10 @@ function getAllOrganization() {
         var data = response.data
         return data;
   });
-    // return fetch(`${config.apiUrl}/api/v1/organization/`, requestOptions).then(handleResponse);
 }
 
 function getMyOrganization() {
     const requestOptions = {
-        // method: 'GET',
         headers: authHeader()
     };
 
@@ -49,24 +46,10 @@ function getMyOrganization() {
         var data = response.data
         return data;
   });
-    // return fetch(`${config.apiUrl}/api/v1/organization/`, requestOptions).then(handleResponse);
 }
 
 function addOrganization(toJson) {
     
-    // const requestOptions = JSON.stringify({
-    //     headers: {
-    //         Content-Type: 'application/json',
-    //         Authorization: authHeader()["Authorization"],
-    //     }
-    // })
-    // const payload = JSON.stringify({
-    //     "name": toJson.name,
-    //     "sh_name": toJson.sh_name,
-    //     "description": toJson.description,
-    //     "city_id": toJson.city_id,
-    //     "type": toJson.type
-    //   })
 
     const requestOptions = {
         headers: authHeader(),
@@ -82,10 +65,6 @@ function addOrganization(toJson) {
 
     return axios.post(`${config.apiUrl}/api/v1/organization/`, data, requestOptions)
 
-//     return axios.post(`${config.apiUrl}/api/v1/organization/`, headers).then((response) => {
-//         var data = response.data
-//         return data;
-//   });
 }
 
 
@@ -189,9 +168,6 @@ function putCoverImage(toJson, fileObj) {
     };
 
     const organization_id = toJson.organization_id;
-    // let data = {
-    //     logo: toJson.file_binary,
-    //   }
     
     return axios.put(`${config.apiUrl}/api/v1/organization/upload_cover_image/${organization_id}`, fileObj, requestOptions)
 }
@@ -206,7 +182,6 @@ function getOrganization(_id) {
         var data = response.data
         return data;
   });
-    // return fetch(`${config.apiUrl}/api/v1/organization/`, requestOptions).then(handleResponse);
 }
 
 function getEvent(_id) {
@@ -243,7 +218,6 @@ function getAllEvent() {
         var data = response.data
         return data;
   });
-    // return fetch(`${config.apiUrl}/api/v1/organization/`, requestOptions).then(handleResponse);
 }
 
 function getAllFundraising() {
@@ -338,17 +312,7 @@ function getCoverImage(org_id) {
               .reduce((data, byte) => data + String.fromCharCode(byte), '')
           );
         return `data:${response.headers['content-type'].toLowerCase()};base64,${image}`;
-        // data = Buffer.from(data, 'binary').toString('base64')
-        // console.log(data)
-        // return data;
   });
-//     return axios.get(`${config.apiUrl}/api/v1/organization/get_cover_image/${org_id}`, requestOptions).then((response) => {
-//         var data = response.data
-//         var data = btoa(data)
-//         console.log(data)
-//         return data;
-//   });
-
 }
 
 function handleResponse(response) {

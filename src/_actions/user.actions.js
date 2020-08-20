@@ -88,8 +88,6 @@ function update(toJson) {
                 user => { 
                     dispatch(success(user))
                     dispatch(alertActions.success('Account update'));
-                    // history.push('/');
-                    //poczekac i wylogować?
                 },
                 error => {
                     dispatch(failure(error))
