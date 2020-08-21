@@ -98,12 +98,6 @@ class SearchPage extends React.Component {
             
             // console.log(this.pager)
         }
-        // // console.log(searchValues.city)
-        // this.props.setter(searchValues.city, searchValues.text, searchValues.type, searchValues.sort);
-
-        // // this.props.dispatch(searchActions.getResult(this.state.cityId, this.state.search_text, this.state.type, this.state._sort));
-        // this.props.dispatch(searchActions.getResult(searchValues.city, searchValues.text, searchValues.type, searchValues.sort));
-        // // this.props.dispatch(cityActions.getAll());
       }
 
     render() {
@@ -113,12 +107,6 @@ class SearchPage extends React.Component {
         
         return (
             <React.Fragment>
-                {/* {search.items && search.items.count} */}
-                {/* <Typography variant="h3" component="h3" align="center">
-                    Wyszukiwarka
-                </Typography> */}
-                {/* {this.state._sort}
-                {this.state.type} */}
                 {search.loading && <em>Ładuje rezultaty wyszukiwania...</em>}
                 {search.error && <span className="text-danger">ERROR: {search.error}</span>}
                 {search.items &&
@@ -131,22 +119,7 @@ class SearchPage extends React.Component {
                 }
                 { _count==0 && <b>(brak wyników)</b> }
                 <Pagination setterPage={this.setPager} counter={_count}/>
-                {/* ------------
-                <p>
-                    <Link to="/">powróć</Link>
-                </p> */}
-
-                {/* {city.loading && <em>Ładuje rezultaty wyszukiwania...</em>}
-                {city.error && <span className="text-danger">ERROR: {city.error}</span>}
-                {city.items &&
-                    <React.Fragment>
-                        {city.items.results.map((org, index) =>
-                            <Paper style={{padding: 20, marginLeft:20, marginBottom: 20}}>
-                                {org.name}
-                            </Paper>
-                        )}
-                    </React.Fragment>
-                } */}
+               
                 
             </React.Fragment>
 

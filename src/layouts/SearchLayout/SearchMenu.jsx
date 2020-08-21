@@ -18,6 +18,7 @@ import Search from '../HomePageLayout/Search';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import queryString from 'query-string'
 import { history } from '../../_helpers';
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -126,8 +127,10 @@ export default function PrimarySearchAppBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <Link to="/profile"><MenuItem onClick={handleMenuClose}>Profil</MenuItem></Link>
+      <Link to="/organization"><MenuItem onClick={handleMenuClose}>Twoje organizacje</MenuItem></Link>
+      <Link to="/create_organization"><MenuItem onClick={handleMenuClose}>Utwórz organizację</MenuItem></Link>
+      <Link to="/login"><MenuItem onClick={handleMenuClose}>Wyloguj</MenuItem></Link>
     </Menu>
   );
 
@@ -142,33 +145,11 @@ export default function PrimarySearchAppBar(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+      <Link to="/profile"><MenuItem onClick={handleMenuClose}>Profil</MenuItem></Link>
+      <Link to="/organization"><MenuItem onClick={handleMenuClose}>Twoje organizacje</MenuItem></Link>
+      <Link to="/create_organization"><MenuItem onClick={handleMenuClose}>Utwórz organizację</MenuItem></Link>
+      <Link to="/login"><MenuItem onClick={handleMenuClose}>Wyloguj</MenuItem></Link>
+  
     </Menu>
   );
 
@@ -177,16 +158,7 @@ export default function PrimarySearchAppBar(props) {
     <div className={classes.grow}>
       
       <AppBar style={{ background: '#2E3B55' }} position="static">
-      {/* {values.city} */}
         <Toolbar>
-          {/* <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton> */}
           <Typography className={classes.title} variant="h4" noWrap>
             Chariate
           </Typography>

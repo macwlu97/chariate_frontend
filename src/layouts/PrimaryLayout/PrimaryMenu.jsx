@@ -16,6 +16,9 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Search from '../HomePageLayout/Search';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { Link } from 'react-router-dom'
+import { history } from '../../_helpers';
+
 const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
@@ -86,6 +89,17 @@ export default function PrimarySearchAppBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const [search_city, setSearch_city] = React.useState(0);
+  const [search_text, setSearch_text] = React.useState('');
+
+  const onKeyPress = (e) => {
+    if(e.key === 'Enter'){
+      const redirect = `/search/?city=${search_city}&text=${search_text}&type=5&sort=none`;
+      history.push(redirect);
+      console.log('Redirected to /organization');
+    }
+  };
+
   const handleProfileMenuOpen = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -114,8 +128,10 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <Link to="/profile"><MenuItem onClick={handleMenuClose}>Profil</MenuItem></Link>
+      <Link to="/organization"><MenuItem onClick={handleMenuClose}>Twoje organizacje</MenuItem></Link>
+      <Link to="/create_organization"><MenuItem onClick={handleMenuClose}>Utwórz organizację</MenuItem></Link>
+      <Link to="/login"><MenuItem onClick={handleMenuClose}>Wyloguj</MenuItem></Link>
     </Menu>
   );
 
@@ -130,33 +146,10 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+      <Link to="/profile"><MenuItem onClick={handleMenuClose}>Profil</MenuItem></Link>
+      <Link to="/organization"><MenuItem onClick={handleMenuClose}>Twoje organizacje</MenuItem></Link>
+      <Link to="/create_organization"><MenuItem onClick={handleMenuClose}>Utwórz organizację</MenuItem></Link>
+      <Link to="/login"><MenuItem onClick={handleMenuClose}>Wyloguj</MenuItem></Link>
     </Menu>
   );
 
@@ -181,6 +174,8 @@ export default function PrimarySearchAppBar() {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(event) => setSearch_text(event.target.value)}
+              onKeyPress={onKeyPress}
             />
           </div>
           <div className={classes.grow} />

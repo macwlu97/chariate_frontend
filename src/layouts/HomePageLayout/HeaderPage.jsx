@@ -61,52 +61,47 @@ const useStyles = makeStyles(theme => ({
     return (
 
 
-<Paper className={classes.mainFeaturedPost}>
-{/* Increase the priority of the hero background image */}
-{
-  <img
-    style={{ display: 'none' }}
-    src="https://source.unsplash.com/user/erondu"
-    alt="background"
-  />
-}
-<div className={classes.overlay} />
-<Grid container>
-<Grid item md={3}></Grid>
-  <Grid item md={6}>
-    <div className={classes.mainFeaturedPostContent}>
-      <Typography component="h1" variant="h1"  align="center" color="inherit" gutterBottom>
-      <Box fontFamily="Arial" m={1}>Chariate</Box> 
-      </Typography>
-      <Typography variant="h3" align="center" color="inherit" paragraph>
-      <Box fontFamily="Arial" m={1}>Dowiedz się jak dobrze służyć społeczności!</Box> 
-      </Typography>
+    <Paper className={classes.mainFeaturedPost}>
+    {/* Increase the priority of the hero background image */}
+      {
+        <img
+          style={{ display: 'none' }}
+          src="https://source.unsplash.com/user/erondu"
+          alt="background"
+        />
+      }
+    <div className={classes.overlay} />
+      <Grid container>
+      <Grid item md={3}></Grid>
+        <Grid item md={6}>
+          <div className={classes.mainFeaturedPostContent}>
+            <Typography component="h1" variant="h1"  align="center" color="inherit" gutterBottom>
+            <Box fontFamily="Arial" m={1}>Chariate</Box> 
+            </Typography>
+            <Typography variant="h3" align="center" color="inherit" paragraph>
+            <Box fontFamily="Arial" m={1}>Dowiedz się jak dobrze służyć społeczności!</Box> 
+            </Typography>
 
-      <Grid container spacing={1}>  
-      <Grid item md={3}>
-      
-     <AutocompleteInput search_city={search_city} setSearch_city={setSearch_city} />
-     {/* <AutocompleteInput></AutocompleteInput> */}
-    
+            <Grid container spacing={1}>  
+            <Grid item md={3}>
+            
+          <AutocompleteInput search_city={search_city} setSearch_city={setSearch_city} />
+          {/* <AutocompleteInput></AutocompleteInput> */}
+          
+          </Grid>
+          {/* <Grid item md={1}></Grid> */}
+          <Grid item md={3}>
+                
+          <Search search_text={search_text} setSearch_text={setSearch_text} onClick={(onClick)} onKeyPress={(onKeyPress)}/>
+
+          </Grid>
+          </Grid>
+        
+        </div>
+        </Grid>
+        <Grid item md={3}>
+        </Grid>
     </Grid>
-    {/* <Grid item md={1}></Grid> */}
-<Grid item md={3}>
-       
-<Search search_text={search_text} setSearch_text={setSearch_text} onClick={(onClick)} onKeyPress={(onKeyPress)}/>
-
-</Grid>
-      </Grid>
-   
-    
-    
-    
-    
-    </div>
-  </Grid>
-  <Grid item md={3}>
-    
-  </Grid>
-</Grid>
-</Paper>
+    </Paper>
   );
 }

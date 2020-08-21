@@ -19,7 +19,7 @@ export default function SimpleBreadcrumbs() {
       <Link color="inherit" href="/" onClick={handleClick}>
         Home
       </Link>
-      <Typography color="textPrimary">Organization</Typography>
+      <Typography color="textPrimary">Search</Typography>
     </Breadcrumbs>
   );
 }

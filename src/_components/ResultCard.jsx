@@ -26,6 +26,7 @@ export default function ImgMediaCard({organization}) {
   const [fileBinary, setFileBinary] = React.useState();
   let img_organization_id;
   let type_href;
+  
   if ([0,1].includes(organization.type)){
     img_organization_id = organization.id;
     type_href = `/preview_organization/${organization.id}`;
@@ -47,20 +48,18 @@ export default function ImgMediaCard({organization}) {
   } else {
     cover_image = "https://www.oferty-biznesowe.pl/media/thumbnail/company/9632618.jpg"
   }
-  // {(typeof(fileBinary) !== "undefined") && `${fileBinary}` }
-  // https://www.oferty-biznesowe.pl/media/thumbnail/company/9632618.jpg
   return (
     <Card className={classes.root}>
       <CardActionArea>
-      <Link to={type_href}>
-        <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image={cover_image}
-          title="Contemplative Reptile"
-        />
-      </Link>
+        <Link to={type_href}>
+          <CardMedia
+            component="img"
+            alt="Contemplative Reptile"
+            height="140"
+            image={cover_image}
+            title="Contemplative Reptile"
+          />
+        </Link>
         
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -75,14 +74,14 @@ export default function ImgMediaCard({organization}) {
       </CardActionArea>
       
       <CardActions>
-      <ChipCard 
-        type={organization.type} 
-        date={organization.type === 2 && organization.start_date || organization.type === 3 && organization.end_date} 
-        time={organization.type === 2 && organization.start_time || organization.type === 3 && organization.end_time}
-        addDate={[2,3].includes(organization.type) && organization.add_date}
-        city={organization.type === 2 && organization.city.name}
-      />
-        <Button size="small" color="primary">
+        <ChipCard 
+          type={organization.type} 
+          date={organization.type === 2 && organization.start_date || organization.type === 3 && organization.end_date} 
+          time={organization.type === 2 && organization.start_time || organization.type === 3 && organization.end_time}
+          addDate={[2,3].includes(organization.type) && organization.add_date}
+          city={organization.type === 2 && organization.city.name}
+        />
+        <Button size="small" color="primary" onClick={() => {navigator.clipboard.writeText(this.state.textToCopy)}}>
           Udostępnij
         </Button>
         <Button size="small" color="primary">
