@@ -83,9 +83,6 @@ export default function ImgMediaCardCollections({organization}) {
         // city={organization.type === 2 && organization.city.name}
       />
         <Button size="small" color="primary">
-          Udostępnij
-        </Button>
-        <Button size="small" color="primary">
           <Link to={type_href}>Więcej informacji</Link>
         </Button>
       </CardActions>

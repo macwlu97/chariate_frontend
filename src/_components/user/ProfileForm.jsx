@@ -49,11 +49,9 @@ export default function ProfileForm({userInfo}) {
 }
 
   return (
+    <Box>
     <form className={classes.root} noValidate autoComplete="off">
-      <Box>
-        <TextField id="outlined-basic" label="Email" variant="outlined" value={emailField}/> 
-      </Box>
-      <Box>
+        <TextField id="outlined-basic" label="Email" variant="outlined" value={emailField} disabled/> 
         <TextField 
         autoFocus 
         id="password"
@@ -65,18 +63,13 @@ export default function ProfileForm({userInfo}) {
         onChange={handleChange}
         // autocomplete={}
         />
-      </Box>
-
-      
-      <Box>
-        <TextField id="outlined-basic" label="Imię" variant="outlined" value={firstNameField}/>
-      </Box>
-      <Box>
-        <TextField id="outlined-basic" label="Nazwisko" variant="outlined" value={lastNameField}/>
-      </Box>
+        <TextField id="outlined-basic" label="Imię" variant="outlined" value={firstNameField} disabled/>
+        <TextField id="outlined-basic" label="Nazwisko" variant="outlined" value={lastNameField} disabled/>
+     
       <Button onClick={handleUpdate} color="primary">
             Zmień dane.
       </Button>
     </form>
+    </Box>
   );
 }

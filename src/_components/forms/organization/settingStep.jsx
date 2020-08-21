@@ -89,8 +89,9 @@ export default function InputWithIcon({nameField, setNameField, shortNameField, 
           onChange={handleChange}
         />
         {!nameField.namefield &&
-              <div className="help-block">Name is required</div>
+              <div className="help-block">Nazwa jest wymagana</div>
             }
+            {nameField.namefield && nameField.namefield.length < 8 && "Nazwa musi mieć minimum 8 znaków"}
       </FormControl>
 </div>
      <div> <FormControl className={classes.margin}>
@@ -107,8 +108,9 @@ export default function InputWithIcon({nameField, setNameField, shortNameField, 
           onChange={handleChange}
         />
         {!shortNameField.shortNameField &&
-              <div className="help-block">Short name is required</div>
+              <div className="help-block">Skrót nazwy jest wymagany</div>
             }
+        {shortNameField.shortNameField && shortNameField.shortNameField.length < 4 && "Skrót nazwy musi mieć minimum 4 znaki"}
       </FormControl>
 </div>
       <div> <FormControl className={classes.margin}>
@@ -127,8 +129,9 @@ export default function InputWithIcon({nameField, setNameField, shortNameField, 
           onChange={handleChange}
         />
         {!descriptionField.descriptionField &&
-              <div className="help-block">Description is required</div>
+              <div className="help-block">Opis jest wymagany</div>
             }
+        {descriptionField.descriptionField && descriptionField.descriptionField.length < 30 && "Opis musi mieć minimum 30 znaków"}
       </FormControl></div>
 
       <div>

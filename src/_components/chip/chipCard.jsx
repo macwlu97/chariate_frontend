@@ -30,7 +30,7 @@ export default function ChipCard({type, date, time, addDate, city}) {
   return (
     <div className={classes.root}>
       <Chip size="small" label={type == 0 && "Fundacja" || type == 1 && "Społeczność" || type == 2 && "Wydarzenie" || type == 3 && "Zbiórka"} />
-      <Chip
+      {type == 0 && "Fundacja" && <Chip
         size="small"
         avatar={<Avatar>OK</Avatar>}
         label="Zweryfikowane"
@@ -38,7 +38,7 @@ export default function ChipCard({type, date, time, addDate, city}) {
         color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
-      />
+      />}
       {type == 2 && <Chip
         size="small"
         label={`Data rozpoczęcia: ${date.concat(" ", time)}`}

@@ -81,9 +81,9 @@ export default function ImgMediaCard({organization}) {
           addDate={[2,3].includes(organization.type) && organization.add_date}
           city={organization.type === 2 && organization.city.name}
         />
-        <Button size="small" color="primary" onClick={() => {navigator.clipboard.writeText(this.state.textToCopy)}}>
+        {/* <Button size="small" color="primary" onClick={() => {navigator.clipboard.writeText(this.state.textToCopy)}}>
           Udostępnij
-        </Button>
+        </Button> */}
         <Button size="small" color="primary">
           <Link to={type_href}>Więcej informacji</Link>
         </Button>
